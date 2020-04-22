@@ -113,3 +113,11 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+ @media (min-width: 768px) { 
+    
+    .bd-links.collapse,
+    .bd-links .collapse {
+        display: block!important;
+    } 
+}

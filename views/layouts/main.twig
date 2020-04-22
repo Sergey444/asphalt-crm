@@ -1,0 +1,96 @@
+{{ register_asset_bundle('app/assets/AppAsset') }}
+
+{{ void(this.beginPage()) }}
+<!DOCTYPE html>
+<html lang="{{ app.language }}">
+    <head>
+        <meta charset="{{ app.charset }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{ html.encode(this.title) }}</title>
+        {{ html.csrfMetaTags | raw }}
+        
+        {{ void(this.head) }}
+    </head>
+    <body>
+        {{ void(this.beginBody()) }}
+        <div class="wrap">
+            {{ nav_bar_begin({
+                'innerContainerOptions': {'class': 'container-fluid'},
+                'brandLabel': '<div class="logo">Асфальт</div>',
+                'brandUrl' : app.homeUrl,
+                'options' : {
+                    'class' : 'navbar-dark bg-primary navbar-expand-lg',
+                }
+            }) }}
+
+            {% set menuItems = [] %}
+
+            {% if app.user.isGuest == false %}
+                {% set menuItems = menuItems|merge([
+                    {'label' : 'Main', 'url' : ['/site/index']},
+                    {'label' : 'About', 'url' : ['/site/about']},
+                    {
+                        'label' : 'logout (' ~ app.user.identity.username ~ ')',
+                        'url' : ['/site/logout'],
+                        'linkOptions' : {'data-method' : 'post'}
+                    }
+                ]) %}
+
+            {% else %}
+
+                {% set menuItems = menuItems|merge([
+                    {'label' : 'login', 'url' : ['/site/login']},
+                ]) %}
+
+            {% endif %}
+            {{ nav_widget({
+                'options': {
+                    'class': 'navbar-nav ml-auto',
+                },
+                'items': menuItems
+            }) }}
+            {{ nav_bar_end() }}
+      
+            <div class="container-fluid">
+                <div class="row flex-xl-nowrap">
+                    <div class="col-md-2 bd-sidebar">
+                        {{ nav_bar_begin({
+                            'brandLabel': '',
+                            'brandUrl' : app.homeUrl,
+                            'options' : {
+                                'class' : 'collapse bd-links',
+                            }
+                        }) }}
+
+                        {% set menuItems = menuItems|merge([
+                            {'label' : 'Main', 'url' : ['/site/index']},
+                            {'label' : 'About', 'url' : ['/site/about']}
+                        ]) %}
+
+                        {{ nav_widget({
+                            'options': {
+                                'class': 'navbar-nav ml-auto',
+                            },
+                            'items': menuItems
+                        }) }}
+                        {{ nav_bar_end() }}
+                    </div>
+                    <div class="col-md-10 py-md-3 pl-md-5 bd-content">
+                    {{ content | raw}}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <p class="pull-left">&copy; My Company {{ 'now'|date('Y') }}</p>
+                <p class="pull-right">{{ Yii.powered() | raw }}</p>
+            </div>
+        </footer>
+
+        {{ void(this.endBody()) }}
+    </body>
+</html>
+{{   void(this.endPage()) }}

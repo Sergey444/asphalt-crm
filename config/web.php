@@ -71,6 +71,7 @@ $config = [
         ],
     ],
     'params' => $params,
+    'layout' => 'main.twig',
 ];
 
 if (YII_ENV_DEV) {

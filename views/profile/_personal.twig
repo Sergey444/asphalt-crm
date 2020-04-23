@@ -1,0 +1,68 @@
+{{ use('yii/bootstrap4/ActiveForm') }}
+{{ use('yii/widgets/MaskedInput') }}
+
+
+<div class="personal-form bg-white mb-4">
+
+    <h3>Данные пользователя</h3>
+    <p>Задайте данные пользователя, чтобы другие могли его узнать</p><hr />
+
+    {% set form = active_form_begin() %}
+
+    <div class="d-flex">
+
+        <div class="u-info-block flex-fill">
+            <div class="row">
+                <div class="col-md-4">
+                    {{ form.field(model, 'surname').textInput({'placeholder': 'Введите фамилию'}) | raw }}
+                </div>
+                <div class="col-md-4">
+                    {{ form.field(model, 'name').textInput({'placeholder': 'Введите имя'}) | raw }}
+                </div>
+                <div class="col-md-4">
+                    {{ form.field(model, 'secondname').textInput({'placeholder': 'Введите отчество'}) | raw }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    {{ form.field(model, 'date_of_birthday').widget('yii\\widgets\\MaskedInput', {'mask': '99.99.9999'}).textInput({'placeholder': 'Введите дату рождения'}) | raw }}
+                </div>
+                <div class="col-md-4">
+                    {{ form.field(model, 'phone').widget('yii\\widgets\\MaskedInput', {'mask': '+9 (999) 999-99-99'}).textInput({'placeholder': 'Введите телефон'}) | raw }}
+                </div>
+                <div class="col-md-4">
+                    {{ form.field(model, 'address').textInput({'placeholder': 'Введите адрес'}) | raw }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    {{ form.field(model, 'position').textInput({'placeholder': 'Введите должность'}) | raw }}
+                </div>
+                <div class="col-md-4" style="margin-top: 25px;">
+                    <input type="submit" value="Сохранить" class="btn btn-outline-success d-block w-100" />
+                </div>
+            </div>
+        </div>
+
+
+        <div class="bg-white av-block ml-4">
+            <div class="av-preview">
+                <img src="{{ file_exists ? '/' ~ model.photo : 'https://via.placeholder.com/200' }}" id="img-preview" alt="">
+                <div class="edit-photo-block">
+                    <div class="rs-pencil">
+                    <span class="glyphicon glyphicon-pencil" onclick="$('#add-photo-input').click()"></span>
+                    </div>
+                    {# <?= $form->field($model, 'img')->fileInput(['class'=>'add-photo-input', 'id'=>"add-photo-input"])->label(false) ?> #}
+                     {{ form.field(model, 'img').fileInput({'class':'add-photo-input', 'id':'add-photo-input','placeholder': 'Введите должность'}).label(false) | raw }}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    {{ active_form_end() }}
+
+</div>

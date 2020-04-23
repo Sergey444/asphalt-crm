@@ -1,0 +1,88 @@
+{#
+/* @var $this yii\web\View */
+/* @var $searchModel app\models\PersonalSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+#}
+
+{{ use('yii/grid/GridView') }}
+{{ use('yii/widgets/Pjax') }}
+
+{{ set(this, 'title', 'Управление пользователями') }}
+{{ set(this, 'params', { 'breadcrumbs' : { '' : this.title } }) }}
+
+<div class="personal-index">
+
+     {{ pjax_begin() }}
+
+    <div class="bg-white mg-bottom">
+        <div class="row">
+            <div class="col-md-8"> 
+                <button class="btn btn-outline-success d-none d-md-block d-lg-block" data-toggle="modal" data-target="#createUser">Создать пользователя</button>
+            </div>
+            <div class="col-md-4"> 
+                {{ this.render('_search.twig', {model: searchModel}) | raw}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <a href="profile/create" class="btn btn-outline-success d-none" >Создать пользователя</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white table-responsive">
+
+        {{ grid_view_widget({
+                'dataProvider': dataProvider,
+                'tableOptions': {
+                    'class': 'table table-sm table-striped table-bordered' 
+                },
+                'columns': [
+                    {
+                        'label': '#',
+                        'format': 'raw',
+                        'value': 'htmlStatus' },
+                    {
+                        'attribute': 'fullName',
+                        'value': 'fullName' },
+                    'user.username',
+                    'position',
+                    {
+                        'attribute': 'date_of_birthday',
+                        'format': ['date', 'php:d.m.Y']},
+                    {
+                        'attribute': 'phone',
+                        'format': ['phone', 'asPhone']},
+                    {
+                        'class': 'yii\\grid\\ActionColumn',
+                        'header': '',
+                        'template': '{view} {update} {delete}'
+                    },
+                ]
+            })
+        }}
+
+    </div>
+
+    {{ pjax_end() }}
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="createUser" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Создание пользователя</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+             {{ this.render('_form.twig', {model: model}) | raw}}
+        </div>
+    </div>
+
+  </div>
+</div>

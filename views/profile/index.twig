@@ -1,0 +1,90 @@
+{#
+/* @var $this yii\web\View */
+/* @var $model app\models\Personal */
+#}
+
+{{ use('yii\helpers\ArrayHelper') }}
+
+{{ set(this, 'title', 'Мой профиль') }}
+{{ set(this, 'params', { 'breadcrumbs' : { '' : this.title } }) }}
+
+<div class="personal-view">
+
+    <div class="d-flex mb-4 flex-wrap flex-md-nowrap">
+        <div class="bg-white av-block mr-4 mb-4" >
+            <div class="personal-view__av-preview">
+                <img src="{{ file_exists ? '/' ~ model.photo : 'https://via.placeholder.com/200' }}" alt="">
+                
+                <div class="pull-right">
+                    {% if app.user.id == model.user_id %}
+                        <a href="{{ path('/profile/update') }}" class="u-update-btn">Редактировать профиль</a>
+                    {% else %}
+                         <a href="{{ path('/profile/update-user', {'id': model.id}) }}" class="u-update-btn">Редактировать профиль</a>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+        <div class="bg-white u-info-block w-100">
+            <table class="table table-sm table-bordered ">
+                <caption>{{ model.fullName }}</caption>
+                <tbody>
+
+                    <tr>
+                        <td>Дата рождения:</td>
+                        <td>{{ app.formatter.asDate(model.date_of_birthday, 'php:d.m.Y') | raw }}</td>
+                    </tr>
+                    <tr>
+                        <td>Телефон:</td>
+                        <td>{{ app.formatter.asPhone(model.phone) | raw }}</td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td>{{ model.user.email }}</td>
+                    </tr>
+                    <tr>
+                        <td>Адрес:</td>
+                        <td>{{ model.address }}</td>
+                    </tr>
+                    <tr>
+                        <td>Должность:</td>
+                        <td>{{ model.position }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <div class="bg-white u-reg-block">
+            <table class="table table-sm table-bordered">
+                <caption>Регистрационые данные</caption>
+                <tbody>
+                    <tr>
+                        <td>Статус:</td>
+                        <td>{{ model.user.status }}</td>
+                    </tr>
+                    <tr>
+                        <td>Роль пользователя:</td>
+                        <td>{{ role }}</td>
+                    </tr>
+                    <tr>
+                        <td>Дата регистрации:</td>
+                        <td>{{ app.formatter.asDate(model.created_at, 'php:d.m.Y H:i:s') }}</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="bg-white">
+        <table class="table table-sm table-bordered">
+            <caption>Дополнительная информация</caption>
+            <tbody>
+               
+            </tbody>
+        </table>
+    </div>
+
+</div>

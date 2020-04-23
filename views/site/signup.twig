@@ -1,0 +1,40 @@
+{# 
+/* @var $this yii\web\View */
+/* @var $form yii\bootstrap\ActiveForm */
+/* @var $model \frontend\models\SignupForm */
+#}
+
+{{ use('yii\helpers\Html') }}
+{{ use('yii/bootstrap4/ActiveForm') }}
+
+{{ set(this, 'title', 'Регистрация') }}
+{{ set(this, 'params', { 'breadcrumbs' : { '' : this.title } }) }}
+
+<div class="site-signup mx-auto">
+    <div class="bg-white p-5">
+    
+        <h3>{{ this.title }}</h3>
+        
+        <p>Регистрация доступна только при первом запуске</p>
+
+        {% set form = active_form_begin({
+            'id' : 'form-signup',
+            'options' : {'class' : 'form-horizontal'},
+        }) %}
+
+            {{ form.field(model, 'email') | raw }}
+
+            {{ form.field(model, 'name') | raw }}
+
+            {{ form.field(model, 'password').passwordInput() | raw }}
+
+            {{ form.field(model, 'password_repeat').passwordInput() | raw }}
+
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+
+        {{ active_form_end() }}
+
+    </div>
+</div>

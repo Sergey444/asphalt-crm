@@ -1,6 +1,8 @@
 {{ register_asset_bundle('app/assets/AppAsset') }}
-
 {{ void(this.beginPage()) }}
+
+{{ use('yii/widgets') }}
+
 <!DOCTYPE html>
 <html lang="{{ app.language }}">
     <head>
@@ -12,14 +14,16 @@
         {{ void(this.head) }}
     </head>
     <body>
+
         {{ void(this.beginBody()) }}
+
         <div class="wrap">
             {{ nav_bar_begin({
                 'innerContainerOptions': {'class': 'container-fluid'},
-                'brandLabel': '<div class="logo">Асфальт</div>',
+                'brandLabel': app.name,
                 'brandUrl' : app.homeUrl,
                 'options' : {
-                    'class' : 'navbar-dark bg-primary navbar-expand-lg',
+                    'class' : 'rs-navbar navbar-expand-lg fixed-top',
                 }
             }) }}
 
@@ -27,10 +31,10 @@
 
             {% if app.user.isGuest == false %}
                 {% set menuItems = menuItems|merge([
-                    {'label' : 'Main', 'url' : ['/site/index']},
-                    {'label' : 'About', 'url' : ['/site/about']},
+                    {'label' : '<i class="far fa-address-card"></i> Профиль', 'url' : ['profile/index']},
+                    {'label' : '<i class="fas fa-users-cog"></i> Управление пользователями', 'url' : ['/profile/users']},
                     {
-                        'label' : 'logout (' ~ app.user.identity.username ~ ')',
+                        'label' : '<i class="fas fa-door-open"></i> (' ~ app.user.identity.username ~ ')',
                         'url' : ['/site/logout'],
                         'linkOptions' : {'data-method' : 'post'}
                     }
@@ -39,58 +43,87 @@
             {% else %}
 
                 {% set menuItems = menuItems|merge([
-                    {'label' : 'login', 'url' : ['/site/login']},
+                    {'label' : 'Личный кабинет', 'url' : ['/site/login']},
                 ]) %}
 
             {% endif %}
+
             {{ nav_widget({
                 'options': {
                     'class': 'navbar-nav ml-auto',
                 },
+                'encodeLabels': false,
                 'items': menuItems
             }) }}
+
             {{ nav_bar_end() }}
       
+            {% if app.user.isGuest == false %}
             <div class="container-fluid">
-                <div class="row flex-xl-nowrap">
-                    <div class="col-md-2 bd-sidebar">
-                        {{ nav_bar_begin({
-                            'brandLabel': '',
-                            'brandUrl' : app.homeUrl,
-                            'options' : {
-                                'class' : 'collapse bd-links',
-                            }
-                        }) }}
+                <div class="row">
+                       
 
-                        {% set menuItems = menuItems|merge([
-                            {'label' : 'Main', 'url' : ['/site/index']},
-                            {'label' : 'About', 'url' : ['/site/about']}
-                        ]) %}
+                        <nav class="nav d-none d-md-block sidebar">
+                        {% set menuItems = [
+                            {'label' : '<i class="fas fa-truck"></i> Поставщики', 'url' : ['/supplier']},
+                            {'label' : '<i class="fas fa-briefcase"></i> Покупатели', 'url' : ['/customer']},
+                            {'label' : '<i class="fas fa-file-alt"></i> Отчёты', 'url' : ['/report']},
+                            {'label' : '<i class="fas fa-store-alt"></i> Склад', 'url' : ['/storage']}
+                            
+                        ] %}
 
                         {{ nav_widget({
                             'options': {
-                                'class': 'navbar-nav ml-auto',
+                                'class': 'd-block sidebar-sticky',
                             },
+                            'encodeLabels': false,
                             'items': menuItems
                         }) }}
-                        {{ nav_bar_end() }}
-                    </div>
-                    <div class="col-md-10 py-md-3 pl-md-5 bd-content">
-                    {{ content | raw}}
-                    </div>
+                        </nav>
+
+
+                    <main class="flex-fill ml-sm-auto px-4">
+
+                        {{ breadcrumbs_widget({
+                            'links' : this.params['breadcrumbs'] ? this.params['breadcrumbs'] : [],
+                            'homeLink': {'label': 'Главная', 'url': '/'},
+                            'options': {
+                                'class': 'bg-white mb-4'
+                            }
+                        }) | raw }}
+
+                        {% if ( app.session.hasFlash('success') ) %}
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                {{ app.session.getFlash('success') }}
+                            </div>
+                        {% endif %}
+
+                        {{ content | raw }}
+                    </main>
+
                 </div>
             </div>
-
         </div>
+        {% else %}
+        <div class="container-fluid">
+            <div class="row flex-xl-nowrap">
+                <main class="col-md-12 py-md-3 pl-md-5 bd-content">
+                    {{ content | raw}}
+                </main>
+            </div>
+        </div>
+        {% endif %}
 
-        <footer class="footer">
-            <div class="container">
-                <p class="pull-left">&copy; My Company {{ 'now'|date('Y') }}</p>
+        <footer class="navbar fixed-bottom navbar-light bg-light">
+            <div class="container-fluid">
+                <p class="pull-left">{{ app.name }} &copy;{{ 'now'|date('Y') }}</p>
                 <p class="pull-right">{{ Yii.powered() | raw }}</p>
             </div>
         </footer>
 
         {{ void(this.endBody()) }}
+        <br><br>
     </body>
 </html>
-{{   void(this.endPage()) }}
+{{ void(this.endPage()) }}

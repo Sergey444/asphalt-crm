@@ -1,5 +1,26 @@
+html, body {
+    height: 100%;
+}
 body {
-    background-color: $color;
+    background-color: $body-color;
+    font-size: .875rem;
+}
+
+main {
+    padding-top: 70px;
+}
+
+caption {
+    caption-side: top;
+}
+
+.u-update-btn {
+    text-decoration: underline;
+    color: #777777;
+}
+
+.bg-white {
+    padding: 0.5rem;
 }
 
 @include desktop {
@@ -8,4 +29,58 @@ body {
     .bd-links .collapse {
         display: block!important;
     } 
+}
+
+
+/***/
+.rs-pencil {
+    width: 30px;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    bottom: 30px;
+    background-color: #fff;
+    text-align: center;
+    color: $blue-color;
+}
+
+.rs-pencil::before {
+    color: $blue-color;
+}
+
+.rs-pencil span {
+    line-height: normal;
+    width: 100%;
+}
+
+.edit-photo-block {
+    background-color: #fff;
+}
+
+.edit-photo-block .help-block {
+    position: absolute;
+    top: 0;
+    background-color: #fff;
+}
+
+.edit-photo-block .help-block,
+.edit-photo-block .form-group {
+    margin: 0;
+}
+
+html .add-photo-input {
+   display: none;
+}
+
+.av-block {
+    display: inline-block;
+}
+.av-preview {
+    position: relative;
+    min-width: 200px;
+    min-height: 200px;
+}
+.av-preview img {
+    height: 200px;
+    width: 200px;
 }

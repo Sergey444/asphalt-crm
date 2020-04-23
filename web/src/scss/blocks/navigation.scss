@@ -1,0 +1,69 @@
+.navbar-brand {
+    color: $link-color;
+    &:hover {
+        color: $blue-color;
+    }
+}
+.rs-navbar {
+    border-bottom: 1px solid #007bff;
+    background-color: #fff;
+    padding: 0.3rem 1rem;
+}
+
+.nav-item {
+
+    & a {
+        color: $link-color;
+
+        &:hover,
+        &.active {
+            color: $blue-color
+        }
+    }
+}
+
+.navbar-toggler {
+    border: 1px solid $blue-color;
+    outline: none;
+
+    &:active,
+    &:focus {
+        outline: none;
+    }
+
+    & .navbar-toggler-icon {
+
+        font-family: "Font Awesome 5 Free";
+        font-weight: 400;
+    
+        height: auto;
+        color: $blue-color;
+    
+        &::before {
+            content: "\f07c";
+        }
+    }
+    
+    &[aria-expanded="false"] .navbar-toggler-icon::before {
+        content: "\f07b"
+    }
+    
+}
+
+
+nav.sidebar {
+    padding-top: 70px;
+    min-width: 150px;
+}
+.sidebar-sticky {
+    position: sticky;
+    top: 70px;
+    // height: calc(100vh - 70px);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    & .nav-item {
+        padding: 0 20px;
+    }
+}

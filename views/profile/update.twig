@@ -1,0 +1,18 @@
+{#
+/* @var $this yii\web\View */
+/* @var $model app\models\Personal */
+#}
+
+{{ set(this, 'title', 'Редактировать профиль') }}
+{{ set(this, 'params', { 'breadcrumbs' : [{ 'label' : 'Профиль', 'url': 'index' }, {'label' : this.title }] }) }}
+
+{# $this->registerJsFile('@web/js/personal.js', ['depends' => [\yii\web\JqueryAsset::className()]]); #}
+{{ this.registerJsFile('@web/js/personal.js', {'depends': 'yii\\web\\JqueryAsset'}) }}
+
+<div class="personal-update">
+
+    {{ this.render('_personal.twig', {model: model, file_exists: file_exists}) | raw}}
+
+    {{ this.render('_user.twig', {user: user, roles: roles}) | raw}}
+
+</div>

@@ -8,7 +8,11 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
-use app\models\ContactForm;
+
+use app\models\User;
+use app\models\SignupForm;
+
+
 
 class SiteController extends Controller
 {
@@ -21,10 +25,13 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['login', 'error', 'signup', 'verify-email'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => ['logout', 'index'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -82,7 +89,28 @@ class SiteController extends Controller
         }
 
         $model->password = '';
-        return $this->render('login', [
+        return $this->render('login.twig', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Signs user up.
+     *
+     * @return mixed
+     */
+    public function actionSignup()
+    {
+        if ( User::find()->exists() || !Yii::$app->user->isGuest ) {
+            return $this->goHome();
+        }
+        $model = new SignupForm();
+        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
+            Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
+            return $this->goHome();
+        }
+
+        return $this->render('signup.twig', [
             'model' => $model,
         ]);
     }
@@ -100,30 +128,29 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays contact page.
+     * Verify email address
      *
-     * @return Response|string
+     * @param string - token
+     * @throws BadRequestHttpException
+     * @return yii\web\Response
      */
-    public function actionContact()
+    public function actionVerifyEmail($token)
     {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
+        try {
+            $model = new VerifyEmailForm($token);
+        } catch (InvalidArgumentException $e) {
+            throw new BadRequestHttpException($e->getMessage());
         }
-        return $this->render('contact.twig', [
-            'model' => $model,
-        ]);
+        if ($user = $model->verifyEmail()) {
+            if (Yii::$app->user->login($user)) {
+                Yii::$app->session->setFlash('success', Yii::t('app', 'Your email has been confirmed!'));
+                return $this->goHome();
+            }
+        }
+
+        Yii::$app->session->setFlash('error', 'Sorry, we are unable to verify your account with provided token.');
+        return $this->goHome();
     }
 
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
-    }
+
 }

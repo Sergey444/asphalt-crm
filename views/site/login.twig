@@ -1,0 +1,41 @@
+{#
+/* @var $this yii\web\View */
+/* @var $form yii\bootstrap\ActiveForm */
+/* @var $model app\models\LoginForm */
+#}
+
+{{ use('yii\helpers\Html') }}
+{{ use('yii/bootstrap4/ActiveForm') }}
+
+{{ set(this, 'title', 'Авторизация') }}
+{{ set(this, 'params', { 'breadcrumbs' : { '' : this.title } }) }}
+
+<div class="site-signup mx-auto">
+    <div class="bg-white p-5">
+
+        <h3>{{ this.title }}</h3>
+        <p>Please fill out the following fields to login:</p>
+
+        {% set form = active_form_begin({
+            'id' : 'form-login',
+            'options' : {'class' : 'form-horizontal'},
+        }) %}
+
+            {{ form.field(model, 'username').label('Логин') | raw }}
+
+            {{ form.field(model, 'password').passwordInput().label('Пароль') | raw }}
+
+            {{ form.field(model, 'rememberMe').checkbox({'checked': false}).label('Запомнить меня') | raw }}
+
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+
+        {{ active_form_end() }}
+
+        <div class="col-lg-offset-1" style="color:#999;">
+            You may login with <strong>admin/admin</strong> or <strong>demo/demo</strong>.<br>
+            To modify the username/password, please check out the code <code>app\models\User::$users</code>.
+        </div>
+    </div>
+</div>

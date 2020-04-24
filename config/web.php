@@ -60,6 +60,9 @@ $config = [
                 'supplier' => 'supplier/index',
                 'supplier/view/<id:\d+>' => 'supplier/view',
                 'supplier/update/<id:\d+>' => 'supplier/update',
+                'partner' => 'partner/index',
+                'partner/view/<id:\d+>' => 'partner/view',
+                'partner/update/<id:\d+>' => 'partner/update',
             ],
         ],
         'formatter' => [

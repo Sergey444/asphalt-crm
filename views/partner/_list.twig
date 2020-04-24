@@ -1,0 +1,63 @@
+
+    <div class="bg-white" style="border: 1px solid #ddd;">
+        <table class="table table-sm">
+            <caption class="d-flex justify-content-between"> <span class="">{{ model.name }}</span> <span class="" style="text-align: right;">Дата создания: {{ app.formatter.asDate(model.created_at, 'php:d.m.Y') }}</span></caption>
+            <thead></thead>
+            <tbody>
+                <tr>
+                    <td>Контактное лицо</td>
+                    <td>{{ model.contact_name }}</td>
+                </tr>
+
+                <tr>
+                    <td>Телефон</td>
+                    <td>{{ model.phone }}</td>
+                </tr>
+
+                <tr>
+                    <td>Email</td>
+                    <td>{{ model.email }}</td>
+                </tr>
+
+                <tr>
+                    <td>Сайт</td>
+                    <td>{{ model.site }}</td>
+                </tr>
+
+                <tr>
+                    <td>Адрес</td>
+                    <td>{{ model.address }}</td>
+                </tr>
+
+                <tr>
+                    <td>Комментарий</td>
+                    <td>{{ model.comment }}</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+        <div style="text-align: right;">
+            {{ html.a(
+                '<span class="glyphicon glyphicon-eye-open"></span>',
+                path('view', {'id': model.id}),
+                {'data-pjax': 0}
+            ) | raw }}
+
+            {{ html.a(
+                '<span class="glyphicon glyphicon-pencil"></span>',
+                path('update', {'id': model.id}),
+                {'data-pjax': 0}
+            ) | raw }}
+
+            {{ html.a(
+                '<span class="glyphicon glyphicon-trash"></span>',
+                path('delete', {'id': model.id}),
+                {'data': {
+                    'confirm': 'Вы уверены что хотите удалить запись?',
+                    'method': 'post',
+                    'pjax': 0
+                }}
+            ) | raw }}
+        </div>
+    </div>

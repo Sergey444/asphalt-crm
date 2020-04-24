@@ -1,0 +1,74 @@
+{# 
+/* @var $this yii\web\View */
+/* @var $searchModel app\models\PartnerSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+#}
+
+{{ use('yii/widgets/ListView') }}
+{{ use('yii/widgets/Pjax') }}
+
+{{ set(this, 'title', 'Партнёры') }}
+{{ set(this, 'params', { 'breadcrumbs' : { '' : this.title } }) }}
+
+<div class="partner-index">
+
+    {{ pjax_begin() }}
+
+        <div class="bg-white mb-4">
+            <div class="row">
+                <div class="col-md-8"> 
+                    <button class="btn btn-outline-success d-none d-md-block" data-toggle="modal" data-target="#createPartner">Добавить партнёра</button>
+                </div>
+                <div class="col-md-4"> 
+                    {{ this.render('_search.twig', {model: searchModel}) | raw}}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="/partner/create" class="btn btn-outline-success d-md-none w-100" >Создать пользователя</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            {{ list_view_widget({
+                    'dataProvider': dataProvider,
+                    'options': {
+                        'class': 'col-md-3'
+                    },
+                    'itemOptions': {
+                        'class': '' 
+                    },
+                    'itemView': '_list.twig'
+                })
+            }}
+
+        </div>
+
+    {{ pjax_end() }}
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="createPartner" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Добавить партнёра</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+             {{ this.render('_form.twig', {model: model}) | raw}}
+        </div>
+    </div>
+
+  </div>
+</div>
+
+
+

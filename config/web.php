@@ -57,6 +57,9 @@ $config = [
                 'profile' => 'profile/index',
                 'profile/view/<id:\d+>' => 'profile/view',
                 'profile/update/<id:\d+>' => 'profile/update-user',
+                'supplier' => 'supplier/index',
+                'supplier/view/<id:\d+>' => 'supplier/view',
+                'supplier/update/<id:\d+>' => 'supplier/update',
             ],
         ],
         'formatter' => [

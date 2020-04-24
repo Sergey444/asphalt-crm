@@ -11,6 +11,12 @@ use app\models\Supplier;
  */
 class SupplierSearch extends Supplier
 {
+
+    /**
+     * @var string
+     */
+    public $search;
+
     /**
      * {@inheritdoc}
      */
@@ -18,7 +24,7 @@ class SupplierSearch extends Supplier
     {
         return [
             [['id', 'date', 'partner_id', 'bill', 'count', 'price', 'sum', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
-            [['product_id', 'payment', 'comment'], 'safe'],
+            [['product_id', 'payment', 'comment', 'search'], 'safe'],
         ];
     }
 
@@ -56,24 +62,13 @@ class SupplierSearch extends Supplier
             return $dataProvider;
         }
 
-        // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'date' => $this->date,
-            'partner_id' => $this->partner_id,
-            'bill' => $this->bill,
-            'count' => $this->count,
-            'price' => $this->price,
-            'sum' => $this->sum,
-            'created_by' => $this->created_by,
-            'updated_by' => $this->updated_by,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'or',
+            ['like', 'product_id', $this->search],
+            ['like', 'partner_id', $this->search],
+            ['like', 'comment', $this->search],
+            ['like', 'bill', $this->search]
         ]);
-
-        $query->andFilterWhere(['like', 'product_id', $this->product_id])
-            ->andFilterWhere(['like', 'payment', $this->payment])
-            ->andFilterWhere(['like', 'comment', $this->comment]);
 
         return $dataProvider;
     }

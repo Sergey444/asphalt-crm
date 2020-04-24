@@ -17,7 +17,7 @@
     <div class="bg-white mg-bottom">
         <div class="row">
             <div class="col-md-8"> 
-                <button class="btn btn-outline-success d-none d-md-block d-lg-block" data-toggle="modal" data-target="#createUser">Создать пользователя</button>
+                <button class="btn btn-outline-success d-none d-md-block" data-toggle="modal" data-target="#createUser">Создать пользователя</button>
             </div>
             <div class="col-md-4"> 
                 {{ this.render('_search.twig', {model: searchModel}) | raw}}
@@ -26,12 +26,10 @@
 
         <div class="row">
             <div class="col-md-12">
-                <a href="profile/create" class="btn btn-outline-success d-none" >Создать пользователя</a>
+                <a href="profile/create" class="btn btn-outline-success d-md-none w-100" >Создать пользователя</a>
             </div>
         </div>
     </div>
-
-
 
     <div class="bg-white">
 

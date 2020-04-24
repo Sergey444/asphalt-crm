@@ -1,0 +1,51 @@
+{{ use('yii/widgets/DetailView') }}
+
+{{ set(this, 'title', 'Просмотр поставщика') }}
+{{ set(this, 'params', { 'breadcrumbs' : [{ 'label' : 'Поставщики', 'url': '/supplier' }, {'label' : this.title }] }) }}
+
+<div class="supplier-view">
+
+    <div class="bg-white mb-4">
+        <p>
+            {{ html.a('Редактировать', path('update', {'id': model.id}), {
+                class: 'btn btn-outline-primary mr-2'
+            }) | raw }}
+            {{ html.a('Удалить', path('delete', {'id': model.id}), {
+                class: 'btn btn-outline-danger',
+                data: {
+                    confirm: 'Вы уверены что хотите удалить данную запись?',
+                    method: 'post'
+                }
+            }) | raw }}
+        </p>
+    </div>
+
+    <div class="bg-white">
+
+        {{ detail_view_widget({
+                'model': model,
+                'options': {
+                    'class': 'table table-sm table-bordered' 
+                },
+                'attributes': [
+                    'id',
+                    'date',
+                    'partner_id',
+                    'product_id',
+                    'bill',
+                    'count',
+                    'price',
+                    'sum',
+                    'payment',
+                    'comment:ntext',
+                    'created_by',
+                    'updated_by',
+                    'created_at',
+                    'updated_at',
+                ],
+            }) 
+        }}
+
+    </div>
+
+</div>

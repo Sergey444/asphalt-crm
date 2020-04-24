@@ -49,8 +49,6 @@
     }
     
 }
-
-
 nav.sidebar {
     padding-top: 70px;
     min-width: 200px;
@@ -58,7 +56,6 @@ nav.sidebar {
 .sidebar-sticky {
     position: sticky;
     top: 70px;
-    // height: calc(100vh - 70px);
     padding-top: .5rem;
     overflow-x: hidden;
     overflow-y: auto;

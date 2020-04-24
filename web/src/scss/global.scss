@@ -5,19 +5,17 @@ body {
     background-color: $body-color;
     font-size: .875rem;
 }
-
 main {
     padding-top: 70px;
+}
+caption {
+    caption-side: top;
 }
 .wrap {
     min-height: 100%;
     height: auto;
     margin: 0 auto -60px;
     padding: 0 0 60px;
-}
-
-caption {
-    caption-side: top;
 }
 
 .u-update-btn {
@@ -35,10 +33,14 @@ caption {
     .bd-links .collapse {
         display: block!important;
     } 
+
+    .modal-lg, .modal-xl {
+        max-width: 1000px;
+    }
 }
 
 
-/***/
+/** Редактирование изображения профиля */
 .rs-pencil {
     width: 30px;
     cursor: pointer;

@@ -31,10 +31,15 @@
         </div>
     </div>
 
-    <div class="bg-white table-responsive">
+
+
+    <div class="bg-white">
 
         {{ grid_view_widget({
                 'dataProvider': dataProvider,
+                'options': {
+                    'class': 'table-responsive'
+                },
                 'tableOptions': {
                     'class': 'table table-sm table-striped table-bordered' 
                 },

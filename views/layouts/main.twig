@@ -60,29 +60,28 @@
       
             {% if app.user.isGuest == false %}
             <div class="container-fluid">
-                <div class="row flex-nowrap">
-                       
+                <div class="d-md-flex">
 
-                        <nav class="nav d-none d-md-block sidebar">
-                        {% set menuItems = [
-                            {'label' : '<i class="fas fa-truck"></i> Поставщики', 'url' : ['/supplier']},
-                            {'label' : '<i class="fas fa-briefcase"></i> Покупатели', 'url' : ['/customer']},
-                            {'label' : '<i class="fas fa-file-alt"></i> Отчёты', 'url' : ['/report']},
-                            {'label' : '<i class="fas fa-store-alt"></i> Склад', 'url' : ['/storage']}
-                            
-                        ] %}
+                    <nav class="nav d-none d-md-block sidebar">
+                    {% set menuItems = [
+                        {'label' : '<i class="fas fa-truck"></i> Поставщики', 'url' : ['/supplier']},
+                        {'label' : '<i class="fas fa-briefcase"></i> Покупатели', 'url' : ['/customer']},
+                        {'label' : '<i class="fas fa-file-alt"></i> Отчёты', 'url' : ['/report']},
+                        {'label' : '<i class="fas fa-store-alt"></i> Склад', 'url' : ['/storage']}
+                        
+                    ] %}
 
-                        {{ nav_widget({
-                            'options': {
-                                'class': 'd-block sidebar-sticky',
-                            },
-                            'encodeLabels': false,
-                            'items': menuItems
-                        }) }}
-                        </nav>
+                    {{ nav_widget({
+                        'options': {
+                            'class': 'd-block sidebar-sticky',
+                        },
+                        'encodeLabels': false,
+                        'items': menuItems
+                    }) }}
+                    </nav>
 
 
-                    <main class="flex-fill ml-sm-auto px-4">
+                    <main class="flex-fill ml-sm-auto">
 
                         {{ breadcrumbs_widget({
                             'links' : this.params['breadcrumbs'] ? this.params['breadcrumbs'] : [],

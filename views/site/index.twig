@@ -1,6 +1,7 @@
 {{ set(this, 'title', 'Рабочий стол') }}
 
 {{ use('yii/widgets/Pjax') }}
+{{ this.registerJsFile('@web/js/clock.js', {'depends': 'yii\\web\\JqueryAsset'}) }}
 
 <div class="site-index">
 
@@ -9,6 +10,21 @@
         <div class="row">
 
             <div class="col-md-5 mb-4">
+
+                <div class="mb-4">
+                    <div class="card bg-primary text-white">
+                        <h3 class="card-title text-center">
+                            
+                            <div class="d-flex flex-wrap justify-content-center mt-2">
+                                <a><span class="badge hours"></span></a> :
+                                <a><span class="badge min"></span></a> :
+                                <a><span class="badge sec"></span></a>
+                                <a><span class="badge" id="date"></span>
+                            </div>
+                        </h3>
+                    </div>
+                </div>
+
                 {{ pjax_begin() }}
 
                 <div class="site-index__content">
@@ -36,24 +52,3 @@
 
     </div>
 </div>
-
-{# <script src="js/drag-and-drop.js"></script> #}
-
-
-
-<style>
-    {# .video-main { 
-        position: fixed;
-        top: 0px;	
-        left: 0;
-        width: 100%;
-        z-index: -1;
-        background: #000;
-        margin-bottom: -21px;
-    }
-
-    .video-main video {
-        width: 100%;
-    } #}
-</style>
-

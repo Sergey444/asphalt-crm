@@ -1,9 +1,9 @@
 .site-index {
-
+    
     & .bg-white {
         padding: 1rem;
     }
-
+    
     &__content {
         border: 2px dashed #007bff;
         padding: 20px;
@@ -11,7 +11,8 @@
     }
 
     &__text {
-        font-family: 'Caveat', cursive;;
+        
+        font-family: 'Caveat', cursive;
         font-size: 10vw;
         padding-bottom: 30px;
 
@@ -37,5 +38,14 @@
         background-color: #fff;
         padding: 0 20px;
         right: 40px;
+    }
+
+    & .card {
+        font-family: 'Caveat', cursive;
+        font-size: 7vw;
+        @include tablet {
+            font-size: 2vw;
+        }
+
     }
 }

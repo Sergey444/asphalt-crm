@@ -60,7 +60,7 @@
       
             {% if app.user.isGuest == false %}
             <div class="container-fluid">
-                <div class="row">
+                <div class="row flex-nowrap">
                        
 
                         <nav class="nav d-none d-md-block sidebar">
@@ -115,7 +115,7 @@
         </div>
         {% endif %}
 
-        <footer class="navbar fixed-bottom navbar-light bg-light">
+        <footer class="navbar navbar-light bg-light">
             <div class="container-fluid">
                 <p class="pull-left">{{ app.name }} &copy;{{ 'now'|date('Y') }}</p>
                 <p class="pull-right">{{ Yii.powered() | raw }}</p>
@@ -123,7 +123,6 @@
         </footer>
 
         {{ void(this.endBody()) }}
-        <br><br>
     </body>
 </html>
 {{ void(this.endPage()) }}

@@ -9,6 +9,7 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'name' => 'ООО «АСФ Сибцентр»',
+    'language' => 'ru',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -61,12 +62,20 @@ $config = [
         'formatter' => [
             'class' => '\app\components\FormatterHelper',
             'thousandSeparator' => ' ',
-            // 'locale' => 'en-US',
+            // 'locale' => 'ru-Ru',
             // 'dateFormat' => 'yyyy-MM-dd',
             // 'datetimeFormat' => 'yyyy-MM-dd HH:mm:ss',
             // 'decimalSeparator' => '.',
             // 'thousandSeparator' => ',',
             // 'currencyCode' => 'USD'
+        ],
+        'i18n' => [
+            'translations' => [
+                'app' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'forceTranslation' => true,
+                ],
+            ],
         ],
         'view' => [
             'class' => 'yii\web\View',

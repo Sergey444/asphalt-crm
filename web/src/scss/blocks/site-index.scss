@@ -1,0 +1,41 @@
+.site-index {
+
+    & .bg-white {
+        padding: 1rem;
+    }
+
+    &__content {
+        border: 2px dashed #007bff;
+        padding: 20px;
+        border-radius: 15px;
+    }
+
+    &__text {
+        font-family: 'Caveat', cursive;;
+        font-size: 10vw;
+        padding-bottom: 30px;
+
+        @include tablet {
+            font-size: 3vw;
+        }
+    }
+
+    &__author {
+        color: $link-color;
+        font-size: 7vw;
+        @include tablet {
+            font-size: 3vw;
+        }
+    }
+
+    &__video {
+        width: 100%;
+    }
+    
+    &__controll {
+        position: absolute;
+        background-color: #fff;
+        padding: 0 20px;
+        right: 40px;
+    }
+}

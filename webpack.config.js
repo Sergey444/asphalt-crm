@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = (env, argv) => {
      return  {
-        mode: 'production',
+        mode: 'development',
         devtool: "source-map",
         entry: {
             main: "./web/src/index.ts"
@@ -16,6 +16,17 @@ module.exports = (env, argv) => {
                 {
                     test: /\.scss$/,
                     use: ['style-loader', 'css-loader', 'sass-loader'],
+                },
+                {
+                    test: /\.(png|jpe?g|gif|ttf)$/i,
+                    use: [{
+                        loader: 'file-loader',
+                        options: {
+                            limit: 10000,
+                            name: '[name].[ext]?[hash]',
+                            outputPath: 'fonts/',
+                        }
+                    }],
                 },
                 {
                     test: /\.ts$/,

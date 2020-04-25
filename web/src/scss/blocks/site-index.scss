@@ -14,10 +14,11 @@
         
         font-family: 'Caveat', cursive;
         font-size: 10vw;
+        line-height: 120%;
         padding-bottom: 30px;
 
         @include tablet {
-            font-size: 3vw;
+            font-size: 2.6vw;
         }
     }
 

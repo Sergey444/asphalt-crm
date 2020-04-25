@@ -152,6 +152,7 @@ class ProfileController extends Controller
             return $this->redirect(['update-user', 'id' => $model->id]);
         };
 
+        // Перенести в модель
         $model->date_of_birthday = Yii::$app->formatter->asDate($model->date_of_birthday, 'php:d.m.Y');
         $auth = Yii::$app->authManager;
         $roles = ArrayHelper::map($auth->getRoles(), 'name', 'description');

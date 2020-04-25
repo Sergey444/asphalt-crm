@@ -5,6 +5,9 @@ namespace app\models;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 
+use app\models\Partner;
+use yii\helpers\ArrayHelper;
+
 /**
  * This is the model class for table "supplier".
  *
@@ -53,9 +56,10 @@ class Supplier extends \yii\db\ActiveRecord
             [['date', 'partner_id', 'product_id'], 'required'],
             [['date'], 'string'],
             [['date'], 'datetime', 'format' => 'php:d.m.Y', 'timestampAttribute' => 'date'],
-            [['partner_id', 'bill', 'count', 'price', 'sum', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
+            [['partner_id', 'product_id', 'bill', 'count', 'price', 'sum', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
             [['comment'], 'string'],
-            [['product_id', 'payment'], 'string', 'max' => 255],
+            [['payment'], 'string', 'max' => 255],
+            [['payment'], 'default', 'value' => null],
         ];
     }
 
@@ -80,5 +84,19 @@ class Supplier extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPartner() 
+    {
+        return $this->hasOne(Partner::className(), ['id' => 'partner_id']);
+    }
+
+    public function getPartners() 
+    {
+        $model = Partner::find()->limit(50)->all();
+        return ArrayHelper::map($model, 'id', 'name');
     }
 }

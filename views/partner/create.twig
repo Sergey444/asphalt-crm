@@ -1,20 +1,18 @@
-<?php
-
-use yii\helpers\Html;
-
+{#
 /* @var $this yii\web\View */
 /* @var $model app\models\Partner */
+#}
+{{ set(this, 'title', 'Создание партнёра') }}
+{{ set(this, 'params', { 'breadcrumbs' : [{ 'label' : 'Партнёры', 'url': '/partner' }, {'label' : this.title }] }) }}
 
-$this->title = 'Create Partner';
-$this->params['breadcrumbs'][] = ['label' => 'Partners', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
-?>
 <div class="partner-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
-
+    <div class="bg-white">
+    <h3>Страница создания партнёра</h3><hr />
+    {{ this.render('_form.twig', {
+        'model': model,
+    }) | raw }}
+    </div>
 </div>
+
+

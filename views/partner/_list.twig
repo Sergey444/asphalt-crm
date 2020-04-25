@@ -1,43 +1,49 @@
+{{ use('\\yii\\helpers\\StringHelper') }}
 
-    <div class="bg-white" style="border: 1px solid #ddd;">
-        <table class="table table-sm">
-            <caption class="d-flex justify-content-between"> <span class="">{{ model.name }}</span> <span class="" style="text-align: right;">Дата создания: {{ app.formatter.asDate(model.created_at, 'php:d.m.Y') }}</span></caption>
-            <thead></thead>
-            <tbody>
-                <tr>
-                    <td>Контактное лицо</td>
-                    <td>{{ model.contact_name }}</td>
-                </tr>
 
-                <tr>
-                    <td>Телефон</td>
-                    <td>{{ model.phone }}</td>
-                </tr>
+<div class="bg-white" style="border: 1px solid #ddd;">
+    <table class="table table-sm">
+        <caption class=""> <span class="">{{ model.name }}</span> </caption>
+        <thead></thead>
+        <tbody>
+            <tr>
+                <td>Контактное лицо:</td>
+                <td>{{ model.contact_name }}</td>
+            </tr>
 
-                <tr>
-                    <td>Email</td>
-                    <td>{{ model.email }}</td>
-                </tr>
+            <tr>
+                <td>Телефон:</td>
+                <td>{{ model.phone }}</td>
+            </tr>
 
-                <tr>
-                    <td>Сайт</td>
-                    <td>{{ model.site }}</td>
-                </tr>
+            <tr>
+                <td>Email:</td>
+                <td>{{ model.email }}</td>
+            </tr>
 
-                <tr>
-                    <td>Адрес</td>
-                    <td>{{ model.address }}</td>
-                </tr>
+            <tr>
+                <td>Сайт:</td>
+                <td>{{ model.site }}</td>
+            </tr>
 
-                <tr>
-                    <td>Комментарий</td>
-                    <td>{{ model.comment }}</td>
-                </tr>
+            <tr>
+                <td>Адрес:</td>
+                <td>{{ model.address }}</td>
+            </tr>
 
-            </tbody>
-        </table>
+            <tr>
+                <td>Комментарий:</td>
+                <td>{{ model.truncateComment(100) }}</td>
+            </tr>
 
-        <div style="text-align: right;">
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-between">
+        <div class="text-secondary">
+            <span class="text-right" >Дата создания: {{ app.formatter.asDate(model.created_at, 'php:d.m.Y') }}</span>
+        </div>
+        <div style="">
             {{ html.a(
                 '<span class="glyphicon glyphicon-eye-open"></span>',
                 path('view', {'id': model.id}),
@@ -61,3 +67,4 @@
             ) | raw }}
         </div>
     </div>
+</div>

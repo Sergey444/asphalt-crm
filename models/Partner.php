@@ -56,7 +56,8 @@ class Partner extends \yii\db\ActiveRecord
             [['name'], 'required'],
             [['created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
             [['comment'], 'string'],
-            [['name', 'phone', 'inn', 'kpp', 'account_number', 'email', 'director_name', 'contact_name', 'site', 'address', 'legal_address'], 'string', 'max' => 255],
+            ['email', 'email'],
+            [['name', 'phone', 'inn', 'kpp', 'account_number', 'director_name', 'contact_name', 'site', 'address', 'legal_address'], 'string', 'max' => 255],
         ];
     }
 
@@ -84,5 +85,13 @@ class Partner extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
+    }
+
+    /**
+     * @param integer
+     */
+    public function getTruncateComment($count)
+    {
+        return \yii\helpers\StringHelper::truncate($this->comment, $count, '...');
     }
 }

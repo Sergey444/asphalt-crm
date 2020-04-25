@@ -51,7 +51,7 @@ class PartnerController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
-
+        
         $searchModel = new PartnerSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 

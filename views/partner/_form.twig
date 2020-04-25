@@ -17,7 +17,7 @@
             {{ form.field(model, 'name').textInput({'placeholder': 'Введите название'}) | raw }}
         </div>
         <div class="col-md-4">
-             {{ form.field(model, 'phone').textInput({'placeholder': 'Введите телефон'}) | raw }}
+             {{ form.field(model, 'phone').widget('yii\\widgets\\MaskedInput', {'mask': '+9 (999) 999-99-99'}).textInput({'placeholder': 'Введите телефон'}) | raw }}
         </div>
         <div class="col-md-4">
             {{ form.field(model, 'email').textInput({'placeholder': 'Введите email'}) | raw }}

@@ -51,7 +51,9 @@ class Supplier extends \yii\db\ActiveRecord
     {
         return [
             [['date', 'partner_id', 'product_id'], 'required'],
-            [['date', 'partner_id', 'bill', 'count', 'price', 'sum', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
+            [['date'], 'string'],
+            [['date'], 'datetime', 'format' => 'php:d.m.Y', 'timestampAttribute' => 'date'],
+            [['partner_id', 'bill', 'count', 'price', 'sum', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
             [['comment'], 'string'],
             [['product_id', 'payment'], 'string', 'max' => 255],
         ];

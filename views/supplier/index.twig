@@ -44,7 +44,7 @@
                     'columns': [
                         {'class': 'yii\\grid\\SerialColumn'},
                         
-                        'date',
+                        {'attribute': 'date', 'format': ['date', 'php:d.m.Y']},
                         'product_id',
                         'partner_id',
                         'bill',

@@ -5,7 +5,6 @@
 #}
 
 {{ use('yii/bootstrap4/ActiveForm') }}
-{{ use('yii/widgets/MaskedInput') }}
 
 <div class="supplier-form">
 
@@ -13,7 +12,21 @@
 
     <div class="row">
         <div class="col-md-4">
-            {{ form.field(model, 'date').textInput({'placeholder': 'Введите дату'}) | raw }}
+            {# {{ form.field(model, 'date').textInput({'placeholder': 'Введите дату'}) | raw }} #}
+            {{ form.field(model, 'date').widget('yii\\jui\\DatePicker', {
+                                                                        'options':{
+                                                                            'class':'form-control',
+                                                                        },
+                                                                        'clientOptions':{
+                                                                            'minDate':'',
+                                                                            'maxDate':''
+                                                                        },
+                                                                        'language': 'ru',
+                                                                        'dateFormat':'php:d.m.Y',
+                                                                }).widget('yii\\widgets\\MaskedInput', {
+                                                                    'mask': '99.99.9999'
+                                                                }).textInput() | raw}}
+
         </div>
         <div class="col-md-4">
              {{ form.field(model, 'partner_id').textInput({'placeholder': 'Выберите поставщика'}) | raw }}

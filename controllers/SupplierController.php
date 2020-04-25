@@ -51,6 +51,10 @@ class SupplierController extends Controller
         $searchModel = new SupplierSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index']);
+        }
+
         return $this->render('index.twig', [
             'model' => $model,
             'searchModel' => $searchModel,

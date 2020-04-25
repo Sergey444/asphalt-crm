@@ -1,23 +1,25 @@
 {# 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\SupplierSearch */
+/* @var $searchModel app\models\OrderSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */ 
 #}
 
 {{ use('yii/grid/GridView') }}
 {{ use('yii/widgets/Pjax') }}
 
-{{ set(this, 'title', 'Поставщики') }}
+{{ set(this, 'title', 'Заказы') }}
 {{ set(this, 'params', { 'breadcrumbs' : { '' : this.title } }) }}
 
-<div class="supplier-index">
+{{ this.registerJsFile('@web/js/change-status.js', {'depends': 'yii\\web\\JqueryAsset'}) }}
+
+<div class="order-index">
 
     {{ pjax_begin() }}
 
         <div class="bg-white mb-4">
             <div class="row">
                 <div class="col-md-8"> 
-                    <button class="btn btn-outline-success d-none d-md-block" data-toggle="modal" data-target="#createSupplier">Добавить поставщика</button>
+                    <button class="btn btn-outline-success d-none d-md-block" data-toggle="modal" data-target="#createOrder">Добавить заказ</button>
                 </div>
                 <div class="col-md-4"> 
                     {{ this.render('_search.twig', {model: searchModel}) | raw}}
@@ -26,7 +28,7 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <a href="/supplier/create" class="btn btn-outline-success d-md-none w-100" >Добавить поставщика</a>
+                    <a href="/order/create" class="btn btn-outline-success d-md-none w-100" >Добавить заказ</a>
                 </div>
             </div>
         </div>
@@ -53,6 +55,10 @@
                         'sum',
                         'payment',
                         {
+                            'attribute': 'htmlStatus',
+                            'format': 'raw'
+                        },
+                        {
                             'class': 'yii\\grid\\ActionColumn',
                             'header': '',
                             'template': '{view} {update} {delete}'
@@ -69,13 +75,13 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="createSupplier" role="dialog">
+<div class="modal fade" id="createOrder" role="dialog">
   <div class="modal-dialog modal-lg">
 
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">
-            <h4 class="modal-title">Добавить поставщика</h4>
+            <h4 class="modal-title">Добавить заказ</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">

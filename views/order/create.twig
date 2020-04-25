@@ -1,0 +1,16 @@
+{#
+/* @var $this yii\web\View */
+/* @var $model app\models\Order */
+#}
+{{ set(this, 'title', 'Создание заказа') }}
+{{ set(this, 'params', { 'breadcrumbs' : [{ 'label' : 'Заказы', 'url': '/order' }, {'label' : this.title }] }) }}
+
+<div class="supplier-create">
+
+    <div class="bg-white">
+    <h3>Страница создания поставщика</h3><hr />
+    {{ this.render('_form.twig', {
+        'model': model,
+    }) | raw }}
+    </div>
+</div>

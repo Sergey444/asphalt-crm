@@ -63,6 +63,9 @@ $config = [
                 'partner' => 'partner/index',
                 'partner/view/<id:\d+>' => 'partner/view',
                 'partner/update/<id:\d+>' => 'partner/update',
+                'order' => 'order/index',
+                'order/view/<id:\d+>' => 'order/view',
+                'order/update/<id:\d+>' => 'order/update',
             ],
         ],
         'formatter' => [

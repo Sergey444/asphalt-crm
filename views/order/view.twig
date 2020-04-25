@@ -1,0 +1,53 @@
+{{ use('yii/widgets/DetailView') }}
+
+{{ set(this, 'title', 'Просмотр заказа') }}
+{{ set(this, 'params', { 'breadcrumbs' : [{ 'label' : 'Заказы', 'url': '/order' }, {'label' : this.title }] }) }}
+
+<div class="order-view">
+
+    <div class="bg-white mb-4">
+        <p>
+            {{ html.a('Редактировать', path('update', {'id': model.id}), {
+                class: 'btn btn-outline-primary mr-2'
+            }) | raw }}
+            {{ html.a('Удалить', path('delete', {'id': model.id}), {
+                class: 'btn btn-outline-danger',
+                data: {
+                    confirm: 'Вы уверены что хотите удалить данную запись?',
+                    method: 'post'
+                }
+            }) | raw }}
+        </p>
+    </div>
+
+    <div class="bg-white">
+
+        {{ detail_view_widget({
+                'model': model,
+                'options': {
+                    'class': 'table table-sm table-bordered' 
+                },
+                'attributes': [
+                    'id',
+                    'date',
+                    {'attribute': 'date', 'format': ['date', 'php:d.m.Y H:i:s']},
+                    'partner_id',
+                    'product_id',
+                    'bill',
+                    'count',
+                    'price',
+                    'sum',
+                    'payment',
+                    'status',
+                    'comment:ntext',
+                    'created_by',
+                    'updated_by',
+                    {'attribute': 'created_at', 'format': ['date', 'php:d.m.Y H:i:s']},
+                    {'attribute': 'updated_at', 'format': ['date', 'php:d.m.Y H:i:s']},
+                ],
+            }) 
+        }}
+
+    </div>
+
+</div>

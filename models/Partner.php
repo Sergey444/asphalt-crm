@@ -15,9 +15,9 @@ use yii\behaviors\BlameableBehavior;
  * @property string|null $director_name
  * @property string|null $contact_name
  * @property string|null $site
- * @property int|null $inn
- * @property int|null $kpp
- * @property int|null $account_number
+ * @property string|null $inn
+ * @property string|null $kpp
+ * @property string|null $account_number
  * @property string|null $address
  * @property string|null $legal_address
  * @property string|null $comment
@@ -54,9 +54,9 @@ class Partner extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['inn', 'kpp', 'account_number', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
+            [['created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
             [['comment'], 'string'],
-            [['name', 'phone', 'email', 'director_name', 'contact_name', 'site', 'address', 'legal_address'], 'string', 'max' => 255],
+            [['name', 'phone', 'inn', 'kpp', 'account_number', 'email', 'director_name', 'contact_name', 'site', 'address', 'legal_address'], 'string', 'max' => 255],
         ];
     }
 

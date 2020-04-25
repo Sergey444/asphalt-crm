@@ -22,8 +22,8 @@ class PartnerSearch extends Partner
     public function rules()
     {
         return [
-            [['id', 'inn', 'kpp', 'account_number', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
-            [['name', 'phone', 'email', 'director_name', 'contact_name', 'site', 'address', 'legal_address', 'comment', 'search'], 'safe'],
+            [['id',  'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
+            [['name', 'phone', 'email', 'inn', 'kpp', 'account_number', 'director_name', 'contact_name', 'site', 'address', 'legal_address', 'comment', 'search'], 'safe'],
         ];
     }
 

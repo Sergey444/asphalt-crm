@@ -47,6 +47,11 @@ class PartnerController extends Controller
     public function actionIndex()
     {
         $model = new Partner();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
         $searchModel = new PartnerSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 

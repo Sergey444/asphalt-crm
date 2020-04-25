@@ -1,0 +1,16 @@
+{#
+/* @var $this yii\web\View */
+/* @var $model app\models\Personal */
+#}
+{{ set(this, 'title', 'Создание пользователя') }}
+{{ set(this, 'params', { 'breadcrumbs' : [{ 'label' : 'Пользователи', 'url': '/users' }, {'label' : this.title }] }) }}
+
+<div class="personal-create">
+
+    <div class="bg-white">
+    <h3>Страница создания пользователя</h3><hr />
+    {{ this.render('_form.twig', {
+        'model': model,
+    }) | raw }}
+    </div>
+</div>

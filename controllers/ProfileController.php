@@ -129,7 +129,7 @@ class ProfileController extends Controller
             return $this->redirect(['view.twig', 'id' => $model->id]);
         }
 
-        return $this->render('create', [
+        return $this->render('create.twig', [
             'model' => $model
         ]);
     }

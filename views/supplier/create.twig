@@ -1,20 +1,16 @@
-<?php
-
-use yii\helpers\Html;
-
+{#
 /* @var $this yii\web\View */
 /* @var $model app\models\Supplier */
+#}
+{{ set(this, 'title', 'Создание поставщика') }}
+{{ set(this, 'params', { 'breadcrumbs' : [{ 'label' : 'Партнёры', 'url': '/supplier' }, {'label' : this.title }] }) }}
 
-$this->title = 'Create Supplier';
-$this->params['breadcrumbs'][] = ['label' => 'Suppliers', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
-?>
 <div class="supplier-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
-
+    <div class="bg-white">
+    <h3>Страница создания поставщика</h3><hr />
+    {{ this.render('_form.twig', {
+        'model': model,
+    }) | raw }}
+    </div>
 </div>

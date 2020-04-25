@@ -30,6 +30,7 @@
                 'attributes': [
                     'id',
                     'date',
+                    {'attribute': 'date', 'format': ['date', 'php:d.m.Y H:i:s']},
                     'partner_id',
                     'product_id',
                     'bill',
@@ -40,8 +41,8 @@
                     'comment:ntext',
                     'created_by',
                     'updated_by',
-                    'created_at',
-                    'updated_at',
+                    {'attribute': 'created_at', 'format': ['date', 'php:d.m.Y H:i:s']},
+                    {'attribute': 'updated_at', 'format': ['date', 'php:d.m.Y H:i:s']},
                 ],
             }) 
         }}

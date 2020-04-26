@@ -17,9 +17,9 @@
                 
                 <div class="pull-right">
                     {% if app.user.id == model.user_id %}
-                        <a href="{{ path('/profile/update') }}" class="u-update-btn">Редактировать профиль</a>
+                        <a href="{{ path('/profile/update-user') }}" class="u-update-btn">Редактировать профиль</a>
                     {% else %}
-                         <a href="{{ path('/profile/update-user', {'id': model.id}) }}" class="u-update-btn">Редактировать профиль</a>
+                         <a href="{{ path('/profile/update', {'id': model.id}) }}" class="u-update-btn">Редактировать профиль</a>
                     {% endif %}
                 </div>
 

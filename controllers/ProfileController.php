@@ -142,14 +142,14 @@ class ProfileController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdateUser($id)
+    public function actionUpdate($id)
     {
         $model = $this->findModel($id);
         $user = new UpdateUserForm($model->user_id);
 
         if ($this->update($id, $model, $user)) {
             Yii::$app->session->setFlash('success', Yii::t('app', 'User updated successfully'));
-            return $this->redirect(['update-user', 'id' => $model->id]);
+            return $this->redirect(['update', 'id' => $model->id]);
         };
 
         // Перенести в модель
@@ -171,7 +171,7 @@ class ProfileController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate()
+    public function actionUpdateUser()
     {
         $id = Yii::$app->user->id;
         $model = Profile::find()->where(['user_id' => $id])->one();
@@ -179,7 +179,7 @@ class ProfileController extends Controller
 
         if (Yii::$app->request->post() && $this->update($id, $model, $user)) {
             Yii::$app->session->setFlash('success', 'User updated successfully');
-            return $this->redirect(['update']);
+            return $this->redirect(['update-user']);
         };
 
         $model->date_of_birthday = Yii::$app->formatter->asDate($model->date_of_birthday, 'php:d.m.Y');

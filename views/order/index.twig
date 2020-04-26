@@ -19,7 +19,13 @@
         <div class="bg-white mb-4">
             <div class="row">
                 <div class="col-md-8"> 
-                    <button class="btn btn-outline-success d-none d-md-block" data-toggle="modal" data-target="#createOrder">Добавить заказ</button>
+                    {% if model.products and model.partners %}
+                        <button class="btn btn-outline-success d-none d-md-block" data-toggle="modal" data-target="#createOrder">Добавить заказ</button>
+                    {% else %}
+                        <div class="alert alert-primary" role="alert">
+                            Для добавления заказа необходимо создать {{ model.partners ? 'товары' : model.products ? 'партнёров' : 'товары и партнёров' }}
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="col-md-4"> 
                     {{ this.render('_search.twig', {model: searchModel}) | raw}}
@@ -28,7 +34,9 @@
 
             <div class="row">
                 <div class="col-md-12">
+                {% if model.products and model.partners %}
                     <a href="/order/create" class="btn btn-outline-success d-md-none w-100" >Добавить заказ</a>
+                {% endif %}
                 </div>
             </div>
         </div>
@@ -47,8 +55,8 @@
                         {'class': 'yii\\grid\\SerialColumn'},
                         
                         {'attribute': 'date', 'format': ['date', 'php:d.m.Y']},
-                        'product_id',
                         'partner.name',
+                        'product.name',
                         'bill',
                         'count',
                         'price',

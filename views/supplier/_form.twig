@@ -24,7 +24,10 @@
                                                     'dateFormat':'php:d.m.Y',
                                                 }).widget('yii\\widgets\\MaskedInput', {
                                                     'mask': '99.99.9999'
-                                                }).textInput() | raw}}
+                                                }).textInput({
+                                                    'placeholder': 'Введите дату',
+                                                    'value': app.formatter.asDate(model.date, 'php:d.m.Y')
+                                                }) | raw}}
         </div>
         <div class="col-md-4">
              {{ form.field(model, 'partner_id').dropDownList(model.partners, {

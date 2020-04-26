@@ -96,6 +96,16 @@ class Order extends \yii\db\ActiveRecord
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProduct() 
+    {
+        return $this->hasOne(Product::className(), ['id' => 'product_id']);
+    }
+
+    /**
+     * Returns partners from Partner model for list to form select
+     * has limit 50 elements
      * @return array
      */
     public function getPartners() 
@@ -104,6 +114,21 @@ class Order extends \yii\db\ActiveRecord
         return ArrayHelper::map($model, 'id', 'name');
     }
 
+    /**
+     * Returns products from Product model for list to form select
+     * has limit 50 elements
+     * @return array
+     */
+    public function getProducts() 
+    {
+        $model = Product::find()->limit(50)->all();
+        return ArrayHelper::map($model, 'id', 'name');
+    }
+
+    /**
+     * Returns an HTML switch for status
+     * @return string
+     */
     public function getHtmlStatus()
     {
         $status = $this->status ? 'checked' : '';

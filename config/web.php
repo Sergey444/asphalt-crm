@@ -71,12 +71,12 @@ $config = [
         'formatter' => [
             'class' => '\app\components\FormatterHelper',
             'thousandSeparator' => ' ',
-            // 'locale' => 'ru-Ru',
+            'locale' => 'ru-Ru',
             // 'dateFormat' => 'yyyy-MM-dd',
             // 'datetimeFormat' => 'yyyy-MM-dd HH:mm:ss',
             // 'decimalSeparator' => '.',
             // 'thousandSeparator' => ',',
-            // 'currencyCode' => 'USD'
+            'currencyCode' => 'RUS'
         ],
         'i18n' => [
             'translations' => [
@@ -86,6 +86,7 @@ $config = [
                 ],
             ],
         ],
+        
         'view' => [
             'class' => 'yii\web\View',
             'renderers' => [

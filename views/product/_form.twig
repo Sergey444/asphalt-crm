@@ -1,0 +1,47 @@
+{# 
+/* @var $this yii\web\View */
+/* @var $model app\models\Product */
+/* @var $form yii\widgets\ActiveForm */
+#}
+
+{{ use('yii/bootstrap4/ActiveForm') }}
+
+<div class="product-form">
+
+    {% set form = active_form_begin() %}
+
+    <div class="row">
+        <div class="col-md-4">
+            {{ form.field(model, 'name').textInput({'placeholder': 'Введите название товара'}) | raw }}
+        </div>
+        <div class="col-md-4">
+            {{ form.field(model, 'price').textInput({'placeholder': 'Цена за единицу (рублей)'}) | raw }}
+        </div>
+        <div class="col-md-4">
+            {{ form.field(model, 'count').textInput({'placeholder': 'Количество'}) | raw }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            {{ form.field(model, 'unit').dropDownList([
+                'т.',
+                'шт.',
+                'л.',
+                'у.е.'
+            ], {
+                 'prompt': 'Выберите единицу измерения'
+             }) | raw }}
+        </div>
+        <div class="col-md-8">
+             {{ form.field(model, 'description').textarea({'placeholder': 'Описание', 'rows':'1'}) | raw }}
+        </div>
+    </div>
+
+     <div class="form-group">
+        <input type="submit" value="Сохранить" class="btn btn-outline-success d-block " />
+    </div>
+
+    {{ active_form_end() }} 
+
+</div>

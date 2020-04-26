@@ -1,0 +1,16 @@
+{#
+/* @var $this yii\web\View */
+/* @var $model app\models\Order */
+#}
+{{ set(this, 'title', 'Редактирование товара') }}
+{{ set(this, 'params', { 'breadcrumbs' : [{ 'label' : 'Заказы', 'url': '/product' }, {'label' : this.title }] }) }}
+
+<div class="product-update">
+
+    <div class="bg-white">
+    <h3>Страница редактирования товара</h3><hr />
+    {{ this.render('_form.twig', {
+        'model': model,
+    }) | raw }}
+    </div>
+</div>

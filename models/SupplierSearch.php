@@ -46,7 +46,7 @@ class SupplierSearch extends Supplier
      */
     public function search($params)
     {
-        $query = Supplier::find();
+        $query = Supplier::find()->joinWith(['product', 'partner']);
 
         // add conditions that should always apply here
 

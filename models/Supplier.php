@@ -93,9 +93,33 @@ class Supplier extends \yii\db\ActiveRecord
         return $this->hasOne(Partner::className(), ['id' => 'partner_id']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProduct() 
+    {
+        return $this->hasOne(Product::className(), ['id' => 'product_id']);
+    }
+
+    /**
+     * Get partners from Partner model for list to form select
+     * has limit 50 elements
+     * @return array
+     */
     public function getPartners() 
     {
         $model = Partner::find()->limit(50)->all();
+        return ArrayHelper::map($model, 'id', 'name');
+    }
+
+    /**
+     * Get products from Product model for list to form select
+     * has limit 50 elements
+     * @return array
+     */
+    public function getProducts() 
+    {
+        $model = Product::find()->limit(50)->all();
         return ArrayHelper::map($model, 'id', 'name');
     }
 }

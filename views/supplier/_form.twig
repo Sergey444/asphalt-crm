@@ -27,13 +27,14 @@
                                                 }).textInput() | raw}}
         </div>
         <div class="col-md-4">
-             {# {{ form.field(model, 'partner_id').textInput({'placeholder': 'Выберите поставщика'}) | raw }} #}
              {{ form.field(model, 'partner_id').dropDownList(model.partners, {
                  'prompt': 'Выберите партнёра'
              }) | raw }}
         </div>
         <div class="col-md-4">
-            {{ form.field(model, 'product_id').textInput({'placeholder': 'Выберите товар'}) | raw }}
+            {{ form.field(model, 'product_id').dropDownList(model.products, {
+                 'prompt': 'Выберите товар'
+             }) | raw }}
         </div>
     </div>
 

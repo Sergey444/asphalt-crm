@@ -8,27 +8,27 @@
         <tbody>
             <tr>
                 <td>Контактное лицо:</td>
-                <td>{{ model.contact_name }}</td>
+                <td>{{ app.formatter.asRaw(model.contact_name) | raw }}</td>
             </tr>
 
             <tr>
                 <td>Телефон:</td>
-                <td>{{ model.phone }}</td>
+                <td>{{ app.formatter.asRaw(model.phone) | raw }}</td>
             </tr>
 
             <tr>
                 <td>Email:</td>
-                <td>{{ model.email }}</td>
+                <td>{{ app.formatter.asRaw(model.email) | raw }}</td>
             </tr>
 
             <tr>
                 <td>Сайт:</td>
-                <td>{{ model.site }}</td>
+                <td>{{ app.formatter.asRaw(model.site) | raw }}</td>
             </tr>
 
             <tr>
                 <td>Адрес:</td>
-                <td>{{ model.address }}</td>
+                <td>{{ app.formatter.asRaw(model.address) | raw }}</td>
             </tr>
 
             <tr>

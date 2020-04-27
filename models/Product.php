@@ -62,15 +62,17 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'price' => 'Price',
-            'count' => 'Count',
-            'unit' => 'Unit',
-            'description' => 'Description',
-            'created_by' => 'Created By',
-            'updated_by' => 'Updated By',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'name' => 'Название',
+            'price' => 'Цена',
+            'count' => 'Количество',
+            'total' => 'Сумма',
+            'unit' => 'Единица измерения',
+            'description' => 'Описание',
+            'truncateDescription' => 'Описание',
+            'created_by' => 'Кем создан',
+            'updated_by' => 'Кем изменён',
+            'created_at' => 'Дата создания',
+            'updated_at' => 'Дата изменения',
         ];
     }
 

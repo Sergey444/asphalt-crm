@@ -52,6 +52,12 @@ class SupplierSearch extends Supplier
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'attributes' => ['date', 'partner.name', 'product.name', 'bill', 'count', 'price', 'sum', 'payment'],
+                'defaultOrder' => [
+                    'date' => SORT_DESC
+                ],
+            ],
         ]);
 
         $this->load($params);
@@ -64,9 +70,8 @@ class SupplierSearch extends Supplier
 
         $query->andFilterWhere([
             'or',
-            ['like', 'product_id', $this->search],
-            ['like', 'partner_id', $this->search],
-            ['like', 'comment', $this->search],
+            ['like', 'product.name', $this->search],
+            ['like', 'partner.name', $this->search],
             ['like', 'bill', $this->search]
         ]);
 

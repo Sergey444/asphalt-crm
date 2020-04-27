@@ -18,11 +18,11 @@
 
     <div class="row">
         <div class="col-8">
-            {{ form.field(model, 'name').textInput({'placeholder': 'Поиск'}).label(false) | raw }}
+            {{ form.field(model, 'name').textInput({'placeholder': 'Поиск', 'class':'form-control form-control-sm'}).label(false) | raw }}
         </div>
         <div class="col-4" >
               <div class="form-group">
-                <input type="submit" value="Найти" class="btn btn-outline-primary d-block w-100" />
+                <input type="submit" value="Найти" class="btn btn-outline-primary btn-sm d-block w-100" />
             </div>
         </div>
     </div>

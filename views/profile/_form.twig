@@ -13,42 +13,42 @@
 
     <div class="row">
         <div class="col-md-4">
-            {{ form.field(model, 'email').textInput({'placeholder': 'Введите email'}) | raw }}
+            {{ form.field(model, 'email').textInput({'placeholder': 'Введите email', 'class':'form-control form-control-sm'}) | raw }}
         </div>
         <div class="col-md-4">
-             {{ form.field(model, 'password').passwordInput({'placeholder': 'Введите пароль'}) | raw }}
+             {{ form.field(model, 'password').passwordInput({'placeholder': 'Введите пароль', 'class':'form-control form-control-sm'}) | raw }}
         </div>
         <div class="col-md-4">
-            {{ form.field(model, 'password_repeat').passwordInput({'placeholder': 'Введите пароль ещё раз'}) | raw }}
+            {{ form.field(model, 'password_repeat').passwordInput({'placeholder': 'Введите пароль ещё раз', 'class':'form-control form-control-sm'}) | raw }}
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-4">
-            {{ form.field(model, 'surname').textInput({'placeholder': 'Введите фамилию'}) | raw }}
+            {{ form.field(model, 'surname').textInput({'placeholder': 'Введите фамилию', 'class':'form-control form-control-sm'}) | raw }}
         </div>
         <div class="col-md-4">
-            {{ form.field(model, 'name').textInput({'placeholder': 'Введите имя'}) | raw }}
+            {{ form.field(model, 'name').textInput({'placeholder': 'Введите имя', 'class':'form-control form-control-sm'}) | raw }}
         </div>
         <div class="col-md-4">
-            {{ form.field(model, 'secondname').textInput({'placeholder': 'Введите отчество'}) | raw }}
+            {{ form.field(model, 'secondname').textInput({'placeholder': 'Введите отчество', 'class':'form-control form-control-sm'}) | raw }}
         </div>
     </div>
     
     <div class="row">
         <div class="col-md-4">
-            {{ form.field(model, 'date_of_birthday').widget('yii\\widgets\\MaskedInput', {'mask': '99.99.9999'}).textInput({'placeholder': 'Введите дату рождения'}) | raw }}
+            {{ form.field(model, 'date_of_birthday').widget('yii\\widgets\\MaskedInput', {'mask': '99.99.9999'}).textInput({'placeholder': 'Введите дату рождения', 'class':'form-control form-control-sm'}) | raw }}
         </div>
         <div class="col-md-4">
-            {{ form.field(model, 'phone').widget('yii\\widgets\\MaskedInput', {'mask': '+9 (999) 999-99-99'}).textInput({'placeholder': 'Введите телефон'}) | raw }}
+            {{ form.field(model, 'phone').widget('yii\\widgets\\MaskedInput', {'mask': '+9 (999) 999-99-99'}).textInput({'placeholder': 'Введите телефон', 'class':'form-control form-control-sm'}) | raw }}
         </div>
         <div class="col-md-4">
-            {{ form.field(model, 'position').textInput({'placeholder': 'Введите должность'}) | raw }}
+            {{ form.field(model, 'position').textInput({'placeholder': 'Введите должность', 'class':'form-control form-control-sm'}) | raw }}
         </div>
     </div>
 
      <div class="form-group">
-        <input type="submit" value="Сохранить" class="btn btn-outline-success d-block " />
+        <input type="submit" value="Сохранить" class="btn btn-outline-success btn-sm d-block " />
     </div>
 
     {{ active_form_end() }}

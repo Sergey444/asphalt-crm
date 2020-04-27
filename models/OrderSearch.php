@@ -45,7 +45,7 @@ class OrderSearch extends Order
      */
     public function search($params)
     {
-        $query = Order::find();
+        $query = Order::find()->joinWith(['partner', 'product']);
 
         // add conditions that should always apply here
 
@@ -63,9 +63,8 @@ class OrderSearch extends Order
 
         $query->andFilterWhere([
             'or',
-            ['like', 'product_id', $this->search],
-            ['like', 'partner_id', $this->search],
-            ['like', 'comment', $this->search],
+            ['like', 'product.name', $this->search],
+            ['like', 'partner.name', $this->search],
             ['like', 'bill', $this->search]
         ]);
 

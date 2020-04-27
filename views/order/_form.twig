@@ -14,7 +14,7 @@
         <div class="col-md-4">
             {{ form.field(model, 'date').widget('yii\\jui\\DatePicker', {
                                                     'options':{
-                                                        'class':'form-control',
+                                                        'class': 'form-control form-control-sm',
                                                     },
                                                     'clientOptions':{
                                                         'minDate':'',
@@ -31,42 +31,47 @@
         </div>
         <div class="col-md-4">
              {{ form.field(model, 'partner_id').dropDownList(model.partners, {
-                 'prompt': 'Выберите партнёра'
+                 'prompt': 'Выберите партнёра', 
+                 'class': 'form-control form-control-sm'
              }) | raw }}
         </div>
         <div class="col-md-4">
             {{ form.field(model, 'product_id').dropDownList(model.products, {
-                 'prompt': 'Выберите товар'
+                 'prompt': 'Выберите товар', 
+                 'class': 'form-control form-control-sm'
             }) | raw }}
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-4">
-            {{ form.field(model, 'count').textInput({'placeholder': 'Количество (тонн)'}) | raw }}
+            {{ form.field(model, 'count').textInput({'placeholder': 'Количество (тонн)', 'class': 'form-control form-control-sm'}) | raw }}
         </div>
         <div class="col-md-4">
-            {{ form.field(model, 'price').textInput({'placeholder': 'Цена за единицу (рублей)'}) | raw }}
+            {{ form.field(model, 'price').textInput({'placeholder': 'Цена за единицу (рублей)', 'class': 'form-control form-control-sm'}) | raw }}
         </div>
         <div class="col-md-4">
-            {{ form.field(model, 'sum').textInput({'placeholder': 'Сумма'}) | raw }}
+            {{ form.field(model, 'sum').textInput({'placeholder': 'Сумма', 'class': 'form-control form-control-sm'}) | raw }}
         </div>
     </div>
     
     <div class="row">
         <div class="col-md-4">
-            {{ form.field(model, 'bill').textInput({'placeholder': 'Номер счёта'}) | raw }}
+            {{ form.field(model, 'bill').textInput({'placeholder': 'Номер счёта', 'class': 'form-control form-control-sm'}) | raw }}
         </div>
         <div class="col-md-4">
-            {{ form.field(model, 'payment').textInput({'placeholder': 'Тип оплаты'}) | raw }}
+            {{ form.field(model, 'payment').dropDownList(['Наличные', 'Безналичные', 'Взаимозачёт'], {
+                 'prompt': 'Выберите тип оплаты',
+                 'class': 'form-control form-control-sm'
+            }) | raw }}
         </div>
         <div class="col-md-4">
-            {{ form.field(model, 'comment').textarea({'placeholder': 'Комментарий', 'rows':'1'}) | raw }}
+            {{ form.field(model, 'comment').textarea({'placeholder': 'Комментарий', 'rows':'1', 'class': 'form-control form-control-sm'}) | raw }}
         </div>
     </div>
 
      <div class="form-group">
-        <input type="submit" value="Сохранить" class="btn btn-outline-success d-block " />
+        <input type="submit" value="Сохранить" class="btn btn-outline-success btn-sm d-block " />
     </div>
 
     {{ active_form_end() }} 

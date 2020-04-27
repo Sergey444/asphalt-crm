@@ -73,18 +73,18 @@ class Profile extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'username' => Yii::t('app', 'Username'),
-            'user_id' => Yii::t('app', 'User ID'),
-            'surname' => Yii::t('app', 'Surname'),
-            'name' => Yii::t('app', 'Name'),
-            'secondname' => Yii::t('app', 'Secondname'),
-            'date_of_birthday' => Yii::t('app', 'Date of birthday'),
-            'photo' => Yii::t('app', 'Photo'),
-            'phone' => Yii::t('app', 'Phone'),
-            'position' => Yii::t('app', 'Position'),
-            'address' => Yii::t('app', 'Address'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
+            'username' => 'Логин',
+            'user_id' => 'id пользователя',
+            'surname' => 'Фамилия',
+            'name' => 'Имя',
+            'secondname' => 'Отчество',
+            'date_of_birthday' => 'Дата рождения',
+            'photo' => 'Фотография',
+            'phone' => 'Телефон',
+            'position' => 'Должность',
+            'address' => 'Адрес',
+            'created_at' => 'Дата создания',
+            'updated_at' => 'Дата изменения',
             'fullName' => 'Ф.И.О пользователя'
         ];
     }
@@ -104,17 +104,15 @@ class Profile extends \yii\db\ActiveRecord
         $thumbUrl = $path.'/thumb-40/'.$fileName;
 
         if (FileHelper::createDirectory($path)) {
-
                 file_exists($this->photo) && unlink($this->photo);
-                
+
                 $resImage = Image::autorotate($photo->tempName);
-            
+
                 $metadata = $resImage->metadata();
                 $metadata->offsetSet('ifd0.Orientation', 1);
                 $resImage->metadata($metadata);
                 Image::resize($resImage, 200, 200, false, false)->save(Yii::getAlias('@webroot/'.$url));
-                            //Image::thumbnail($resImage, 40, 40)->save(Yii::getAlias('@webroot/'.$thumbUrl ));
-                         
+
                 $this->photo = $url;
                 return true;
         }

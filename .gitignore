@@ -34,3 +34,7 @@ tests/_support/_generated
 
 # node_modules
 /node_modules
+
+# db
+/config/db.php
+/config/mailer.php

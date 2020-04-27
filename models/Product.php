@@ -75,8 +75,9 @@ class Product extends \yii\db\ActiveRecord
     }
 
      /**
-     * {@inheritdoc}
-     */
+      * Returns sum price and count values
+      * @return integer
+      */
     public function getTotal()
     {
         return $this->price * $this->count;
@@ -84,6 +85,7 @@ class Product extends \yii\db\ActiveRecord
 
     /**
      * @param integer
+     * @return string
      */
     public function getTruncateDescription()
     {

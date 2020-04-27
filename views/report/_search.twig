@@ -1,0 +1,46 @@
+
+    {{ html.beginForm('report', 'post', {
+        'enctype': 'multipart/form-data',
+        'data-pjax': 1
+    }) | raw }}
+
+        <div class="row">
+            <div class="col-md-6">
+                {{ html.dropDownList('partner', app.request.post('partner'), array_helper.map(partners, "id", "name"), {'prompt': 'Общий отчёт', 'class': 'form-control form-control-sm'}) | raw }}
+            </div>
+            <div class="col-md-2">
+                {{ date_picker.widget({
+                        'name': 'date_start',
+                        'options':{
+                            'class':'form-control form-control-sm',
+                        },
+                        'clientOptions':{
+                            'minDate': '',
+                            'maxDate': ''
+                        },
+                        'language': 'ru',
+                        'value': date_start | date('d.m.Y'),
+                        'dateFormat':'php:d.m.Y'}) | raw }}
+            </div>
+            <div class="col-md-2">
+                {{ date_picker.widget({
+                        'name': 'date_end',
+                        'options':{
+                            'class':'form-control form-control-sm',
+                        },
+                        'clientOptions':{
+                            'minDate': '',
+                            'maxDate': ''
+                        },
+                        'language': 'ru',
+                        'value': date_end | date('d.m.Y'),
+                        'dateFormat':'php:d.m.Y'}) | raw }}
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <input type="submit" value="Показать" class="btn btn-outline-primary d-block btn-sm w-100" />
+                </div>
+            </div>
+        </div>
+
+    {{ html.endForm() | raw }}

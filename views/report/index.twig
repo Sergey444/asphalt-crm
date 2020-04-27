@@ -1,0 +1,127 @@
+{{ use('yii/widgets/Pjax') }}
+
+{{ set(this, 'title', 'Отчёт') }}
+{{ set(this, 'params', { 'breadcrumbs' : { '' : this.title } }) }}
+
+<div class="report-index">
+
+    {{ pjax_begin() }}
+
+        <div class="bg-white mb-4">
+
+            {{ this.render('_search.twig', {
+                partners: partners,
+                date_start: date_start,
+                date_end: date_end
+            }) | raw}}
+
+        </div>
+
+        <div class="bg-white mb-4">
+
+            {% if products %}
+                <table class="table table-sm table-striped table-bordered" >
+                    <caption>{{app.request.post('partner') ? 'Индивидуальный отчёт' : 'Общий отчёт'}} по материалам с "{{ date_start | date('d.m.Y') }}" по "{{ date_end | date('d.m.Y') }}"</caption>
+                    <thead>
+                        <tr>
+                            <th>Продукт</th>
+                            <th>Количество продано</th>
+                            <th>Доход</th>
+                            <th>Количество куплено</th>
+                            <th>Расход</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for key, product in products %}
+
+                        <tr>
+                            <td>{{ key }}</td>
+                            <td>{{ product.countSale }}</td>
+                            <td>{{ product.priceSale }}</td>
+                            <td>{{ product.countBuy }}</td>
+                            <td>{{ product.priceBuy }}</td>
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="alert alert-primary" role="alert">
+                    {{app.request.post('partner') ? 'Индивидуальный отчёт' : 'Общий отчёт'}} по материалам с "{{ date_start | date('d.m.Y') }}" по "{{ date_end | date('d.m.Y') }}" не найден
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="bg-white mb-4">
+            {% if orders %}
+                <table class="table table-sm table-striped table-bordered" >
+                    <thead>
+                        <caption>{{app.request.post('partner') ? 'Индивидуальный отчёт' : 'Общий отчёт'}} по заказам с "{{ date_start | date('d.m.Y') }}" по "{{ date_end | date('d.m.Y') }}"</caption>
+                        <tr>
+                        <th>Дата</th>
+                        <th>Партнёр</th>
+                        <th>Товар</th>
+                        <th>Количество</th>
+                        <th>Сумма</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for order in orders %}
+                            <tr>
+                                <td>{{ order.date | date('d.m.Y') }}</td>
+                                <td>{{ order.partner.name }}</td>
+                                <td>{{ order.product.name }}</td>
+                                <td>{{ order.count }}</td>
+                                <td>{{ order.sum }}</td>
+                            </tr> 
+                        {% endfor %}
+                                
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="alert alert-primary" role="alert">
+                    {{app.request.post('partner') ? 'Индивидуальный отчёт' : 'Общий отчёт'}} по заказам с "{{ date_start | date('d.m.Y') }}" по "{{ date_end | date('d.m.Y') }}" не найден
+                </div>
+            {% endif %}
+        </div>
+
+         <div class="bg-white mb-4">
+            {% if suppliers %}
+                <table class="table table-sm table-striped table-bordered" >
+                    <thead>
+                        <caption>{{app.request.post('partner') ? 'Индивидуальный отчёт' : 'Общий отчёт'}} по поставщикам с "{{ date_start | date('d.m.Y') }}" по "{{ date_end | date('d.m.Y') }}"</caption>
+                        <tr>
+                        <th>Дата</th>
+                        <th>Партнёр</th>
+                        <th>Товар</th>
+                        <th>Количество</th>
+                        <th>Сумма</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for supplier in suppliers %}
+                            <tr>
+                                <td>{{ supplier.date | date('d.m.Y') }}</td>
+                                <td>{{ supplier.partner.name }}</td>
+                                <td>{{ supplier.product.name }}</td>
+                                <td>{{ supplier.count }}</td>
+                                <td>{{ supplier.sum }}</td>
+                            </tr> 
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="alert alert-primary" role="alert">
+                    {{app.request.post('partner') ? 'Индивидуальный отчёт' : 'Общий отчёт'}} по поставщикам с "{{ date_start | date('d.m.Y') }}" по "{{ date_end | date('d.m.Y') }}" не найден
+                </div>
+            {% endif %}
+        </div>
+
+    {{ pjax_end() }}
+
+</div>

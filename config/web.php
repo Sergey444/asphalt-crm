@@ -101,6 +101,8 @@ $config = [
                     // 'extensions' => ['\Twig_Extension_Debug'],
                     'globals' => [
                         'html' => ['class' => '\yii\helpers\Html'],
+                        'array_helper' => ['class' => 'yii\helpers\ArrayHelper'],
+                        'date_picker' => ['class' => 'yii\jui\DatePicker']
                     ],
                     'uses' => ['yii\bootstrap4'],
                 ],

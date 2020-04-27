@@ -110,8 +110,13 @@ class ProfileController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $role = array_key_first ( Yii::$app->authManager->getRolesByUser($model->user->id) );
+        
         return $this->render('index.twig', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'file_exists' => file_exists($model->photo),
+            'role' => $role
         ]);
     }
 

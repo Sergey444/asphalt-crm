@@ -124,7 +124,7 @@ class OrderController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index.twig']);
+        return $this->redirect(['index']);
     }
 
     /**

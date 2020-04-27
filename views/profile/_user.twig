@@ -14,7 +14,7 @@
     <p>Редактировать email запрещено, для изменения, пожалуйста обратитесь к администратору</p>
     <div class="row">
         <div class="col-md-6">
-            {{ form.field(user, 'email').textInput({'disabled': 'true'}) | raw }}
+            {{ form.field(user, 'email').textInput({'disabled': 'true', 'class': 'form-control form-control-sm'}) | raw }}
         </div>
     </div>
     <hr />
@@ -26,10 +26,14 @@
             {{ form.field(user, 'status').dropDownList({
                 '10': 'Активен',
                 '9': 'Не активен'
+            }, {
+                'class': 'form-control form-control-sm'
             }) | raw }}
         </div>
         <div class="col-md-6">
-            {{ form.field(user, 'role').dropDownList(roles) | raw }}
+            {{ form.field(user, 'role').dropDownList(roles, {
+                'class': 'form-control form-control-sm'
+            }) | raw }}
         </div>
     </div><hr/>
     {% endif %}
@@ -38,16 +42,16 @@
     <p>Заполните поля ниже только если вы хотите сменить свой пароль.</p>
     <div class="row">
         <div class="col-md-6">
-            {{ form.field(user, 'password').passwordInput({'placeholder': 'Введите пароль'}) | raw }}
+            {{ form.field(user, 'password').passwordInput({'placeholder': 'Введите пароль', 'class': 'form-control form-control-sm'}) | raw }}
         </div>
         <div class="col-md-6">
-            {{ form.field(user, 'password_repeat').passwordInput({'placeholder': 'Введите пароль ещё раз'}) | raw }}
+            {{ form.field(user, 'password_repeat').passwordInput({'placeholder': 'Введите пароль ещё раз', 'class': 'form-control form-control-sm'}) | raw }}
         </div>
     </div>
 
     <div class="form-group row">
         <div class="col-md-4" style="margin-top: 25px;">
-            <input type="submit" value="Сохранить" class="btn btn-outline-success d-block" />
+            <input type="submit" value="Сохранить" class="btn btn-outline-success btn-sm d-block" />
         </div>
     </div>
 

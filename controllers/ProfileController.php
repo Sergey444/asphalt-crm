@@ -40,7 +40,7 @@ class ProfileController extends Controller
                         'roles' => ['admin'],
                     ],
                     [
-                        'actions' => ['update'],
+                        'actions' => ['update-user', 'delete-photo'],
                         'allow' => true,
                         'roles' => ['@'],
                         // 'matchCallback' => function () {
@@ -243,6 +243,23 @@ class ProfileController extends Controller
             $user->delete();
         }
         return $this->redirect(['users']);
+    }
+
+    /**
+     * 
+     */
+    public function actionDeletePhoto($id)
+    {
+        $model = $this->findModel($id);
+        if ($model->deletePhoto()) {
+            Yii::$app->session->setFlash('success', 'User updated successfully');
+        }
+
+        if (Yii::$app->user->id == $id) {
+            return $this->redirect(['update-user']);
+        }
+
+        return $this->redirect(['update-user', 'id' => $model->id]);
     }
 
     /**

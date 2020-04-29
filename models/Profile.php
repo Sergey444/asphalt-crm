@@ -104,8 +104,8 @@ class Profile extends \yii\db\ActiveRecord
         $thumbUrl = $path.'/thumb-40/'.$fileName;
 
         if (FileHelper::createDirectory($path)) {
-                file_exists($this->photo) && unlink($this->photo);
 
+                $this->deletePhoto();
                 $resImage = Image::autorotate($photo->tempName);
 
                 $metadata = $resImage->metadata();
@@ -117,6 +117,15 @@ class Profile extends \yii\db\ActiveRecord
                 return true;
         }
         return false;
+    }
+
+    /**
+     * Deletes photo if exists
+     * @return boolean
+     */
+    public function deletePhoto()
+    {
+        return file_exists($this->photo) && unlink($this->photo);
     }
 
     /**

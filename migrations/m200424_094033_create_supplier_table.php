@@ -17,7 +17,7 @@ class m200424_094033_create_supplier_table extends Migration
             'date' => $this->integer()->notNull(),
             'partner_id' => $this->integer()->notNull(),
             'product_id' => $this->string()->notNull(),
-            'bill' => $this->integer(),
+            'bill' => $this->string(),
             'count' => $this->integer(),
             'price' => $this->integer(),
             'sum' => $this->integer(),

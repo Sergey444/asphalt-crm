@@ -59,67 +59,67 @@
             {{ nav_bar_end() }}
       
             {% if app.user.isGuest == false %}
-            <div class="container-fluid">
-                <div class="d-md-flex">
+                <div class="container-fluid">
+                    <div class="d-md-flex">
 
-                    <nav class="nav d-none d-md-block sidebar">
-                    {% set menuItems = [
-                        {'label' : '<i class="fas fa-truck"></i> Поставщики', 'url' : ['/supplier']},
-                        {'label' : '<i class="fas fa-briefcase"></i> Заказы', 'url' : ['/order']},
-                        {'label' : '<i class="fas fa-handshake"></i> Партнёры', 'url' : ['/partner']},
-                        {'label' : '<i class="fas fa-file-alt"></i> Отчёты', 'url' : ['/report']},
-                        {'label' : '<i class="fas fa-apple-alt"></i> Товары', 'url' : ['/product']},
-                        {'label' : '<i class="fas fa-store-alt"></i> Склад', 'url' : ['/storage']}
-                        
-                    ] %}
+                        <nav class="nav d-none d-md-block sidebar">
+                        {% set menuItems = [
+                            {'label' : '<i class="fas fa-truck"></i> Поставщики', 'url' : ['/supplier/index']},
+                            {'label' : '<i class="fas fa-briefcase"></i> Заказы', 'url' : ['/order/index']},
+                            {'label' : '<i class="fas fa-handshake"></i> Партнёры', 'url' : ['/partner/index']},
+                            {'label' : '<i class="fas fa-file-alt"></i> Отчёты', 'url' : ['/report/index']},
+                            {'label' : '<i class="fas fa-apple-alt"></i> Товары', 'url' : ['/product/index']},
+                            {'label' : '<i class="fas fa-store-alt"></i> Склад', 'url' : ['/storage/index']}
+                            
+                        ] %}
 
-                    {{ nav_widget({
-                        'options': {
-                            'class': 'd-block sidebar-sticky',
-                        },
-                        'encodeLabels': false,
-                        'items': menuItems
-                    }) }}
-                    </nav>
-
-
-                    <main class="flex-fill ml-sm-auto">
-
-                        {{ breadcrumbs_widget({
-                            'links' : this.params['breadcrumbs'] ? this.params['breadcrumbs'] : [],
-                            'homeLink': {'label': 'Главная', 'url': '/'},
+                        {{ nav_widget({
                             'options': {
-                                'class': 'bg-white mb-4'
-                            }
-                        }) | raw }}
+                                'class': 'd-block sidebar-sticky',
+                            },
+                            'encodeLabels': false,
+                            'items': menuItems
+                        }) }}
+                        </nav>
 
-                        {% if ( app.session.hasFlash('success') ) %}
-                            <div class="alert alert-success alert-dismissible" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                {{ app.session.getFlash('success') }}
-                            </div>
-                        {% endif %}
 
-                        {{ content | raw }}
+                        <main class="flex-fill ml-sm-auto">
+
+                            {{ breadcrumbs_widget({
+                                'links' : this.params['breadcrumbs'] ? this.params['breadcrumbs'] : [],
+                                'homeLink': {'label': 'Главная', 'url': '/'},
+                                'options': {
+                                    'class': 'bg-white mb-4'
+                                }
+                            }) | raw }}
+
+                            {% if ( app.session.hasFlash('success') ) %}
+                                <div class="alert alert-success alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    {{ app.session.getFlash('success') }}
+                                </div>
+                            {% endif %}
+
+                            {{ content | raw }}
+                        </main>
+
+                    </div>
+                </div>
+        {% else %}
+            <div class="container-fluid">
+                <div class="row flex-xl-nowrap">
+                    <main class="col-md-12 py-md-3 pl-md-5 bd-content">
+                        {{ content | raw}}
                     </main>
-
                 </div>
             </div>
-        </div>
-        {% else %}
-        <div class="container-fluid">
-            <div class="row flex-xl-nowrap">
-                <main class="col-md-12 py-md-3 pl-md-5 bd-content">
-                    {{ content | raw}}
-                </main>
-            </div>
-        </div>
         {% endif %}
+        </div>
 
-        <footer class="navbar navbar-light bg-light">
+        <footer class="navbar navbar-light bg-light mt-4">
             <div class="container-fluid">
-                <p class="pull-left">{{ app.name }} &copy;{{ 'now'|date('Y') }}</p>
-                <p class="pull-right">{{ Yii.powered() | raw }}</p>
+                <div class="pull-left mt-2 mb-2">{{ app.name }} &copy;{{ 'now'|date('Y') }}</div>
+                <div class="pull-right">{{ Yii.powered() | raw }}</div>
             </div>
         </footer>
 

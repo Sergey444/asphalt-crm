@@ -66,6 +66,10 @@ $config = [
                 'order' => 'order/index',
                 'order/view/<id:\d+>' => 'order/view',
                 'order/update/<id:\d+>' => 'order/update',
+                'product' => 'product/index',
+                'product/view/<id:\d+>' => 'product/view',
+                'product/update/<id:\d+>' => 'product/update',
+                'report' => 'report/index',
             ],
         ],
         'formatter' => [

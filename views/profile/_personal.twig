@@ -53,7 +53,16 @@
                 <div class="edit-photo-block">
                     <div class="rs-pencil">
                     <span class="glyphicon glyphicon-pencil" onclick="$('#add-photo-input').click()"></span>
-                    <span class="glyphicon glyphicon-trash" onclick=""></span>
+                    {% if (file_exists) %}
+                        {{ html.a('<span class="glyphicon glyphicon-trash"></span>',
+                                path('delete-photo', {'id': model.id}),
+                                {'data': {
+                                    'confirm': 'Вы уверены что хотите удалить фотографию?',
+                                    'method': 'post',
+                                    'pjax': 0
+                                }}
+                            ) | raw }}
+                    {% endif %}
                     </div>
                      {{ form.field(model, 'img').fileInput({'class':'add-photo-input', 'id':'add-photo-input','placeholder': 'Введите должность'}).label(false) | raw }}
                 </div>

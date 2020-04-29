@@ -101,6 +101,7 @@ $config = [
                     'options' => [
                         'auto_reload' => true,
                         'debug' => true,
+                        // 'cache' => false,
                     ],
                     // 'extensions' => ['\Twig_Extension_Debug'],
                     'globals' => [

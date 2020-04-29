@@ -14,10 +14,13 @@
 
     & a {
         color: $link-color;
-
         &:hover,
         &.active {
-            color: $blue-color
+            color: $blue-color;
+        }
+
+        &.active {
+            cursor: default;
         }
     }
 }

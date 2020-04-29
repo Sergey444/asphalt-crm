@@ -14,8 +14,8 @@ caption {
 .wrap {
     min-height: 100%;
     height: auto;
-    margin: 0 auto -60px;
-    padding: 0 0 60px;
+    margin: 0 auto -80px;
+    padding: 0 0 80px;
 }
 
 .u-update-btn {
@@ -26,6 +26,20 @@ caption {
 .bg-white {
     padding: 0.5rem;
     border-radius: 4px;
+    box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.24);
+}
+
+.table {
+    & th a.asc::after {
+        content: "\f15d";
+        font-family: "Font Awesome 5 Free";
+        margin-left: 10px;
+    }
+    & th a.desc::after {
+        content: "\f881";
+        font-family: "Font Awesome 5 Free";
+        margin-left: 10px;
+    }
 }
 
 @include desktop {

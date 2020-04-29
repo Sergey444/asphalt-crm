@@ -62,7 +62,7 @@
                 <div class="container-fluid">
                     <div class="d-md-flex">
 
-                        <nav class="nav d-none d-md-block sidebar">
+                        <nav class="nav d-none d-md-block sidebar mr-4">
                         {% set menuItems = [
                             {'label' : '<i class="fas fa-truck"></i> Поставщики', 'url' : ['/supplier/index']},
                             {'label' : '<i class="fas fa-briefcase"></i> Заказы', 'url' : ['/order/index']},
@@ -75,7 +75,7 @@
 
                         {{ nav_widget({
                             'options': {
-                                'class': 'd-block sidebar-sticky',
+                                'class': 'd-block sidebar-sticky bg-white pb-5',
                             },
                             'encodeLabels': false,
                             'items': menuItems

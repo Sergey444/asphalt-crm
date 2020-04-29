@@ -44,9 +44,9 @@ class ReportController extends \yii\web\Controller
      */
     public function actionIndex()
     {
-        $partner_id = Yii::$app->request->post('partner') ? 'partner_id = '.Yii::$app->request->post('partner'). ' AND ' : '';
-        $date_start = strtotime(Yii::$app->request->post('date_start')) ?: strtotime("-1 month");
-        $date_end = strtotime(Yii::$app->request->post('date_end')) ?: strtotime('now');
+        $partner_id = Yii::$app->request->get('partner') ? 'partner_id = '.Yii::$app->request->get('partner'). ' AND ' : '';
+        $date_start = strtotime(Yii::$app->request->get('date_start')) ?: strtotime("-1 month");
+        $date_end = strtotime(Yii::$app->request->get('date_end')) ?: strtotime('now');
         $query = $partner_id . "`date` > ".$date_start." AND `date` < ".$date_end;
 
         $partners = Partner::find()->limit(50)->all();
@@ -55,12 +55,14 @@ class ReportController extends \yii\web\Controller
         $suppliers = Supplier::find()->where($query)->joinWith(['partner', 'product'])->all();
 
         $products = $this->getTotalProduct($orders, $suppliers);
+        $nettings = $this->getNetting($orders, $suppliers);
 
         return $this->render('index.twig', [
             'date_start' => $date_start,
             'date_end' => $date_end,
             'partners' => $partners,
             'products' => $products,
+            'nettings' => $nettings,
             'orders' => $orders,
             'suppliers' => $suppliers
         ]);
@@ -81,6 +83,29 @@ class ReportController extends \yii\web\Controller
             $newArray[$supplier->product->name]['priceBuy'] += $supplier->sum;
         }
 
+        return $newArray;
+    }
+
+    private function getNetting($orders, $suppliers)
+    {
+        foreach ($suppliers as $supplier) {
+            if ($supplier->payment == 2) {
+                $newArray[$supplier->partner->name][$supplier->product->name]['countBuy'] += $supplier->count;
+                $newArray[$supplier->partner->name][$supplier->product->name]['priceBuy'] += $supplier->sum;
+                $newArray[$supplier->partner->name][$supplier->product->name]['result'] += $supplier->sum;
+            }
+        }
+
+        foreach($orders as $order) {
+            if ($order->payment == 2) {
+                $newArray[$order->partner->name][$order->product->name]['countSale'] += $order->count;
+                $newArray[$order->partner->name][$order->product->name]['priceSale'] += $order->sum;
+                $newArray[$order->partner->name][$order->product->name]['result'] -= $order->sum;
+            }
+        }
+
+        // echo '<pre>';
+        // print_r($newArray);
         return $newArray;
     }
 

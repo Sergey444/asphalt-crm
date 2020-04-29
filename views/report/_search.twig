@@ -1,12 +1,12 @@
 
-    {{ html.beginForm('report', 'post', {
+    {{ html.beginForm('report', 'get', {
         'enctype': 'multipart/form-data',
         'data-pjax': 1
     }) | raw }}
 
         <div class="row">
             <div class="col-md-6">
-                {{ html.dropDownList('partner', app.request.post('partner'), array_helper.map(partners, "id", "name"), {'prompt': 'Общий отчёт', 'class': 'form-control form-control-sm'}) | raw }}
+                {{ html.dropDownList('partner', app.request.get('partner'), array_helper.map(partners, "id", "name"), {'prompt': 'Общий отчёт', 'class': 'form-control form-control-sm'}) | raw }}
             </div>
             <div class="col-md-2">
                 {{ date_picker.widget({

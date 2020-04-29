@@ -80,7 +80,7 @@ $config = [
             // 'datetimeFormat' => 'yyyy-MM-dd HH:mm:ss',
             // 'decimalSeparator' => '.',
             // 'thousandSeparator' => ',',
-            'currencyCode' => 'RUS'
+            'currencyCode' => '₽',
         ],
         'i18n' => [
             'translations' => [

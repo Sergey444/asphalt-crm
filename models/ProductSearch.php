@@ -49,6 +49,12 @@ class ProductSearch extends Product
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'attributes' => ['name', 'count', 'price', 'total', 'description'],
+                'defaultOrder' => [
+                    'name' => SORT_ASC
+                ],
+            ]
         ]);
 
         $this->load($params);

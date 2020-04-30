@@ -12,6 +12,10 @@ use app\models\LoginForm;
 use app\models\User;
 use app\models\SignupForm;
 
+use app\models\VerifyEmailForm;
+use yii\web\BadRequestHttpException;
+use yii\base\InvalidArgumentException;
+
 use SimpleXMLElement;
 
 class SiteController extends Controller
@@ -159,7 +163,7 @@ class SiteController extends Controller
         }
         if ($user = $model->verifyEmail()) {
             if (Yii::$app->user->login($user)) {
-                Yii::$app->session->setFlash('success', Yii::t('app', 'Your email has been confirmed!'));
+                Yii::$app->session->setFlash('success', Yii::t('app', 'Ваш email был подтверждён!'));
                 return $this->goHome();
             }
         }

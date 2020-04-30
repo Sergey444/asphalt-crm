@@ -3,6 +3,8 @@ html, body {
 }
 body {
     background-color: $body-color;
+    // background: #545d6b url('/images/pattern-light-grey.svg') 0 0 repeat;
+    background-image: url('/images/pattern-light-grey.svg');
     font-size: .875rem;
 }
 main {
@@ -40,6 +42,10 @@ caption {
         font-family: "Font Awesome 5 Free";
         margin-left: 10px;
     }
+}
+
+span.not-set {
+    color: #dc3545;
 }
 
 @include desktop {

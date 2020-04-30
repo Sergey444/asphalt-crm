@@ -9,7 +9,7 @@ $verifyLink = Yii::$app->urlManager->createAbsoluteUrl(['site/verify-email', 'to
 <div class="verify-email">
     <p>Здравствуйте!</p>
 
-    <p>Email <?= $user->username ?> был указан для регистрации в системе детского центра "Счастье" Перейдите по ссылке для подтверждения вашего email:</p>
+    <p>Email <?= $user->username ?> был указан для регистрации в системе асфальтового завода. Перейдите по ссылке для подтверждения вашего email:</p>
 
     <p><?= Html::a(Html::encode($verifyLink), $verifyLink) ?></p>
 </div>

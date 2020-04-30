@@ -65,7 +65,11 @@
             {{ form.field(model, 'bill').textInput({'placeholder': 'Введите номер счёта', 'class': 'form-control form-control-sm'}) | raw }}
         </div>
         <div class="col-md-4">
-            {{ form.field(model, 'payment').dropDownList(['Наличные', 'Безналичные', 'Взаимозачёт'], {
+            {{ form.field(model, 'payment').dropDownList({
+                'Наличные':'Наличные', 
+                'Безналичные': 'Безналичные',
+                'Взаимозачёт': 'Взаимозачёт'
+                }, {
                  'prompt': 'Выберите тип оплаты',
                  'class': 'form-control form-control-sm'
             }) | raw }}

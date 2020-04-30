@@ -55,9 +55,10 @@ class SupplierSearch extends Supplier
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort' => [
-                'attributes' => ['date', 'partner.name', 'product.name', 'bill', 'count', 'price', 'sum', 'payment'],
+                'attributes' => ['date', 'partner.name', 'product.name', 'bill', 'count', 'price', 'sum', 'payment', 'created_at'],
                 'defaultOrder' => [
-                    'date' => SORT_DESC
+                    'date' => SORT_DESC,
+                    'created_at' => SORT_DESC
                 ],
             ],
         ]);

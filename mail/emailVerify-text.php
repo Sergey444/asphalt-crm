@@ -7,6 +7,6 @@ $verifyLink = Yii::$app->urlManager->createAbsoluteUrl(['site/verify-email', 'to
 ?>
 Добрый день!
 
-Email <?= $user->username ?> был указан для регистрации в системе детского центра "Счастье"
+Email <?= $user->username ?> был указан для регистрации в системе асфальтового завода
 Перейдите по ссылке для подтверждения вашего email:
 <?= $verifyLink ?>

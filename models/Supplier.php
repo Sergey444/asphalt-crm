@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use Yii;
+
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 
@@ -83,6 +85,15 @@ class Supplier extends \yii\db\ActiveRecord
             'created_at' => 'Дата создания',
             'updated_at' => 'Дата изменения',
         ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+        Yii::$app->session->setFlash('success', 'Запись успешно сохранена');
     }
 
     /**

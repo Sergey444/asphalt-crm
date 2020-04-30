@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use Yii;
+
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Supplier;
@@ -68,6 +70,8 @@ class SupplierSearch extends Supplier
             return $dataProvider;
         }
 
+        $query->andFilterWhere($this->getFilterByTime());
+
         $query->andFilterWhere([
             'or',
             ['like', 'product.name', $this->search],
@@ -76,5 +80,29 @@ class SupplierSearch extends Supplier
         ]);
 
         return $dataProvider;
+    }
+
+    /**
+     * @return array
+     */
+    private function getFilterByTime()
+    {
+        $value = Yii::$app->request->cookies->get('current-sup-list')->value;
+        if ($post = Yii::$app->request->post('current')) {
+            Yii::$app->response->cookies->add(new \yii\web\Cookie([
+                'name' => 'current-sup-list',
+                'value' => $post,
+            ]));
+            $value = $post;
+        }
+
+        switch ($value) {
+            case 'year': 
+                return ['>', 'date', strtotime(date('Y-01-01'))];
+            case 'month':
+                return ['>', 'date', strtotime(date('Y-m-01'))];
+            default: 
+                return ['>', 'date', strtotime(0)];
+        }
     }
 }

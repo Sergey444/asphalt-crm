@@ -16,16 +16,41 @@
 
         <div class="bg-white mb-4">
             <div class="row">
-                <div class="col-md-8"> 
-                    {% if model.products and model.partners %}
-                        <button class="btn btn-outline-success btn-sm d-none d-md-block" data-toggle="modal" data-target="#createSupplier">Добавить поставщика</button>
-                    {% else %}
-                        <div class="alert alert-primary" role="alert">
-                            Для добавления поставщика необходимо создать {{ model.partners ? 'товары' : model.products ? 'партнёров' : 'товары и партнёров' }}
+                <div class="col-md-6 col-lg-8"> 
+                    <div class="row">
+                        <div class="col-md-6 col-lg-8">
+                            {% if model.products and model.partners %}
+                                <button class="btn btn-outline-success btn-sm d-none d-md-block" data-toggle="modal" data-target="#createSupplier">Добавить поставщика</button>
+                            {% else %}
+                                <div class="alert alert-primary" role="alert">
+                                    Для добавления поставщика необходимо создать {{ model.partners ? 'товары' : model.products ? 'партнёров' : 'товары и партнёров' }}
+                                </div>
+                            {% endif %}
                         </div>
-                    {% endif %}
+                        <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                                {{html.beginForm(
+                                    ['/supplier'],
+                                    'post',
+                                    {'data-pjax': 1}
+                                    ) | raw}}
+
+                                    {{ html.dropDownList('current', 
+                                        app.request.post('current') ?: app.request.cookies.get('current-sup-list').value , {
+                                        'all': 'за всё время',
+                                        'year': 'текущий год',
+                                        'month': 'текущий месяц',
+                                    }, {
+                                        'class': 'form-control form-control-sm',
+                                        'onchange': 'this.form.changeCurrent.click()'
+                                    }) | raw}}
+                                    <input type="submit" class="d-none" id="changeCurrent" value="onghfdbnm">
+                                {{html.endForm() | raw}}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-4"> 
+                <div class="col-md-6 col-lg-4"> 
                     {{ this.render('_search.twig', {model: searchModel}) | raw}}
                 </div>
             </div>

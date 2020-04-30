@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use Yii;
+
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Order;
@@ -67,6 +69,8 @@ class OrderSearch extends Order
             return $dataProvider;
         }
 
+        $query->andFilterWhere($this->getFilterByTime());
+
         $query->andFilterWhere([
             'or',
             ['like', 'product.name', $this->search],
@@ -75,5 +79,29 @@ class OrderSearch extends Order
         ]);
 
         return $dataProvider;
+    }
+
+    /**
+     * @return array
+     */
+    private function getFilterByTime()
+    {
+        $value = Yii::$app->request->cookies->get('current-order-list')->value;
+        if ($post = Yii::$app->request->post('current')) {
+            Yii::$app->response->cookies->add(new \yii\web\Cookie([
+                'name' => 'current-order-list',
+                'value' => $post,
+            ]));
+            $value = $post;
+        }
+
+        switch ($value) {
+            case 'year': 
+                return ['>', 'date', strtotime(date('Y-01-01'))];
+            case 'month':
+                return ['>', 'date', strtotime(date('Y-m-01'))];
+            default: 
+                return ['>', 'date', strtotime(0)];
+        }
     }
 }

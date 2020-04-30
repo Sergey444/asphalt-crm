@@ -86,10 +86,13 @@ class ReportController extends \yii\web\Controller
         return $newArray;
     }
 
+    /**
+     * @return array
+     */
     private function getNetting($orders, $suppliers)
     {
         foreach ($suppliers as $supplier) {
-            if ($supplier->payment == 2) {
+            if ($supplier->payment == 'Взаимозачёт') {
                 $newArray[$supplier->partner->name][$supplier->product->name]['countBuy'] += $supplier->count;
                 $newArray[$supplier->partner->name][$supplier->product->name]['priceBuy'] += $supplier->sum;
                 $newArray[$supplier->partner->name][$supplier->product->name]['result'] += $supplier->sum;
@@ -97,15 +100,13 @@ class ReportController extends \yii\web\Controller
         }
 
         foreach($orders as $order) {
-            if ($order->payment == 2) {
+            if ($order->payment == 'Взаимозачёт') {
                 $newArray[$order->partner->name][$order->product->name]['countSale'] += $order->count;
                 $newArray[$order->partner->name][$order->product->name]['priceSale'] += $order->sum;
                 $newArray[$order->partner->name][$order->product->name]['result'] -= $order->sum;
             }
         }
 
-        // echo '<pre>';
-        // print_r($newArray);
         return $newArray;
     }
 

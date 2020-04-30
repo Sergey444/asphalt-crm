@@ -6,9 +6,15 @@
 
 {{ use('yii/bootstrap4/ActiveForm') }}
 
+{{ this.registerJsFile('@web/js/sum-calculate.js', {'depends': 'yii\\web\\JqueryAsset'}) }}
+
 <div class="order-form">
 
-    {% set form = active_form_begin() %}
+    {% set form = active_form_begin({
+        'options': {
+            'data-name': 'count-form'
+        }
+    }) %}
 
     <div class="row">
         <div class="col-md-4">
@@ -26,7 +32,7 @@
                                                     'mask': '99.99.9999'
                                                 }).textInput({
                                                     'placeholder': 'Введите дату',
-                                                    'value': app.formatter.asDate(model.date, 'php:d.m.Y')
+                                                    'value': model.date ? app.formatter.asDate(model.date, 'php:d.m.Y') : "now"|date("d.m.Y")
                                                 }) | raw}}
         </div>
         <div class="col-md-4">
@@ -45,13 +51,13 @@
 
     <div class="row">
         <div class="col-md-4">
-            {{ form.field(model, 'count').textInput({'placeholder': 'Количество (тонн)', 'class': 'form-control form-control-sm'}) | raw }}
+            {{ form.field(model, 'count').textInput({'placeholder': 'Количество (тонн)', 'class': 'form-control form-control-sm', 'data-name': 'count'}) | raw }}
         </div>
         <div class="col-md-4">
-            {{ form.field(model, 'price').textInput({'placeholder': 'Цена за единицу (рублей)', 'class': 'form-control form-control-sm'}) | raw }}
+            {{ form.field(model, 'price').textInput({'placeholder': 'Цена за единицу (рублей)', 'class': 'form-control form-control-sm', 'data-name': 'price'}) | raw }}
         </div>
         <div class="col-md-4">
-            {{ form.field(model, 'sum').textInput({'placeholder': 'Сумма', 'class': 'form-control form-control-sm'}) | raw }}
+            {{ form.field(model, 'sum').textInput({'placeholder': 'Сумма', 'class': 'form-control form-control-sm', 'data-name': 'sum'}) | raw }}
         </div>
     </div>
     

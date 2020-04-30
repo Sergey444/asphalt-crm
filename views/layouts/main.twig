@@ -33,6 +33,7 @@
                 {% set menuItems = menuItems|merge([
                     {'label' : '<i class="far fa-address-card"></i> Профиль', 'url' : ['profile/index']},
                     {'label' : '<i class="fas fa-users-cog"></i> Управление пользователями', 'url' : ['/profile/users']},
+                    {'label' : '<i class="fas fa-cog"></i> Настройки', 'url' : ['/setting/index']},
                     {
                         'label' : '<i class="fas fa-door-open"></i> (' ~ app.user.identity.username ~ ')',
                         'url' : ['/site/logout'],

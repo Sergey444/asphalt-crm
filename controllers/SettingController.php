@@ -5,7 +5,7 @@ namespace app\controllers;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
-class StorageController extends \yii\web\Controller
+class SettingController extends \yii\web\Controller
 {
     /**
      * {@inheritdoc}

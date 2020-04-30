@@ -1,0 +1,16 @@
+{# {{ use('yii/widgets/Pjax') }} #}
+
+{{ set(this, 'title', 'Настройки') }}
+{{ set(this, 'params', { 'breadcrumbs' : { '' : this.title } }) }}
+
+<div class="setting-index">
+
+    {# {{ pjax_begin() }} #}
+
+        <div class="bg-white mb-4">
+            <canvas height='320' width='480' id='example'>Обновите браузер</canvas>
+        </div>
+
+    {# {{ pjax_end() }} #}
+
+</div>

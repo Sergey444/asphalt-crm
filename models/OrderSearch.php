@@ -105,5 +105,4 @@ class OrderSearch extends Order
                 return ['>', 'date', strtotime(0)];
         }
     }
-    
 }

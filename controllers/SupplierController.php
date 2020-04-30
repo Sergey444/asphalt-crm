@@ -46,15 +46,6 @@ class SupplierController extends Controller
      */
     public function actionIndex()
     {
-        // if ($current = Yii::$app->request->post('current')) {
-        //     $cookies = Yii::$app->response->cookies;
-
-        //     $cookies->add(new \yii\web\Cookie([
-        //         'name' => 'current-sup-list',
-        //         'value' => $current,
-        //     ]));
-        // }
-
         $model = new Supplier();
         $searchModel = new SupplierSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);

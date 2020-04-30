@@ -92,6 +92,7 @@ class SupplierSearch extends Supplier
             Yii::$app->response->cookies->add(new \yii\web\Cookie([
                 'name' => 'current-sup-list',
                 'value' => $post,
+                'expire' => time() + 24 * 3600 * 30,
             ]));
             $value = $post;
         }

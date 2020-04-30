@@ -91,6 +91,7 @@ class OrderSearch extends Order
             Yii::$app->response->cookies->add(new \yii\web\Cookie([
                 'name' => 'current-order-list',
                 'value' => $post,
+                'expire' => time() + 24 * 3600 * 30,
             ]));
             $value = $post;
         }

@@ -50,7 +50,7 @@ class ProductSearch extends Product
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort' => [
-                'attributes' => ['name', 'count', 'price', 'total', 'description'],
+                'attributes' => ['name', 'count', 'price', 'description'],
                 'defaultOrder' => [
                     'name' => SORT_ASC
                 ],

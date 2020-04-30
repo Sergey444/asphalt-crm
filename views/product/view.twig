@@ -30,10 +30,10 @@
                 'attributes': [
                     'id',
                     'name',
-                    'price',
-                    'count',
+                    {'attribute': 'count', 'format': ['integer'] },
+                    {'attribute': 'price', 'format': ['currency'] },
+                    {'attribute': 'total', 'format': ['currency'] },
                     'unit',
-                    'total',
                     'description:ntext',
                     'created_by',
                     'updated_by',

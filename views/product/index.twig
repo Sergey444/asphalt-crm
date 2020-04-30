@@ -45,10 +45,10 @@
                     'columns': [
                         {'class': 'yii\\grid\\SerialColumn'},
                         'name',
+                        {'attribute': 'count', 'format': ['integer'] },
                         {'attribute': 'price', 'format': ['currency'] },
-                        'count',
-                        'total',
-                        'truncateDescription',
+                        {'attribute': 'total', 'format': ['currency'] },
+                        {'attribute': 'description', 'value':'truncateDescription'},
                         {
                             'class': 'yii\\grid\\ActionColumn',
                             'header': '',

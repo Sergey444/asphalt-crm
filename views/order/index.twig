@@ -58,9 +58,9 @@
                         'partner.name',
                         'product.name',
                         'bill',
-                        'count',
-                        'price',
-                        'sum',
+                        {'attribute': 'count', 'format': ['integer']},
+                        {'attribute': 'price', 'format': ['currency']},
+                        {'attribute': 'sum', 'format': ['currency']},
                         'payment',
                         {
                             'attribute': 'status',

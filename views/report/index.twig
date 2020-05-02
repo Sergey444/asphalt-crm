@@ -9,11 +9,27 @@
 
         <div class="bg-white mb-4">
 
-            {{ this.render('_search.twig', {
-                partners: partners,
-                date_start: date_start,
-                date_end: date_end
-            }) | raw}}
+            <div class="row">
+                <div class="col-md-10">
+                    {{ this.render('_search.twig', {
+                        partners: partners,
+                        date_start: date_start,
+                        date_end: date_end
+                    }) | raw}}
+                </div>
+                <div class="col-md-2">
+                    {{ html.beginForm(['create-pdf-report'], 'post', {
+                        'enctype': 'multipart/form-data'
+                    }) | raw }}
+                        <input type="hidden" name="date_start" value="{{ date_start }}">
+                        <input type="hidden" name="date_end" value="{{ date_end }}">
+                        <input type="hidden" name="partner" value="{{ app.request.get('partner') }}">
+                        <div class="form-group">
+                            <input type="submit" value="Реестр отгрузки в pdf" class="btn btn-outline-info d-block btn-sm w-100" />
+                        </div>
+                    {{ html.endForm() | raw }}
+                </div>
+            </div>
 
         </div>
 

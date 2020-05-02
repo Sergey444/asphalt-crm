@@ -23,7 +23,7 @@
         "bower-asset/font-awesome": "^5.13",
         "yiisoft/yii2-imagine": "^2.2",
         "yiisoft/yii2-jui": "^2.0",
-        "mpdf/mpdf": "^8.0"
+        "robregonm/yii2-pdf": "^1.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

@@ -116,6 +116,13 @@ $config = [
                 // ...
             ],
         ],
+        'response' => [
+			'formatters' => [
+				'pdf' => [
+					'class' => 'robregonm\pdf\PdfResponseFormatter',
+				],
+			]
+		],
     ],
     'params' => $params,
     'layout' => 'main.twig',

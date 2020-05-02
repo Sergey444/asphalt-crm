@@ -69,6 +69,42 @@ class ReportController extends \yii\web\Controller
     }
 
     /**
+     * @return 
+     */
+    public function actionCreatePdfReport()
+    {
+        
+        $partner_id = Yii::$app->request->post('partner') ? 'partner_id = '.Yii::$app->request->post('partner'). ' AND ' : '';
+        $date_start = Yii::$app->request->post('date_start') ?: strtotime("-1 month");
+        $date_end = Yii::$app->request->post('date_end') ?: strtotime('now');
+        $query = $partner_id . "`date` > ".$date_start." AND `date` < ".$date_end;
+
+        $orders = Order::find()->where($query)->joinWith(['partner', 'product'])->all();
+        $suppliers = Supplier::find()->where($query)->joinWith(['partner', 'product'])->all();
+        $products = $this->getTotalProduct($orders, $suppliers);
+
+        Yii::$app->response->format = 'pdf';
+
+        return $this->renderPartial('print.twig', [
+            'date_start' => $date_start,
+            'date_end' => $date_end,
+            'products' => $products,
+            'orders' => $orders
+        ]);
+    }
+
+    /**
+     * @return string
+     */
+    private function getQuery()
+    {
+        $partner_id = Yii::$app->request->get('partner') ? 'partner_id = '.Yii::$app->request->get('partner'). ' AND ' : '';
+        $date_start = strtotime(Yii::$app->request->get('date_start')) ?: strtotime("-1 month");
+        $date_end = strtotime(Yii::$app->request->get('date_end')) ?: strtotime('now');
+        return $partner_id . "`date` > ".$date_start." AND `date` < ".$date_end;
+    }
+
+    /**
      * @return array
      */
     private function getTotalProduct($orders, $suppliers)

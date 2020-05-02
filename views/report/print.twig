@@ -1,0 +1,107 @@
+<style>
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 40px;
+    }
+    .table th {
+        border: 1px solid black;
+    }
+    .table td {
+        text-align: center;
+        border: 1px solid black;
+        padding: 5px 5px;
+    }
+</style>
+
+<div class="">
+
+<div style="text-align: center; font-size: 24px;">Дорожно-строительная компания «Прогресс»</div>
+<div style="text-align: center; border-bottom: 1px solid black;">ОБЩЕСТВО С ОГРАНИЧЕННООЙ ОТВЕТСТВЕННОСТЬЮ</div>
+<table style="width: 100%; border-bottom: 1px solid black;">
+    <tr>
+        <td style="text-align: left;">Российская федерация</td>
+        <td style="text-align: right;">Телефон: (3452) 74-39-03</td>
+    </tr>
+    <tr>
+        <td style="text-align: left;">г. Тюмень, Камчатская 2, к 1/2</td>
+        <td style="text-align: right;">Email: scprogres@inbox.ru</td>
+    </tr>
+</table>
+<div style="text-align: center; border-bottom: 1px solid black; margin-bottom: 40px;">Аренда дорожно-строительной техники, строительство, комплексное благоустройство территорий</div>
+
+<div style="margin-bottom: 40px; text-decoration: underline; text-align: center; font-size: 22px;">Реестр отгрузки</div>
+
+{% if orders %}
+    <table class="table" >
+        <caption style="text-align: right; color: grey;">{{app.request.post('partner') ? 'Индивидуальный отчёт' : 'Общий отчёт'}} по заказам с "{{ date_start | date('d.m.Y') }}" по "{{ date_end | date('d.m.Y') }}"</caption>
+        <thead>
+            <tr>
+            <th>Дата</th>
+            <th>Партнёр</th>
+            <th>Товар</th>
+            <th>Количество</th>
+            <th>Сумма</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for order in orders %}
+                <tr>
+                    <td>{{ order.date | date('d.m.Y') }}</td>
+                    <td>{{ order.partner.name }}</td>
+                    <td>{{ order.product.name }}</td>
+                    <td>{{ app.formatter.format(order.count, 'integer') | raw }}</td>
+                    <td>{{ app.formatter.format(order.sum, 'integer') | raw }}</td>
+                </tr> 
+            {% endfor %}
+                    
+        </tbody>
+    </table>
+{% endif %}
+
+{% if products %}
+    <table class="table" style="margin-bottom: 80px;">
+        <caption style="text-align: right; color: grey;">{{app.request.post('partner') ? 'Индивидуальный отчёт' : 'Общий отчёт'}} по материалам с "{{ date_start | date('d.m.Y') }}" по "{{ date_end | date('d.m.Y') }}"</caption>
+        <thead>
+            <tr>
+                <th>Продукт</th>
+                <th>Количество</th>
+                <th>Cумма</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for key, product in products %}
+
+            <tr>
+                <td>{{ key }}</td>
+                <td>{{ app.formatter.format(product.countSale, 'integer') | raw }}</td>
+                <td>{{ app.formatter.format(product.priceSale, 'integer') | raw }}</td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+    </table>
+{% endif %}
+    
+    <table style="width: 100%;">
+        <tr>
+            <td>Принял:</td>
+            <td>_____________________________</td>
+            <td style="white-space: nowrap; text-align: center;">({{ orders[0].partner.name }})</td>
+            <td style="border-bottom: 1px solid black; width: 200px; text-align: right;"><small>м.п.</small>(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</td>
+        </tr>
+        <tr>
+            <td colspan="4" style="height: 40px;"></td>
+        </tr>
+        <tr style="height: 20px;">
+            <td>Сдал:</td>
+            <td>_____________________________</td>
+            <td style="white-space: nowrap; text-align: center;">(ООО "ДСК Прогресс")</td>
+            <td style="border-bottom: 1px solid black; width: 200px; text-align: right;"><small>м.п.</small>(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</td>
+        </tr>
+    </table>
+
+</div>

@@ -75,12 +75,13 @@ $config = [
         ],
         'formatter' => [
             'class' => '\app\components\FormatterHelper',
+            'defaultTimeZone' => 'Asia/Yekaterinburg',
+            'timeZone' => 'GMT+5',
             'thousandSeparator' => ' ',
             'locale' => 'ru-Ru',
             // 'dateFormat' => 'yyyy-MM-dd',
             // 'datetimeFormat' => 'yyyy-MM-dd HH:mm:ss',
             // 'decimalSeparator' => '.',
-            // 'thousandSeparator' => ',',
             'currencyCode' => 'RUB',
         ],
         'i18n' => [

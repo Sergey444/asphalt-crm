@@ -108,8 +108,77 @@ html .add-photo-input {
     position: relative;
     min-width: 200px;
     min-height: 200px;
+
+    & img {
+        height: 200px;
+        width: 200px;
+    }
 }
-.av-preview img {
-    height: 200px;
-    width: 200px;
+
+/* Календарь */
+.ui-widget-header {
+    background: #fff;
+    color: $blue-color;
+    border-color: $blue-color;
+    font-weight: 400;
+}
+.ui-widget-content a {
+    background-color: #fff;
+}
+.ui-widget-header .ui-icon {
+    background-image: none;
+    font-size: 0;
+
+    &::before,
+    &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 8px;
+        height: 2px;
+        background-color: #000;
+        top: 40%;
+        left: 3px;
+    }
+}
+
+.ui-widget-header .ui-icon-circle-triangle-e {
+    &::before {
+        transform: rotate(45deg);
+    }
+
+    &::after {
+        transform: rotate(-45deg);
+        top: 60%;
+    }
+}
+.ui-widget-header .ui-icon-circle-triangle-w {
+    &::before {
+            transform: rotate(-45deg);
+    }
+
+    &::after {
+        transform: rotate(45deg);
+        top: 60%;
+    }
+}
+
+.ui-state-hover, 
+.ui-widget-content .ui-state-hover, 
+.ui-widget-header .ui-state-hover, 
+.ui-state-focus, 
+.ui-widget-content .ui-state-focus, 
+.ui-widget-header .ui-state-focus, 
+.ui-button:hover, 
+.ui-button:focus {
+    background: $blue-color;
+    color: #fff;
+    top: 2px;
+    cursor: pointer;
+    border: none;
+
+    & .ui-icon::before,
+    & .ui-icon::after {
+        background-color: #fff!important;
+    }
 }

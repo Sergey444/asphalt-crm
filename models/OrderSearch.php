@@ -54,7 +54,7 @@ class OrderSearch extends Order
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort' => [
-                'attributes' => ['date', 'partner.name', 'product.name', 'bill', 'count', 'price', 'sum', 'payment', 'status', 'created_at'],
+                'attributes' => ['date', 'partner.name', 'product.name', 'comment', 'count', 'price', 'sum', 'payment', 'status', 'created_at'],
                 'defaultOrder' => [
                     'date' => SORT_DESC,
                     'created_at' => SORT_DESC

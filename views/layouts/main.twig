@@ -31,6 +31,13 @@
 
             {% if app.user.isGuest == false %}
                 {% set menuItems = menuItems|merge([
+                    {'label' : '<i class="fas fa-truck"></i> Поставщики', 'url' : ['/supplier/index'],'options': {'class': 'd-lg-none'} },
+                    {'label' : '<i class="fas fa-briefcase"></i> Заказы', 'url' : ['/order/index'],'options': {'class': 'd-lg-none'} },
+                    {'label' : '<i class="fas fa-handshake"></i> Партнёры', 'url' : ['/partner/index'],'options': {'class': 'd-lg-none'} },
+                    {'label' : '<i class="fas fa-file-alt"></i> Отчёты', 'url' : ['/report/index'],'options': {'class': 'd-lg-none'} },
+                    {'label' : '<i class="fas fa-apple-alt"></i> Товары', 'url' : ['/product/index'],'options': {'class': 'd-lg-none'} },
+                    {'label' : '<i class="fas fa-store-alt"></i> Склад', 'url' : ['/storage/index'],'options': {'class': 'd-lg-none'} },
+
                     {'label' : '<i class="far fa-address-card"></i> Профиль', 'url' : ['profile/index']},
                     {'label' : '<i class="fas fa-users-cog"></i> Управление пользователями', 'url' : ['/profile/users']},
                     {'label' : '<i class="fas fa-cog"></i> Настройки', 'url' : ['/setting/index']},
@@ -63,7 +70,7 @@
                 <div class="container-fluid">
                     <div class="d-md-flex">
 
-                        <nav class="nav d-none d-md-block sidebar mr-4">
+                        <nav class="nav d-none d-lg-block sidebar mr-4">
                         {% set menuItems = [
                             {'label' : '<i class="fas fa-truck"></i> Поставщики', 'url' : ['/supplier/index']},
                             {'label' : '<i class="fas fa-briefcase"></i> Заказы', 'url' : ['/order/index']},

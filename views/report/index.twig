@@ -34,7 +34,7 @@
         </div>
 
         {% if nettings %}
-        <div class="bg-white mb-4">
+        <div class="bg-white mb-4 table-responsive">
             <table class="table table-sm table-hover table-bordered" >
                 <caption>{{app.request.get('partner') ? 'Индивидуальный отчёт' : 'Общий отчёт'}} по взаимозачётам с "{{ date_start | date('d.m.Y') }}" по "{{ date_end | date('d.m.Y') }}"</caption>
                 <thead>
@@ -78,7 +78,7 @@
         </div>
         {% endif %}
 
-        <div class="bg-white mb-4">
+        <div class="bg-white mb-4 table-responsive">
 
             {% if products %}
                 <table class="table table-sm table-striped table-bordered" >
@@ -115,7 +115,7 @@
             {% endif %}
         </div>
 
-        <div class="bg-white mb-4">
+        <div class="bg-white mb-4 table-responsive">
             {% if orders %}
                 <table class="table table-sm table-striped table-bordered" >
                     <thead>
@@ -151,7 +151,7 @@
             {% endif %}
         </div>
 
-         <div class="bg-white mb-4">
+         <div class="bg-white mb-4 table-responsive">
             {% if suppliers %}
                 <table class="table table-sm table-striped table-bordered" >
                     <thead>

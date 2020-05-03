@@ -60,7 +60,7 @@ class Supplier extends \yii\db\ActiveRecord
             [['partner_id', 'product_id', 'bill', 'count', 'price', 'sum', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
             [['comment'], 'string'],
             [['payment'], 'string', 'max' => 255],
-            [['payment'], 'default', 'value' => null],
+            [['payment', 'comment', 'bill'], 'default', 'value' => null]
         ];
     }
 

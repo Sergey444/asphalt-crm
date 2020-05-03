@@ -14,7 +14,7 @@
     <div class="bg-white p-5">
 
         <h3>{{ this.title }}</h3>
-        <p>Please fill out the following fields to login:</p>
+        <p>Для входа, заполните следующие поля:</p>
 
         {% set form = active_form_begin({
             'id' : 'form-login',
@@ -28,7 +28,7 @@
             {{ form.field(model, 'rememberMe').checkbox({'checked': false}).label('Запомнить меня') | raw }}
 
             <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-primary" />
+                <input type="submit" value="Войти" class="btn btn-primary" />
             </div>
 
         {{ active_form_end() }}

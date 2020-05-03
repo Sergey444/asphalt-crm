@@ -5,10 +5,10 @@
     }) | raw }}
 
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 form-group">
                 {{ html.dropDownList('partner', app.request.get('partner'), array_helper.map(partners, "id", "name"), {'prompt': 'Общий отчёт', 'class': 'form-control form-control-sm'}) | raw }}
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 form-group">
                 {{ date_picker.widget({
                         'name': 'date_start',
                         'options':{
@@ -22,7 +22,7 @@
                         'value': date_start | date('d.m.Y'),
                         'dateFormat':'php:d.m.Y'}) | raw }}
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 form-group">
                 {{ date_picker.widget({
                         'name': 'date_end',
                         'options':{

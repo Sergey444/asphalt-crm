@@ -30,9 +30,9 @@
 </table>
 <div style="text-align: center; border-bottom: 1px solid black; margin-bottom: 40px;">Аренда дорожно-строительной техники, строительство, комплексное благоустройство территорий</div>
 
+{% if orders %}
 <div style="margin-bottom: 40px; text-decoration: underline; text-align: center; font-size: 22px;">Реестр отгрузки</div>
 
-{% if orders %}
     <table class="table" >
         <caption style="text-align: right; color: grey;">{{app.request.post('partner') ? 'Индивидуальный отчёт' : 'Общий отчёт'}} по заказам с "{{ date_start | date('d.m.Y') }}" по "{{ date_end | date('d.m.Y') }}"</caption>
         <thead>
@@ -58,33 +58,32 @@
                     
         </tbody>
     </table>
-{% endif %}
 
-{% if products %}
-    <table class="table" style="margin-bottom: 80px;">
-        <caption style="text-align: right; color: grey;">{{app.request.post('partner') ? 'Индивидуальный отчёт' : 'Общий отчёт'}} по материалам с "{{ date_start | date('d.m.Y') }}" по "{{ date_end | date('d.m.Y') }}"</caption>
-        <thead>
-            <tr>
-                <th>Продукт</th>
-                <th>Количество</th>
-                <th>Cумма</th>
-            </tr>
-        </thead>
-        <tbody>
+    {% if products %}
+        <table class="table" style="margin-bottom: 80px;">
+            <caption style="text-align: right; color: grey;">{{app.request.post('partner') ? 'Индивидуальный отчёт' : 'Общий отчёт'}} по материалам с "{{ date_start | date('d.m.Y') }}" по "{{ date_end | date('d.m.Y') }}"</caption>
+            <thead>
+                <tr>
+                    <th>Продукт</th>
+                    <th>Количество</th>
+                    <th>Cумма</th>
+                </tr>
+            </thead>
+            <tbody>
 
-        {% for key, product in products %}
+            {% for key, product in products %}
 
-            <tr>
-                <td>{{ key }}</td>
-                <td>{{ app.formatter.format(product.countSale, 'integer') | raw }}</td>
-                <td>{{ app.formatter.format(product.priceSale, 'integer') | raw }}</td>
-            </tr>
+                <tr>
+                    <td>{{ key }}</td>
+                    <td>{{ app.formatter.format(product.countSale, 'integer') | raw }}</td>
+                    <td>{{ app.formatter.format(product.priceSale, 'integer') | raw }}</td>
+                </tr>
 
-        {% endfor %}
+            {% endfor %}
 
-        </tbody>
-    </table>
-{% endif %}
+            </tbody>
+        </table>
+    {% endif %}
     
     <table style="width: 100%;">
         <tr>
@@ -103,5 +102,10 @@
             <td style="border-bottom: 1px solid black; width: 200px; text-align: right;"><small>м.п.</small>(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</td>
         </tr>
     </table>
+
+{% else %}
+    <div style="color: #004085; background-color: #cce5ff; padding: 20px; border: 1px solid #b8daff; border-radius: 0.25rem; ">Данные по заказам не найдены, попробуйте выбрать другие параметры</div>
+
+{% endif %}
 
 </div>

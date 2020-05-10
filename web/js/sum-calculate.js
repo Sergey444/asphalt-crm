@@ -24,7 +24,7 @@ $(document).ready(function () {
 
     Calculate.prototype.setSum = function () {
         var sum = $(this.price).val() * $(this.count).val();
-        return $(this.sum).val(sum);
+        return $(this.sum).val(sum.toFixed(2));
     }
 
     new Calculate('[data-name="count-form"]');

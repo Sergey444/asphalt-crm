@@ -58,8 +58,9 @@ class Order extends \yii\db\ActiveRecord
             [['date'], 'safe'],
             [['date'], 'datetime', 'format' => 'php:d.m.Y', 'timestampAttribute' => 'date'],
             [['date','partner_id', 'product_id'], 'required'],
-            [['partner_id', 'product_id', 'count', 'price', 'sum', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
+            [['partner_id', 'product_id', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
             [['comment'], 'string'],
+            [['count', 'price', 'sum'], 'double'],
             [['bill', 'payment'], 'string', 'max' => 255],
             [['payment', 'comment', 'bill'], 'default', 'value' => null]
         ];

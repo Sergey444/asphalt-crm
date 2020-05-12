@@ -1,0 +1,27 @@
+{# 
+/* @var $this yii\web\View */
+/* @var $name string */
+/* @var $message string */
+/* @var $exception Exception */
+#}
+
+{{ set(this, 'title', name) }}
+
+<div class="site-error">
+
+    
+    <div class="alert alert-danger">
+        {{ html.encode(message) | nl2br }}
+    </div>
+    
+    <div class="bg-white">
+        <h3>{{ html.encode(this.title) }}</h3>
+        <p>
+            Вышеуказанная ошибка произошла, когда веб-сервер обрабатывал ваш запрос.
+        </p>
+        <p>
+            Пожалуйста, свяжитесь с нами, если считаете, что это ошибка сервера. Спасибо.
+        </p>
+    </div>
+
+</div>

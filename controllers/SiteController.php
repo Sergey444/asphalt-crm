@@ -58,6 +58,7 @@ class SiteController extends Controller
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
+                'view' => '@app/views/site/error.twig'
             ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',

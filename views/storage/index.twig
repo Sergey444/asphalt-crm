@@ -8,35 +8,55 @@
     {# {{ pjax_begin() }} #}
 
         <div class="bg-white mb-4">
-            <canvas height='320' width='480' id='example'>Обновите браузер</canvas>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="bitumen">
+                        <div class="bitumen__title">Общее количество битума на складе</div>
+                        <div class="bitumen__wrapper bitumen__wrapper--all">
+                            <div class="bitumen__count-all" style="width: {{app.formatter.asPercent(bitumen.total.procent)}}">
+                                <span class="bitumen__text">
+                                    {{app.formatter.asPercent(bitumen.total.procent)}} ({{app.formatter.asInteger(bitumen.total.count)}}т.)
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="row bitumen__alone">
+
+                            {% for container in bitumen.containers %}
+                                <div class="col-md-2">
+                                    <div class="bitumen__wrapper bitumen__wrapper--alone" style="height: {{container.volume}}%">
+                                        <div class="bitumen__count-alone" style="height: {{container.count}}%">
+                                            
+                                                <span class="bitumen__text">
+                                                    <nowrap>{{ container.count }}% ({{container.volume}}т.)</nowrap>
+                                                    {# {{bitumen.alone.100}}% ({{bitumen.alone.100}}т.) #}
+                                                </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                           
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="material">
+                        <div class="material__title">Общее количество материала на складе</div>
+                        <div class="material__wrapper">
+                            <div class="material__count-all" style="height: {{app.formatter.asPercent(material.percent)}}">
+                                <span class="material__text">
+                                    {{app.formatter.asPercent(material.percent)}} ({{app.formatter.asInteger(material.count)}}т.)
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     {# {{ pjax_end() }} #}
 
 </div>
-
-<script>
-    var example = document.getElementById("example");
-	var ctx = example.getContext('2d');
-     {#    ctx.strokeStyle = '#B70A02'; // меняем цвет рамки
-        
-        ctx.strokeRect(15, 15, 266, 266);
-        ctx.strokeRect(18, 18, 260, 260);
-
-        ctx.fillStyle = '#AF5200'; // меняем цвет клеток
-        ctx.fillRect(20, 20, 256, 256);
-
-        ctx.font = "30px Comic Sans MS";
-        ctx.textAlign = "center";
-        ctx.fillStyle = "#ffffff";
-        ctx.fillText("Fill text", 266/2, 266/2); #}
-
-        {# ctx.beginPath();
-        ctx.moveTo(x + radius, y);
-        ctx.lineTo(x + width - radius, y);
-        ctx.arc(x+width-radius, y+radius, radius, -Math.PI/2, Math.PI/2, false);
-        ctx.lineTo(x + radius, y + height);
-        ctx.arc(x+radius, y+radius, radius, Math.PI/2, 3*Math.PI/2, false);
-        ctx.closePath();
-        ctx.fill(); #}
-</script>

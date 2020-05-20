@@ -36,3 +36,6 @@
   php yii migrate --migrationPath=@yii/rbac/migrations/ #выполнение миграций RBAC
   php yii rbac/init #инициализация ролей
 ```
+
+## Разметка
+Используется [twig](https://twig.symfony.com/).

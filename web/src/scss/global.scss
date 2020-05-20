@@ -1,11 +1,12 @@
 html, body {
     height: 100%;
 }
-body {
+html body {
     background-color: $body-color;
     // background: #545d6b url('/images/pattern-light-grey.svg') 0 0 repeat;
     background-image: url('/images/pattern-light-grey.svg');
     font-size: .875rem;
+
 }
 main {
     padding-top: 70px;
@@ -16,8 +17,8 @@ caption {
 .wrap {
     min-height: 100%;
     height: auto;
-    margin: 0 auto -80px;
-    padding: 0 0 80px;
+    margin: 0 auto -77px;
+    padding: 0 0 77px;
 }
 
 .u-update-btn {

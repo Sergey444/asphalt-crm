@@ -8,7 +8,7 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'name' => 'ООО «АСФ Сибцентр»',
+    'name' => $params['name'],//'ООО «ДСК Прогресс»',
     'language' => 'ru',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
@@ -79,9 +79,6 @@ $config = [
             'timeZone' => 'GMT+5',
             'thousandSeparator' => ' ',
             'locale' => 'ru-Ru',
-            // 'dateFormat' => 'yyyy-MM-dd',
-            // 'datetimeFormat' => 'yyyy-MM-dd HH:mm:ss',
-            // 'decimalSeparator' => '.',
             'currencyCode' => 'RUB',
         ],
         'i18n' => [
@@ -103,7 +100,6 @@ $config = [
                     'options' => [
                         'auto_reload' => true,
                         'debug' => true,
-                        // 'cache' => false,
                     ],
                     // 'extensions' => ['\Twig_Extension_Debug'],
                     'globals' => [

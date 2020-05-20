@@ -126,7 +126,7 @@
 
         <footer class="navbar navbar-light bg-light mt-4">
             <div class="container-fluid">
-                <div class="pull-left mt-2 mb-2">{{ app.name }} &copy;{{ 'now'|date('Y') }}</div>
+                <div class="pull-left mt-2 mb-2">{{ app.name | raw }} &copy;{{ 'now'|date('Y') }}</div>
                 <div class="pull-right">{{ Yii.powered() | raw }}</div>
             </div>
         </footer>

@@ -56,7 +56,7 @@
                                 <td>{{ prodName }}</td>
                                 <td>{{ app.formatter.format(product.countSale, 'integer') | raw }}</td>
                                 <td>{{ app.formatter.asCurrency(product.priceSale) | raw }}</td>
-                                <td>{{ app.formatter.format(product.countBuy, 'integer') | raw }}</td>
+                                <td>{{ app.formatter.format(product.countBuy, 'decimal') | raw }}</td>
                                 <td>{{ app.formatter.asCurrency(product.priceBuy) | raw }}</td>
                                 <td>
                                     {% if product.result > 0 %}
@@ -95,7 +95,7 @@
                             <td>{{ key }}</td>
                             <td>{{ app.formatter.format(product.countSale, 'integer') | raw }}</td>
                             <td>{{ app.formatter.asCurrency(product.priceSale) | raw }}</td>
-                            <td>{{ app.formatter.format(product.countBuy, 'integer') | raw }}</td>
+                            <td>{{ app.formatter.format(product.countBuy, 'decimal') | raw }}</td>
                             <td>{{ app.formatter.asCurrency(product.priceBuy) | raw }}</td>
                         </tr>
 
@@ -132,7 +132,7 @@
                                 <td>{{ order.partner.name }}</td>
                                 <td>{{ order.product.name }}</td>
                                 <td>{{ order.payment }}</td>
-                                <td>{{ app.formatter.format(order.count, 'integer') | raw }}</td>
+                                <td>{{ app.formatter.format(order.count, 'decimal') | raw }}</td>
                                 <td>{{ app.formatter.asCurrency(order.sum) | raw }}</td>
                             </tr> 
                         {% endfor %}
@@ -168,7 +168,7 @@
                                 <td>{{ supplier.partner.name }}</td>
                                 <td>{{ supplier.product.name }}</td>
                                 <td>{{ supplier.payment }}</td>
-                                <td>{{ app.formatter.format(supplier.count, 'integer') | raw }}</td>
+                                <td>{{ app.formatter.format(supplier.count, 'decimal') | raw }}</td>
                                 <td>{{ app.formatter.asCurrency(supplier.sum) | raw }}</td>
                             </tr> 
                         {% endfor %}

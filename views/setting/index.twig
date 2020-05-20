@@ -1,16 +1,149 @@
-{# {{ use('yii/widgets/Pjax') }} #}
+{{ use('yii/widgets/Pjax') }}
 
 {{ set(this, 'title', 'Настройки') }}
-{{ set(this, 'params', { 'breadcrumbs' : { '' : this.title } }) }}
+{# {{ set(this, 'params', { 'breadcrumbs' : { '' : this.title } }) }} #}
 
 <div class="setting-index">
 
-    {# {{ pjax_begin() }} #}
+    {% set menuItems = [
+        {'label' : 'Общие', 'url' : ['/setting/index']},
+        {'label' : 'Личные', 'url' : ['/order/index']},
+        {'label' : 'Склад', 'url' : ['/partner/index']},
+    ] %}
 
-        <div class="bg-white mb-4">
-            <canvas height='320' width='480' id='example'>Обновите браузер</canvas>
-        </div>
+    {{ nav_widget({
+        'options': {
+            'class': 'bg-white mb-4',
+        },
+        'encodeLabels': false,
+        'items': menuItems
+    }) }}
 
-    {# {{ pjax_end() }} #}
+    {{ pjax_begin() }}
+
+    <div class="bg-white mb-4">
+        
+        {{ html.beginForm(['index'], 'post', {
+            'id': 'setting-form',
+            'enctype': 'multipart/form-data',
+            'class': form_class,
+            'novalidate': 'novalidate',
+            'data-pjax': 1
+        }) | raw }}
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Данные компании</h5><hr />
+                    <div class="form-group">
+                        <label for="company-name">Название компании</label>
+                        <input  type="text" 
+                                id="company-name"
+                                class="form-control form-control-sm" 
+                                name="company-name" 
+                                value="{{app.name | raw}}" 
+                                placeholder="Моя компания" 
+                                maxlength="30"
+                                required />
+                        <div class="invalid-feedback">Необходимоо заполнить "Название компании"</div>
+                        <small id="companyNameHelpInline" class="text-muted">
+                            Длина не больше 30 символов
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="admin-email">Email администратора (для обратной связи)</label>
+                        <input  type="email" 
+                                id="admin-email"
+                                class="form-control form-control-sm" 
+                                name="admin-email" 
+                                value="{{ app.params.adminEmail | raw }}"
+                                placeholder="name@example.com" 
+                                required />
+                    </div>
+
+                    <div class="form-group">
+                        <img src="/favicon.ico">
+                        <label for="favicon">favicon.ico</label>
+                        <input  type="file" 
+                                id="favicon"
+                                class="form-control-file" 
+                                name="favicon" />
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <h5>Почтовые отправления</h5><hr />
+                    <div class="form-group">
+                        <label for="sender-email">Email отправителя писем (для отправки писем из системы)</label>
+                        <input  type="text"
+                                id="sender-email"
+                                name="sender-email"
+                                class="form-control form-control-sm"
+                                value="{{ app.params.senderEmail | raw }}"
+                                placeholder="name@example.com" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Пароль от почты отправителя</label>
+                        <input type="password" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="">
+                        <small id="passwordHelpInline" class="text-muted">
+                            Must be 8-20 characters long.
+                        </small>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Адрес почтового сервера</label>
+                                <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="smtp.yandex.ru">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Защита соединения</label>
+                                <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="SSL">
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Порт</label>
+                                <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="465">
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-outline-success btn-sm d-block ">
+            </div>
+           
+        {{ html.endForm() | raw }}
+    </div>
+
+    {{ pjax_end() }}
 
 </div>
+
+
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>

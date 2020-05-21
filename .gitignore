@@ -37,7 +37,8 @@ tests/_support/_generated
 
 # db
 /config/db.php
-/config/mailer.php
+
+/config/app/*
 
 #uploads
 /web/uploads

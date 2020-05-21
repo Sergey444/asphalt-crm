@@ -38,27 +38,27 @@ class SettingController extends \yii\web\Controller
      */
     public function actionIndex()
     {
-
         $form_class = 'needs-validation ';
         if (Yii::$app->request->isAjax) {
             // $form_class = 'needs-validation was-validated';
 
             if (Yii::$app->request->post('company-name') !== Yii::$app->name) {
-                $this->setName(Yii::$app->request->post('company-name'));
-            }
-
+                $this->setDataToFile(Yii::$app->request->post('company-name'), 'app.name.php');}
             if (Yii::$app->request->post('admin-email') !== Yii::$app->params->adminEmail) {
-                $this->setAdminEmail(Yii::$app->request->post('admin-email'));
-            }
-
+                $this->setDataToFile(Yii::$app->request->post('admin-email'), 'app.admin.email.php');}
             if (Yii::$app->request->post('sender-email') !== Yii::$app->params->senderEmail) {
-                $this->setSenderEmail(Yii::$app->request->post('sender-email'));
-            }
+                $this->setDataToFile(Yii::$app->request->post('sender-email'), 'app.sender.email.php');}
+            if (Yii::$app->request->post('sender-password') !== Yii::$app->params->mail->password) {
+                $this->setDataToFile(Yii::$app->request->post('sender-password'), 'app.sender.email.password.php');}
+            if (Yii::$app->request->post('host') !== Yii::$app->params->mail->password) {
+                $this->setDataToFile(Yii::$app->request->post('host'), 'app.host.php');}
+            if (Yii::$app->request->post('encryption') !== Yii::$app->params->mail->password) {
+                $this->setDataToFile(Yii::$app->request->post('encryption'), 'app.encryption.php');}
+            if (Yii::$app->request->post('port') !== Yii::$app->params->mail->password) {
+                $this->setDataToFile(Yii::$app->request->post('port'), 'app.port.php');}
 
             return $this->redirect(['index']);
         }
-
-        // print_r(Yii::getAlias('@web').'/favicon.ico');
 
         return $this->render('index.twig', [
             'file_exists' => file_exists('/favicon.ico'),
@@ -68,29 +68,12 @@ class SettingController extends \yii\web\Controller
 
     /**
      * @param string $name
+     * @param string $file
      * @return boolean
      */
-    private function setName($name)
+    private function setDataToFile($name, $file)
     {
-        return file_put_contents(__DIR__ .'/../config/app/app.name.php', htmlspecialchars($name));
-    }
-
-    /**
-     * @param string $email
-     * @return boolean
-     */
-    private function setAdminEmail($email)
-    {
-        return file_put_contents(__DIR__ .'/../config/app/app.admin.email.php', htmlspecialchars($email));
-    }
-
-    /**
-     * @param string $email
-     * @return boolean
-     */
-    private function setSenderEmail($email)
-    {
-        return file_put_contents(__DIR__ .'/../config/app/app.sender.email.php', htmlspecialchars($email));
+        return file_put_contents(__DIR__ .'/../config/app/'.$file, htmlspecialchars($name));
     }
 
 }

@@ -45,9 +45,7 @@
                                 maxlength="30"
                                 required />
                         <div class="invalid-feedback">Необходимоо заполнить "Название компании"</div>
-                        <small id="companyNameHelpInline" class="text-muted">
-                            Длина не больше 30 символов
-                        </small>
+                        <small id="companyNameHelpInline" class="text-muted"></small>
                     </div>
 
                     <div class="form-group">
@@ -79,35 +77,53 @@
                                 id="sender-email"
                                 name="sender-email"
                                 class="form-control form-control-sm"
-                                value="{{ app.params.senderEmail | raw }}"
+                                value="{{ app.params.mail.username | raw }}"
                                 placeholder="name@example.com" />
                     </div>
 
                     <div class="form-group">
-                        <label for="exampleFormControlInput1">Пароль от почты отправителя</label>
-                        <input type="password" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="">
-                        <small id="passwordHelpInline" class="text-muted">
-                            Must be 8-20 characters long.
-                        </small>
+                        <label for="sender-password">Пароль от почты отправителя</label>
+                        <input  type="password"
+                                id="sender-password"
+                                name="sender-password"
+                                class="form-control form-control-sm"
+                                value="{{ app.params.mail.password | raw }}"
+                                placeholder="Введите парооль">
+                        <small id="passwordHelpInline" class="text-muted"></small>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="exampleFormControlInput1">Адрес почтового сервера</label>
-                                <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="smtp.yandex.ru">
+                                <label for="host">Адрес почтового сервера</label>
+                                <input  type="text" 
+                                        id="host" 
+                                        name="host"
+                                        class="form-control form-control-sm"
+                                        value="{{ app.params.mail.host | raw }}"
+                                        placeholder="smtp.yandex.ru">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="exampleFormControlInput1">Защита соединения</label>
-                                <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="SSL">
+                                <label for="encryption">Защита соединения</label>
+                                <input  type="text" 
+                                        id="encryption"
+                                        name="encryption"
+                                        class="form-control form-control-sm"
+                                        value="{{ app.params.mail.encryption | raw }}"
+                                        placeholder="SSL">
                             </div>
                         </div>
 
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="exampleFormControlInput1">Порт</label>
-                                <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="465">
+                                <label for="port">Порт</label>
+                                <input  type="text" 
+                                        id="port"
+                                        name="port"
+                                        class="form-control form-control-sm"
+                                        value="{{ app.params.mail.port | raw }}"
+                                        placeholder="465">
                             </div>
                         </div>
                     </div>

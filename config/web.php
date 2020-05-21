@@ -120,7 +120,7 @@ $config = [
 			]
 		],
     ],
-    'params' => $params,
+    'params' => array_merge($params, ['mail' => $mailer]),
     'layout' => 'main.twig',
 ];
 

@@ -51,11 +51,11 @@ class SettingController extends \yii\web\Controller
             if (Yii::$app->request->post('sender-password') !== Yii::$app->params->mail->password) {
                 $this->setDataToFile(Yii::$app->request->post('sender-password'), 'app.sender.email.password.php');}
             if (Yii::$app->request->post('host') !== Yii::$app->params->mail->password) {
-                $this->setDataToFile(Yii::$app->request->post('host'), 'app.host.php');}
+                $this->setDataToFile(Yii::$app->request->post('host'), 'app.sender.host.php');}
             if (Yii::$app->request->post('encryption') !== Yii::$app->params->mail->password) {
-                $this->setDataToFile(Yii::$app->request->post('encryption'), 'app.encryption.php');}
+                $this->setDataToFile(Yii::$app->request->post('encryption'), 'app.sender.encryption.php');}
             if (Yii::$app->request->post('port') !== Yii::$app->params->mail->password) {
-                $this->setDataToFile(Yii::$app->request->post('port'), 'app.port.php');}
+                $this->setDataToFile(Yii::$app->request->post('port'), 'app.sender.port.php');}
 
             return $this->redirect(['index']);
         }

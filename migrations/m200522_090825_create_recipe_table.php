@@ -3,17 +3,20 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `{{%setting_store}}`.
+ * Handles the creation of table `{{%recipe}}`.
  */
-class m200520_093808_create_setting_store_table extends Migration
+class m200522_090825_create_recipe_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('{{%setting_store}}', [
+        $this->createTable('{{%recipe}}', [
             'id' => $this->primaryKey(),
+            'product_id' => $this->integer()->notNull(),
+            'property_id' => $this->integer()->notNull(),
+            'count' => $this->integer()->notNull(),
 
             'created_by' => $this->integer(),
             'updated_by' => $this->integer(),
@@ -27,6 +30,6 @@ class m200520_093808_create_setting_store_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('{{%setting_store}}');
+        $this->dropTable('{{%recipe}}');
     }
 }

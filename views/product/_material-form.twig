@@ -1,0 +1,32 @@
+{#
+/* @var $this yii\web\View */
+/* @var $model app\models\Recipe */
+/* @var $form ActiveForm */
+#}
+
+{{ use('yii/bootstrap4/ActiveForm') }}
+
+<div class="product-_material-form">
+
+    {% set form = active_form_begin() %}
+
+        {{ form.field(model, 'product_id').hiddenInput({'value': id}).label(false) | raw }}
+        {% set prodArray = array_helper.map(products, 'id', 'name') %}
+        {{ form.field(model, 'property_id').dropDownList(prodArray, {
+                'prompt': 'Выберите товар',
+                'class': 'form-control form-control-sm'
+             }).label(false) | raw }}
+
+        <div class="row">
+            <div class="col-md-6">
+                {{ form.field(model, 'count').textInput({'class': 'form-control form-control-sm', 'placeholder': 'Количество'}).label(false) | raw }}
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{ html.submitButton('Добавить', {'class': 'btn btn-primary btn-sm w-100'}) | raw}}
+                </div>
+            </div>
+        </div>
+
+    {{ active_form_end() }}  
+</div><!-- product-_material-form -->

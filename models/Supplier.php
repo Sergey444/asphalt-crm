@@ -115,23 +115,23 @@ class Supplier extends \yii\db\ActiveRecord
 
     /**
      * Get partners from Partner model for list to form select
-     * has limit 50 elements
+     * has limit 150 elements
      * @return array
      */
     public function getPartners() 
     {
-        $model = Partner::find()->limit(50)->all();
+        $model = Partner::find()->limit(150)->all();
         return ArrayHelper::map($model, 'id', 'name');
     }
 
     /**
      * Get products from Product model for list to form select
-     * has limit 50 elements
+     * has limit 150 elements
      * @return array
      */
     public function getProducts() 
     {
-        $model = Product::find()->limit(50)->all();
+        $model = Product::find()->limit(150)->all();
         return ArrayHelper::map($model, 'id', 'name');
     }
 }

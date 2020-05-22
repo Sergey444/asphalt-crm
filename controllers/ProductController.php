@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Product;
 use app\models\ProductSearch;
+use app\models\Recipe;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -70,8 +71,9 @@ class ProductController extends Controller
      */
     public function actionView($id)
     {
+        $model = Product::find()->where(['product.id' => $id])->joinWith('recipes.product')->one();
         return $this->render('view.twig', [
-            'model' => $this->findModel($id),
+            'model' => $model
         ]);
     }
 
@@ -102,14 +104,26 @@ class ProductController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $modelRecipe = new Recipe();
+        $model = Product::find()->where(['product.id' => $id])->joinWith('recipes.product')->one();
+        $products = Product::find()->where( ['<>', 'id', $id])->all();
+        // $recipes = Recipe::find()->where(['product_id' => $id])->joinWith('product')->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
+        if ($modelRecipe->load(Yii::$app->request->post()) && $modelRecipe->save()) {
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Запись успешно добавлена'));
+            return $this->redirect(['update', 'id' => $id]);
+        }
+
+
         return $this->render('update.twig', [
             'model' => $model,
+            'modelRecipe' => $modelRecipe,
+            'products' => $products,
+            'recipes' => $recipes
         ]);
     }
 
@@ -125,6 +139,23 @@ class ProductController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+     /**
+     * Deletes an existing Recipe model.
+     * If deletion is successful, the browser will be redirected to the 'update' page.
+     * @param integer $id
+     * @param integer $product_id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionDeleteRecipe($id, $product_id)
+    {
+        if (Recipe::findOne($id)->delete()) {
+            return $this->redirect(['update', 'id' => $product_id]);
+        };
+
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
 
     /**

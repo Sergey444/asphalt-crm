@@ -7,10 +7,67 @@
 
 <div class="product-update">
 
-    <div class="bg-white">
-    <h3>Страница редактирования товара</h3><hr />
-    {{ this.render('_form.twig', {
-        'model': model,
-    }) | raw }}
-    </div>
+    <div class="row">
+
+        <div class="col-md-8">
+            <div class="bg-white mb-4">
+                <h3>Страница редактирования товара</h3><hr />
+                {{ this.render('_form.twig', {
+                    'model': model,
+                }) | raw }}
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class=" bg-white mb-4">
+                {% if model.recipes %}
+                    <table class="table table-sm table-striped table-bordered">
+                        <caption style="caption-side: top;">Свойства или материалы из которых состоит "{{model.name}}"</caption>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Материал</th>
+                                <th>Количество</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for key, recipe in model.recipes %}
+                                <tr>
+                                    <td>{{ key + 1 }}</td>
+                                    <td>{{ recipe.product.name }}</td>
+                                    <td>{{ recipe.count }}</td>
+                                    <td>
+                                        {{ html.a('<span class="glyphicon glyphicon-trash"></span>', 
+                                            path('delete-recipe', {'id': recipe.id, 'product_id': recipe.product_id}),
+                                            {'data': {
+                                                'confirm': 'Вы уверены что хотите удалить свойство?',
+                                                'method': 'post',
+                                                'pjax': 0
+                                        }}) | raw }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <div class="alert alert-primary" role="alert">
+                        Свойства не найдены. Добавьте их, если это необходимо.
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class=" bg-white">
+                {{ this.render('_material-form.twig', {
+                    id: model.id,
+                    products: products,
+                    model: modelRecipe
+                }) | raw}}
+            </div>
+
+
+        </div>
+
+     </div>
+
 </div>

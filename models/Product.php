@@ -104,4 +104,29 @@ class Product extends \yii\db\ActiveRecord
     {
         return \yii\helpers\StringHelper::truncate($this->description, 50, '...');
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRecipes()
+    {
+       return $this->hasMany(Recipe::className(), ['product_id' => 'id']);
+    }
+
+    
+    /**
+     * @return string
+     */
+    public function getRecipesList()
+    {
+        if (!$this->recipes) {
+            return '<span class="not-set">(не задано)</span>';
+        }
+        foreach($this->recipes as $key => $recipe) {
+            $html .= '<div><span>'.($key + 1).'</span> <span>'.$recipe->product->name.'</span></div>';
+        }
+
+        return $html;
+       
+    }
 }

@@ -43,6 +43,15 @@ class Recipe extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+        Yii::$app->session->setFlash('success', 'Запись успешно добавлена');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function rules()
     {
         return [

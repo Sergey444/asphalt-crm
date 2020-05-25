@@ -107,23 +107,19 @@ class ProductController extends Controller
         $modelRecipe = new Recipe();
         $model = Product::find()->where(['product.id' => $id])->joinWith('recipes.product')->one();
         $products = Product::find()->where( ['<>', 'id', $id])->all();
-        // $recipes = Recipe::find()->where(['product_id' => $id])->joinWith('product')->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         if ($modelRecipe->load(Yii::$app->request->post()) && $modelRecipe->save()) {
-            Yii::$app->session->setFlash('success', Yii::t('app', 'Запись успешно добавлена'));
             return $this->redirect(['update', 'id' => $id]);
         }
-
 
         return $this->render('update.twig', [
             'model' => $model,
             'modelRecipe' => $modelRecipe,
-            'products' => $products,
-            'recipes' => $recipes
+            'products' => $products
         ]);
     }
 

@@ -15,7 +15,7 @@ main {
     padding-top: 70px;
 }
 
-caption {
+html caption {
     caption-side: top;
 }
 
@@ -494,7 +494,7 @@ nav.sidebar {
 .bitumen__count-all {
     background-color: #ff8400;
     height: 100px;
-    width: 70%;
+    max-width: 100%;
     font-size: 20px;
 }
 
@@ -509,7 +509,7 @@ nav.sidebar {
 
 .bitumen__count-alone {
     background-color: #ff8400;
-    height: 100%;
+    max-height: 100%;
     margin-top: auto;
     width: 100%;
     color: #fff;

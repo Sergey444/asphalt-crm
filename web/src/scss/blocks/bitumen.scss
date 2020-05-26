@@ -56,13 +56,11 @@
     }
 
     &__count-all {
-        background-color: adjust_hue(#007bff, 180);//$blue-color;
+        background-color: adjust_hue($blue-color, 180);
         height: 100px;
-        width: 70%;
-        
+        max-width: 100%;
         font-size: 20px;
 
-        
         &::after {
             content: "";
             mix-blend-mode: difference;
@@ -75,8 +73,8 @@
     }
 
     &__count-alone {
-        background-color: adjust_hue(#007bff, 180);//$blue-color;
-        height: 100%;
+        background-color: adjust_hue($blue-color, 180);
+        max-height: 100%;
 
         margin-top: auto;
         width: 100%;

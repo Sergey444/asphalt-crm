@@ -91,6 +91,22 @@ class Supplier extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            if ($insert) {
+                $product = Product::findOne($this->product_id);
+                $product->count = $product->count + $this->count;
+                return $product->save();
+            }
+            return true;
+        } 
+        return false;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);

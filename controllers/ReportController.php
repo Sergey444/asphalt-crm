@@ -47,7 +47,7 @@ class ReportController extends \yii\web\Controller
     {
         $partner_id = Yii::$app->request->get('partner') ? 'partner_id = '.Yii::$app->request->get('partner'). ' AND ' : '';
         $date_start = strtotime(Yii::$app->request->get('date_start')) ?: strtotime("-1 month");
-        $date_end = strtotime(Yii::$app->request->get('date_end')) ?: strtotime('now');
+        $date_end = Yii::$app->request->get('date_end') ? strtotime( Yii::$app->request->get('date_end') . '+23 hours') : strtotime('now');
         $query = $partner_id . "`date` > ".$date_start." AND `date` < ".$date_end;
 
         $partners = Partner::find()->limit(50)->all();
@@ -57,6 +57,9 @@ class ReportController extends \yii\web\Controller
 
         $products = $this->getTotalProduct($orders, $suppliers);
         $nettings = $this->getNetting($orders, $suppliers);
+
+        // echo '<pre>';
+        // print_r($nettings);
 
         return $this->render('index.twig', [
             'date_start' => $date_start,

@@ -30,8 +30,8 @@
 
         {% if nettings %}
         <div class="bg-white mb-4 table-responsive">
-            <table class="table table-sm table-hover table-bordered" >
-                <caption>{{app.request.get('partner') ? 'Индивидуальный отчёт' : 'Общий отчёт'}} по взаимозачётам с "{{ date_start | date('d.m.Y') }}" по "{{ date_end | date('d.m.Y') }}"</caption>
+            <table class="table table-sm table-bordered" >
+                <caption>{{app.request.get('partner') ? 'Индивидуальный отчёт' : 'Общий отчёт'}} по взаиморасчётам с "{{ date_start | date('d.m.Y') }}" по "{{ date_end | date('d.m.Y') }}"</caption>
                 <thead>
                     <tr>
                         <th>Партнёр</th>
@@ -44,9 +44,10 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% set sum = 0 %}
                     {% for partnName, netting in nettings %}
                         <tr>
-                            <td rowspan="{{ netting|length }}">{{ partnName }}</td>
+                            <td rowspan="{{ netting|length }}" class="align-middle" >{{ partnName }}</td>
                             {% for prodName, product in netting %}
 
                                 {% if loop.index > 1 %}
@@ -59,15 +60,23 @@
                                 <td>{{ app.formatter.format(product.countBuy, 'decimal') | raw }}</td>
                                 <td>{{ app.formatter.asCurrency(product.priceBuy) | raw }}</td>
                                 <td>
-                                    {% if product.result > 0 %}
-                                        <span style="color: green">{{ app.formatter.asCurrency(product.result) | raw }}</span>
-                                    {% else %}
-                                        <span style="color: red">{{ app.formatter.asCurrency(product.result) | raw }} </span>
-                                    {% endif %}
+                                    <span class="{{ product.result > 0 ? 'text-success' : 'text-danger'}}">
+                                        {{ app.formatter.asCurrency(product.result) | raw }}
+                                    </span>
                                 </td>
                             </tr>
+                            {% set sum = sum + product.result %}
                             {% endfor %}
                     {% endfor %}
+                    <tr>
+                        <td colspan="5" style="border: none;"></td>
+                        <td>Итог:</td>
+                        <td>
+                            <span class="{{ sum > 0 ? 'text-success' : 'text-danger'}}">
+                                {{ app.formatter.asCurrency(sum) | raw }}
+                            </span>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -113,8 +122,8 @@
         <div class="bg-white mb-4 table-responsive">
             {% if orders %}
                 <table class="table table-sm table-striped table-bordered" >
+                    <caption>{{app.request.get('partner') ? 'Индивидуальный отчёт' : 'Общий отчёт'}} по заказам с "{{ date_start | date('d.m.Y') }}" по "{{ date_end | date('d.m.Y') }}"</caption>
                     <thead>
-                        <caption>{{app.request.get('partner') ? 'Индивидуальный отчёт' : 'Общий отчёт'}} по заказам с "{{ date_start | date('d.m.Y') }}" по "{{ date_end | date('d.m.Y') }}"</caption>
                         <tr>
                         <th>Дата</th>
                         <th>Партнёр</th>
@@ -125,7 +134,7 @@
                         </tr>
                     </thead>
                     <tbody>
-
+                        {% set sum = 0 %}
                         {% for order in orders %}
                             <tr>
                                 <td>{{ order.date | date('d.m.Y') }}</td>
@@ -135,8 +144,18 @@
                                 <td>{{ app.formatter.format(order.count, 'decimal') | raw }}</td>
                                 <td>{{ app.formatter.asCurrency(order.sum) | raw }}</td>
                             </tr> 
+                        {% set sum = sum + order.sum %}
                         {% endfor %}
-                                
+
+                        <tr>
+                            <td colspan="4"></td>
+                            <td>Итог:</td>
+                            <td>
+                                <span class="">
+                                    {{ app.formatter.asCurrency(sum) | raw }}
+                                </span>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             {% else %}
@@ -149,8 +168,8 @@
          <div class="bg-white mb-4 table-responsive">
             {% if suppliers %}
                 <table class="table table-sm table-striped table-bordered" >
+                    <caption>{{app.request.get('partner') ? 'Индивидуальный отчёт' : 'Общий отчёт'}} по поставщикам с "{{ date_start | date('d.m.Y') }}" по "{{ date_end | date('d.m.Y') }}"</caption>
                     <thead>
-                        <caption>{{app.request.get('partner') ? 'Индивидуальный отчёт' : 'Общий отчёт'}} по поставщикам с "{{ date_start | date('d.m.Y') }}" по "{{ date_end | date('d.m.Y') }}"</caption>
                         <tr>
                         <th>Дата</th>
                         <th>Партнёр</th>
@@ -162,6 +181,7 @@
                     </thead>
                     <tbody>
 
+                        {% set sum = 0 %}
                         {% for supplier in suppliers %}
                             <tr>
                                 <td>{{ supplier.date | date('d.m.Y') }}</td>
@@ -171,8 +191,18 @@
                                 <td>{{ app.formatter.format(supplier.count, 'decimal') | raw }}</td>
                                 <td>{{ app.formatter.asCurrency(supplier.sum) | raw }}</td>
                             </tr> 
+                            {% set sum = sum + supplier.sum %}
                         {% endfor %}
 
+                        <tr>
+                            <td colspan="4"></td>
+                            <td>Итог:</td>
+                            <td>
+                                <span class="{{ sum > 0 ? 'text-success' : 'text-danger'}}">
+                                    {{ app.formatter.asCurrency(sum) | raw }}
+                                </span>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             {% else %}

@@ -48,13 +48,21 @@ class StorageController extends \yii\web\Controller
                 'procent' => $bitumen['count'] * 100 / 300 / 100,
                 'count' => $bitumen['count']
             ],
+            // 'containers' => [
+            //     ['volume' => 100,'count' => $bitumen['count'] >= 100 ? 100 : $bitumen['count']],
+            //     ['volume' => 45, 'count' => $bitumen['count'] >= 145 ? 100 : ( $bitumen['count'] < 100 ? 0 : $bitumen['count'] - 100)],
+            //     ['volume' => 45, 'count' => $bitumen['count'] >= 190 ? 100 : ( $bitumen['count'] < 145 ? 0 : $bitumen['count'] - 145)],
+            //     ['volume' => 45, 'count' => $bitumen['count'] >= 235 ? 100 : ( $bitumen['count'] < 190 ? 0 : $bitumen['count'] - 190)],
+            //     ['volume' => 45, 'count' => $bitumen['count'] >= 280 ? 100 : ( $bitumen['count'] < 235 ? 0 : $bitumen['count'] - 235)],
+            //     ['volume' => 20, 'count' => $bitumen['count'] >= 300 ? 100 : ( $bitumen['count'] < 280 ? 0 : $bitumen['count'] - 280)],
+            // ]
             'containers' => [
                 ['volume' => 100,'count' => $bitumen['count'] >= 100 ? 100 : $bitumen['count']],
-                ['volume' => 45, 'count' => $bitumen['count'] >= 145 ? 100 : ( $bitumen['count'] < 100 ? 0 : $bitumen['count'] - 100)],
-                ['volume' => 45, 'count' => $bitumen['count'] >= 190 ? 100 : ( $bitumen['count'] < 145 ? 0 : $bitumen['count'] - 145)],
-                ['volume' => 45, 'count' => $bitumen['count'] >= 235 ? 100 : ( $bitumen['count'] < 190 ? 0 : $bitumen['count'] - 190)],
-                ['volume' => 45, 'count' => $bitumen['count'] >= 280 ? 100 : ( $bitumen['count'] < 235 ? 0 : $bitumen['count'] - 235)],
-                ['volume' => 20, 'count' => $bitumen['count'] == 300 ? 100 : ( $bitumen['count'] < 280 ? 0 : $bitumen['count'] - 280)],
+                ['volume' => 45, 'count' => $bitumen['count'] >= 145 ? 45 : ( $bitumen['count'] < 100 ? 0 : $bitumen['count'] - 100)],
+                ['volume' => 45, 'count' => $bitumen['count'] >= 190 ? 45 : ( $bitumen['count'] < 145 ? 0 : $bitumen['count'] - 145)],
+                ['volume' => 45, 'count' => $bitumen['count'] >= 235 ? 45 : ( $bitumen['count'] < 190 ? 0 : $bitumen['count'] - 190)],
+                ['volume' => 45, 'count' => $bitumen['count'] >= 280 ? 45 : ( $bitumen['count'] < 235 ? 0 : $bitumen['count'] - 235)],
+                ['volume' => 20, 'count' => $bitumen['count'] >= 300 ? 20 : ( $bitumen['count'] < 280 ? 0 : $bitumen['count'] - 280)],
             ]
         ];
 

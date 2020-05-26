@@ -75,6 +75,8 @@ class Product extends \yii\db\ActiveRecord
             'updated_by' => 'Кем изменён',
             'created_at' => 'Дата создания',
             'updated_at' => 'Дата изменения',
+
+            'recipesList' => 'Рецепт приготовления'
         ];
     }
 
@@ -123,7 +125,7 @@ class Product extends \yii\db\ActiveRecord
             return '<span class="not-set">(не задано)</span>';
         }
         foreach($this->recipes as $key => $recipe) {
-            $html .= '<div><span>'.($key + 1).'</span> <span>'.$recipe->product->name.'</span></div>';
+            $html .= '<div><span>'.($key + 1).'</span> <span>'.$recipe->product->name.'</span> <span>'.$recipe->count.'</span></div>';
         }
 
         return $html;

@@ -4,16 +4,16 @@
     flex-direction: column;
     display: flex;
 
+    &__top {
+        margin-bottom: 35px;
+    }
+
     &__wrapper {
         border: 1px solid $blue-color;
         background-color: aliceblue;
         
         padding: 5px;
         position: relative;
-
-        &--all {
-            margin-bottom: 55px;
-        }
 
         &--all::after {
             content: "";

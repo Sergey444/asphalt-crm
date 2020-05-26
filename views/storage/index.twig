@@ -3,22 +3,25 @@
 {{ set(this, 'title', 'Склад') }}
 {{ set(this, 'params', { 'breadcrumbs' : { '' : this.title } }) }}
 
-<div class="storage-index">
+<div class="storage-index h-100">
 
     {# {{ pjax_begin() }} #}
 
-        <div class="bg-white mb-4">
+        <div class="bg-white mb-4 h-100">
 
             <div class="row">
                 <div class="col-md-6">
                     <div class="bitumen">
                         <div class="bitumen__title">Общее количество битума на складе</div>
-                        <div class="bitumen__wrapper bitumen__wrapper--all">
-                            <div class="bitumen__count-all" style="width: {{app.formatter.asPercent(bitumen.total.procent)}}">
-                                <span class="bitumen__text">
-                                    {{app.formatter.asPercent(bitumen.total.procent)}} ({{app.formatter.asInteger(bitumen.total.count)}}т.)
-                                </span>
+                        <div class="bitumen__top">
+                            <div class="bitumen__wrapper bitumen__wrapper--all">
+                                <div class="bitumen__count-all" style="width: {{app.formatter.asPercent(bitumen.total.procent)}}">
+                                    <span class="bitumen__text">
+                                        {{app.formatter.asPercent(bitumen.total.procent)}} ({{app.formatter.asInteger(bitumen.total.count)}}т.)
+                                    </span>
+                                </div>
                             </div>
+                            <small>Объём 300т.</small>
                         </div>
 
                         <div class="row bitumen__alone">
@@ -26,14 +29,14 @@
                             {% for container in bitumen.containers %}
                                 <div class="col-md-2">
                                     <div class="bitumen__wrapper bitumen__wrapper--alone" style="height: {{container.volume}}%">
-                                        <div class="bitumen__count-alone" style="height: {{container.count}}%">
+                                        <div class="bitumen__count-alone" style="height: {{(container.count * 100 / container.volume) | round}}%">
 
                                             <span class="bitumen__text">
-                                                <nowrap>{{ container.count }}% ({{container.volume}}т.)</nowrap>
-                                                {# {{bitumen.alone.100}}% ({{bitumen.alone.100}}т.) #}
+                                                <nowrap>{{ (container.count * 100 / container.volume) |round }}% ({{container.count}}т.)</nowrap>
                                             </span>
                                         </div>
                                     </div>
+                                    <small>Объём {{container.volume }}т.</small>
                                 </div>
                             {% endfor %}
                            

@@ -441,15 +441,15 @@ nav.sidebar {
     display: flex;
 }
 
+.bitumen__top {
+    margin-bottom: 35px;
+}
+
 .bitumen__wrapper {
     border: 1px solid #007bff;
     background-color: aliceblue;
     padding: 5px;
     position: relative;
-}
-
-.bitumen__wrapper--all {
-    margin-bottom: 55px;
 }
 
 .bitumen__wrapper--all::after {

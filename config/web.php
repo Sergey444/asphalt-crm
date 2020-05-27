@@ -71,6 +71,8 @@ $config = [
                 'product/view/<id:\d+>' => 'product/view',
                 'product/update/<id:\d+>' => 'product/update',
                 'report' => 'report/index',
+                'storage' => 'storage/index',
+                'setting' => 'setting/index',
             ],
         ],
         'formatter' => [

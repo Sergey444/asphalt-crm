@@ -56,7 +56,8 @@ class Recipe extends \yii\db\ActiveRecord
     {
         return [
             [['product_id', 'property_id', 'count'], 'required'],
-            [['product_id', 'property_id', 'count', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
+            ['count', 'double'],
+            [['product_id', 'property_id', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
         ];
     }
 

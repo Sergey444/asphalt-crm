@@ -94,6 +94,37 @@ class Order extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            if ($insert) {
+                $product = Product::findOne($this->product_id);
+                $product->count = $product->count - $this->count;
+                if (!$product->save()) {
+                    return false;
+                }
+
+                if ($product->recipes) {
+                    foreach($product->recipes as $recipe) {
+                        $arrRecipes[$recipe->property_id] = $recipe->count * $this->count;
+                    }
+                    $products = Product::findAll(array_keys($arrRecipes));
+                    foreach ($products as $product) {
+                        $product->count = $product->count - $arrRecipes[$product->id];
+                        $product->update(false);
+                    }
+                    return true;
+                }
+                return ;
+            }
+            return true;
+        } 
+        return false;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);

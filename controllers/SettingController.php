@@ -34,14 +34,11 @@ class SettingController extends \yii\web\Controller
     }
 
     /**
-     * Index action
+     * Displays main settings
      */
     public function actionIndex()
     {
-        $form_class = 'needs-validation ';
         if (Yii::$app->request->isAjax) {
-            // $form_class = 'needs-validation was-validated';
-
             if (Yii::$app->request->post('company-name') !== Yii::$app->name) {
                 $this->setDataToFile(Yii::$app->request->post('company-name'), 'app.name.php');}
             if (Yii::$app->request->post('admin-email') !== Yii::$app->params->adminEmail) {
@@ -60,10 +57,15 @@ class SettingController extends \yii\web\Controller
             return $this->redirect(['index']);
         }
 
-        return $this->render('index.twig', [
-            'file_exists' => file_exists('/favicon.ico'),
-            'form_class' => $form_class
-        ]);
+        return $this->render('index.twig');
+    }
+
+    /**
+     * Displays storage settings
+     */
+    public function actionStorage()
+    {
+        return $this->render('storage.twig');
     }
 
     /**

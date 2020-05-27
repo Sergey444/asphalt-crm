@@ -16,7 +16,7 @@ class m200522_090825_create_recipe_table extends Migration
             'id' => $this->primaryKey(),
             'product_id' => $this->integer()->notNull(),
             'property_id' => $this->integer()->notNull(),
-            'count' => $this->integer()->notNull(),
+            'count' => $this->float()->notNull(),
 
             'created_by' => $this->integer(),
             'updated_by' => $this->integer(),

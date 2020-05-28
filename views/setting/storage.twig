@@ -1,0 +1,25 @@
+{{ use('yii/widgets/Pjax') }}
+
+{{ set(this, 'title', 'Настройки') }}
+
+<div class="setting-index">
+
+    {% set menuItems = [
+        {'label' : 'Общие', 'url' : ['/setting/index']},
+        {'label' : 'Личные', 'url' : ['/setting/index']},
+        {'label' : 'Склад', 'url' : ['/setting/storage']},
+    ] %}
+
+    {{ nav_widget({
+        'options': {
+            'class': 'bg-white mb-4',
+        },
+        'encodeLabels': false,
+        'items': menuItems
+    }) }}
+
+    <div class="bg-white mb-4">
+
+    </div>
+
+</div>

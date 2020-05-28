@@ -5,6 +5,8 @@ namespace app\controllers;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
+use app\models\Setting;
+
 use Yii;
 
 class SettingController extends \yii\web\Controller
@@ -65,6 +67,8 @@ class SettingController extends \yii\web\Controller
      */
     public function actionStorage()
     {
+        $settings = Setting::find()->asArray()->all();
+
         return $this->render('storage.twig');
     }
 

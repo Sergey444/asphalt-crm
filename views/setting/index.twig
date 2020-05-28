@@ -1,14 +1,13 @@
 {{ use('yii/widgets/Pjax') }}
 
 {{ set(this, 'title', 'Настройки') }}
-{# {{ set(this, 'params', { 'breadcrumbs' : { '' : this.title } }) }} #}
 
 <div class="setting-index">
 
     {% set menuItems = [
         {'label' : 'Общие', 'url' : ['/setting/index']},
-        {'label' : 'Личные', 'url' : ['/order/index']},
-        {'label' : 'Склад', 'url' : ['/partner/index']},
+        {'label' : 'Личные', 'url' : ['/setting/owner']},
+        {'label' : 'Склад', 'url' : ['/setting/storage']},
     ] %}
 
     {{ nav_widget({

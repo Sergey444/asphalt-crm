@@ -7,6 +7,6 @@ $senderEmail = file_exists(__DIR__ . '/app/app.sender.email.php') ? file_get_con
 return [
     'name' => $name ?: 'Моя компания',
     'adminEmail' => $adminEmail,
-    // 'senderEmail' => $senderEmail,
+    'senderEmail' => $senderEmail,
     'senderName' => $name ?: 'Моя компания',
 ];

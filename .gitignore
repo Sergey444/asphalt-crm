@@ -38,7 +38,7 @@ tests/_support/_generated
 # db
 /config/db.php
 
-/config/app/*
+# /config/app/*
 
 #uploads
 /web/uploads

@@ -15,9 +15,9 @@
                         <div class="bitumen__title">Общее количество битума на складе</div>
                         <div class="bitumen__top">
                             <div class="bitumen__wrapper bitumen__wrapper--all">
-                                <div class="bitumen__count-all" style="width: {{app.formatter.asPercent(bitumen.total.procent)}}">
+                                <div class="bitumen__count-all" style="width: {{app.formatter.asPercent(bitumen.total.percent)}}">
                                     <span class="bitumen__text">
-                                        {{app.formatter.asPercent(bitumen.total.procent)}} ({{app.formatter.asInteger(bitumen.total.count)}}т.)
+                                        {{app.formatter.asPercent(bitumen.total.percent)}} ({{app.formatter.asInteger(bitumen.total.count)}}т.)
                                     </span>
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
                     <div class="material">
                         <div class="material__title">Общее количество материала на складе</div>
                         <div class="material__wrapper">
-                            <div class="material__count-all" style="height: {{app.formatter.asPercent(material.percent)}}">
+                            <div class="material__count-all" style="height: {{material.percent}}%">
                                 <span class="material__text">
                                     {{app.formatter.asPercent(material.percent)}} ({{app.formatter.asInteger(material.count)}}т.)
                                 </span>

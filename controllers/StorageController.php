@@ -45,7 +45,7 @@ class StorageController extends \yii\web\Controller
         
         $arrBitumen = [
             'total' => [
-                'procent' => $bitumen['count'] * 100 / 300 / 100,
+                'percent' => $bitumen['count'] * 100 / 300 / 100,
                 'count' => $bitumen['count']
             ],
             'containers' => [

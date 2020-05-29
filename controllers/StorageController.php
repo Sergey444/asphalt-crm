@@ -40,7 +40,7 @@ class StorageController extends \yii\web\Controller
      */
     public function actionIndex()
     {
-        $bitumen = $this->findProductModel(2);
+        $bitumen = $this->findProductModel(26);
         $materialCount = Product::find()->where(['is_total_amount' => 1])->sum('count');
         
         $arrBitumen = [

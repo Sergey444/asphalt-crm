@@ -97,7 +97,7 @@ class Order extends \yii\db\ActiveRecord
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
-            if ($insert) {
+            if ($insert && $this->count) {
                 $product = Product::findOne($this->product_id);
                 $product->count = $product->count - $this->count;
                 if (!$product->save()) {
@@ -115,7 +115,7 @@ class Order extends \yii\db\ActiveRecord
                     }
                     return true;
                 }
-                return ;
+                return true;
             }
             return true;
         } 

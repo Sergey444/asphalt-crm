@@ -41,7 +41,7 @@ class StorageController extends \yii\web\Controller
     public function actionIndex()
     {
         $bitumen = $this->findProductModel(2);
-        $materialCount = Product::find()->where(['>', 'id', '0'])->sum('count');
+        $materialCount = Product::find()->where(['is_total_amount' => 1])->sum('count');
         
         $arrBitumen = [
             'total' => [
@@ -60,7 +60,7 @@ class StorageController extends \yii\web\Controller
 
         $arrMaterial = [
             'count' => $materialCount,
-            'percent' => $materialCount * 100 / 10000 / 100
+            'percent' => $materialCount <= 0 ? 0 :$materialCount * 100 / 10000 / 100
         ];
 
         return $this->render('index.twig', [

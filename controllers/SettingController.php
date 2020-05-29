@@ -73,6 +73,15 @@ class SettingController extends \yii\web\Controller
     }
 
     /**
+     * Displays storage settings
+     */
+    public function actionPersonal()
+    {
+
+        return $this->render('personal.twig');
+    }
+
+    /**
      * @param string $name
      * @param string $file
      * @return boolean

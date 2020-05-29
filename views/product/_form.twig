@@ -39,6 +39,10 @@
         </div>
     </div>
 
+    <div class="form-group">
+        {{ form.field(model, 'is_total_amount').checkbox({'value': '1', 'class': 'custom-control-input'}) | raw }}
+    </div>
+
      <div class="form-group">
         <input type="submit" value="Сохранить" class="btn btn-outline-success btn-sm d-block " />
     </div>

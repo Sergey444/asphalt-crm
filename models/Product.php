@@ -49,7 +49,7 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['price', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
+            [['price', 'created_by', 'is_total_amount', 'updated_by', 'created_at', 'updated_at'], 'integer'],
             [['count'], 'number'],
             [['description'], 'string'],
             [['name', 'unit'], 'string', 'max' => 255],
@@ -69,6 +69,7 @@ class Product extends \yii\db\ActiveRecord
             'count' => 'Количество',
             'total' => 'Сумма',
             'unit' => 'Единица измерения',
+            'is_total_amount' => 'Учитывать в общем количестве материала',
             'description' => 'Описание',
             'truncateDescription' => 'Описание',
             'created_by' => 'Кем создан',

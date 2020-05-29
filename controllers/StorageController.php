@@ -59,7 +59,7 @@ class StorageController extends \yii\web\Controller
         ];
 
         $arrMaterial = [
-            'count' => $materialCount,
+            'count' => $materialCount ?: 0,
             'percent' => $materialCount <= 0 ? 0 :$materialCount * 100 / 10000 / 100
         ];
 

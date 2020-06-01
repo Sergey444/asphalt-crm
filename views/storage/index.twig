@@ -48,7 +48,7 @@
                     <div class="material">
                         <div class="material__title">Общее количество материала на складе</div>
                         <div class="material__wrapper">
-                            <div class="material__count-all" style="height: {{material.percent}}%">
+                            <div class="material__count-all" style="height: {{material.percent * 100 | round}}%">
                                 <span class="material__text">
                                     {{app.formatter.asPercent(material.percent)}} ({{app.formatter.asInteger(material.count)}}т.)
                                 </span>

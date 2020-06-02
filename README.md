@@ -14,21 +14,6 @@
   ];
 ```
 
-## Параметры SMTP 
-Создать в папке /config/ файл mailer.php
-```bash
-<?php 
-
-  return [
-      'class'      => 'Swift_SmtpTransport',
-      'host'       => 'smtp.yandex.ru',
-      'username'   => 'noreply@my-site.ru',
-      'password'   => 'password',
-      'port'       => '465',
-      'encryption' => 'ssl',
-  ];
-```
-
 ## Установка
 ```bash
   composer install #установка пакетов

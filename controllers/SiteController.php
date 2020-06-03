@@ -83,6 +83,7 @@ class SiteController extends Controller
             curl_close($curl);
         }
 
+        
         $ob = new SimpleXMLElement($out);
         $text = $ob->quote->quoteText;
         $author = $ob->quote->quoteAuthor;
@@ -102,6 +103,10 @@ class SiteController extends Controller
     {
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
+        }
+
+        if (!User::find()->exists()) {
+            return $this->redirect('signup');
         }
 
         $model = new LoginForm();
@@ -125,9 +130,11 @@ class SiteController extends Controller
         if ( User::find()->exists() || !Yii::$app->user->isGuest ) {
             return $this->goHome();
         }
+        
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
-            Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
+            Yii::$app->session->setFlash('success', 'Поздравляем, вы успешно зарегистрировались.');
+            $model->login();
             return $this->goHome();
         }
 

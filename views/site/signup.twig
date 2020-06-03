@@ -15,7 +15,9 @@
     
         <h3>{{ this.title }}</h3>
         
-        <p>Регистрация доступна только при первом запуске</p>
+        <div class="alert alert-primary" role="alert">
+            Регистрация доступна только при первом запуске
+        </div>
 
         {% set form = active_form_begin({
             'id' : 'form-signup',
@@ -31,7 +33,7 @@
             {{ form.field(model, 'password_repeat').passwordInput() | raw }}
 
             <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-primary" />
+                <input type="submit" value="Зарегистрировать" class="btn btn-primary" />
             </div>
 
         {{ active_form_end() }}

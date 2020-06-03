@@ -20,18 +20,15 @@ html caption {
     margin: 0 auto -77px;
     padding: 0 0 77px;
 }
-
 .u-update-btn {
     text-decoration: underline;
     color: #777777;
 }
-
 .bg-white {
     padding: 0.5rem;
     border-radius: 4px;
     box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.24);
 }
-
 .table {
     & th a.asc::after {
         content: "\f15d";
@@ -44,11 +41,9 @@ html caption {
         margin-left: 10px;
     }
 }
-
 span.not-set {
     color: #dc3545;
 }
-
 @include desktop {
 
     .bd-links.collapse,
@@ -61,7 +56,6 @@ span.not-set {
     }
 }
 
-
 /** Редактирование изображения профиля */
 .rs-pencil {
     width: 30px;
@@ -73,26 +67,21 @@ span.not-set {
     text-align: center;
     color: $blue-color;
 }
-
 .rs-pencil::before {
     color: $blue-color;
 }
-
 .rs-pencil span {
     line-height: normal;
     width: 100%;
 }
-
 .edit-photo-block {
     background-color: #fff;
 }
-
 .edit-photo-block .help-block {
     position: absolute;
     top: 0;
     background-color: #fff;
 }
-
 .edit-photo-block .help-block,
 .edit-photo-block .form-group {
     margin: 0;

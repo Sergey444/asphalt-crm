@@ -15,27 +15,30 @@
         padding: 5px;
         position: relative;
 
-        &--all::after {
-            content: "";
-            width: 90%;
-            height: 1px;
-            background-color: #dc3545;
-            display: block;
-            position: absolute;
-            left: 50%;
-            top: calc(100% + 35px);
-            transform: translate(-50%)
-        }
+        @include tablet {
 
-        &--all::before {
-            content: "";
-            width: 1px;
-            background-color: #dc3545;
-            height: 35px;
-            display: block;
-            position: absolute;
-            left: 50%;
-            top: 100%;
+            &--all::after {
+                content: "";
+                width: 90%;
+                height: 1px;
+                background-color: #dc3545;
+                display: block;
+                position: absolute;
+                left: 50%;
+                top: calc(100% + 35px);
+                transform: translate(-50%)
+            }
+    
+            &--all::before {
+                content: "";
+                width: 1px;
+                background-color: #dc3545;
+                height: 35px;
+                display: block;
+                position: absolute;
+                left: 50%;
+                top: 100%;
+            }
         }
 
         &--alone {
@@ -104,6 +107,11 @@
 
     &__alone {
         flex-grow: 1;
+        display: none;
+
+        @include tablet {
+            display: flex;
+        }
     }
 
     &__text {

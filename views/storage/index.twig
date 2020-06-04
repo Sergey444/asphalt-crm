@@ -17,7 +17,7 @@
                             <div class="bitumen__title">Общее количество битума на складе</div>
                             <div class="bitumen__top">
                                 <div class="bitumen__wrapper bitumen__wrapper--all">
-                                    <div class="bitumen__count-all" style="width: {{app.formatter.asPercent(bitumen.total.percent)}}">
+                                    <div class="bitumen__count-all" style="width: {{bitumen.total.percent * 100 | round}}%">
                                         <span class="bitumen__text">
                                             {{app.formatter.asPercent(bitumen.total.percent)| raw}} ({{app.formatter.asInteger(bitumen.total.count) | raw}}т.)
                                         </span>
@@ -26,7 +26,8 @@
                                 <small>Объём 300т.</small>
                             </div>
 
-                            <div class="row bitumen__alone">
+                            <div class="bitumen__alone">
+                                <div class="row flex-grow-1">
 
                                 {% for container in bitumen.containers %}
                                     <div class="col-md-2">
@@ -41,6 +42,7 @@
                                         <small>Объём {{container.volume }}т.</small>
                                     </div>
                                 {% endfor %}
+                                </div>
                             
                             </div>
                         </div>

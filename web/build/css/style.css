@@ -452,27 +452,29 @@ nav.sidebar {
     position: relative;
 }
 
-.bitumen__wrapper--all::after {
-    content: "";
-    width: 90%;
-    height: 1px;
-    background-color: #dc3545;
-    display: block;
-    position: absolute;
-    left: 50%;
-    top: calc(100% + 35px);
-    transform: translate(-50%);
-}
+@media (min-width: 768px) {
+    .bitumen__wrapper--all::after {
+        content: "";
+        width: 90%;
+        height: 1px;
+        background-color: #dc3545;
+        display: block;
+        position: absolute;
+        left: 50%;
+        top: calc(100% + 35px);
+        transform: translate(-50%);
+    }
 
-.bitumen__wrapper--all::before {
-    content: "";
-    width: 1px;
-    background-color: #dc3545;
-    height: 35px;
-    display: block;
-    position: absolute;
-    left: 50%;
-    top: 100%;
+    .bitumen__wrapper--all::before {
+        content: "";
+        width: 1px;
+        background-color: #dc3545;
+        height: 35px;
+        display: block;
+        position: absolute;
+        left: 50%;
+        top: 100%;
+    }
 }
 
 .bitumen__wrapper--alone {
@@ -538,6 +540,13 @@ nav.sidebar {
 
 .bitumen__alone {
     flex-grow: 1;
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .bitumen__alone {
+        display: flex;
+    }
 }
 
 .bitumen__text {

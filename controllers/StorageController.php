@@ -40,28 +40,29 @@ class StorageController extends \yii\web\Controller
      */
     public function actionIndex()
     {
-        $bitumen = $this->findProductModel(26);
-        $materialCount = Product::find()->where(['is_total_amount' => 1])->sum('count');
         
-        $arrBitumen = [
-            'total' => [
-                'percent' => $bitumen['count'] * 100 / 300 / 100,
-                'count' => $bitumen['count']
-            ],
-            'containers' => [
-                ['volume' => 100,'count' => $bitumen['count'] >= 120 ? 100 : ( $bitumen['count'] < 20 ? 0 : $bitumen['count'] - 20)],
-                ['volume' => 45, 'count' => $bitumen['count'] >= 165 ? 45 : ( $bitumen['count'] < 120 ? 0 : $bitumen['count'] - 120)],
-                ['volume' => 45, 'count' => $bitumen['count'] >= 210 ? 45 : ( $bitumen['count'] < 165 ? 0 : $bitumen['count'] - 165)],
-                ['volume' => 45, 'count' => $bitumen['count'] >= 255 ? 45 : ( $bitumen['count'] < 210 ? 0 : $bitumen['count'] - 210)],
-                ['volume' => 45, 'count' => $bitumen['count'] >= 300 ? 45 : ( $bitumen['count'] < 255 ? 0 : $bitumen['count'] - 255)],
-                ['volume' => 20, 'count' => $bitumen['count'] >= 20 ? 20 : $bitumen['count']],
-            ]
-        ];
-
+        $materialCount = Product::find()->where(['is_total_amount' => 1])->sum('count');
         $arrMaterial = [
             'count' => $materialCount ?: 0,
             'percent' => $materialCount <= 0 ? 0 :$materialCount * 100 / 10000 / 100
         ];
+        
+        if ($bitumen = $this->findProductModel(26)) {
+            $arrBitumen = [
+                'total' => [
+                    'percent' => $bitumen['count'] * 100 / 300 / 100,
+                    'count' => $bitumen['count']
+                ],
+                'containers' => [
+                    ['volume' => 100,'count' => $bitumen['count'] >= 120 ? 100 : ( $bitumen['count'] < 20 ? 0 : $bitumen['count'] - 20)],
+                    ['volume' => 45, 'count' => $bitumen['count'] >= 165 ? 45 : ( $bitumen['count'] < 120 ? 0 : $bitumen['count'] - 120)],
+                    ['volume' => 45, 'count' => $bitumen['count'] >= 210 ? 45 : ( $bitumen['count'] < 165 ? 0 : $bitumen['count'] - 165)],
+                    ['volume' => 45, 'count' => $bitumen['count'] >= 255 ? 45 : ( $bitumen['count'] < 210 ? 0 : $bitumen['count'] - 210)],
+                    ['volume' => 45, 'count' => $bitumen['count'] >= 300 ? 45 : ( $bitumen['count'] < 255 ? 0 : $bitumen['count'] - 255)],
+                    ['volume' => 20, 'count' => $bitumen['count'] >= 20 ? 20 : $bitumen['count']],
+                ]
+            ];
+        }
 
         return $this->render('index.twig', [
             'bitumen' => $arrBitumen,
@@ -82,6 +83,6 @@ class StorageController extends \yii\web\Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        // throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

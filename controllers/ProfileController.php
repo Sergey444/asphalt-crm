@@ -89,7 +89,7 @@ class ProfileController extends Controller
         $model = new SignupForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
-            Yii::$app->session->setFlash('success', Yii::t('app', 'User created successfully'));
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Пользователь успешно создан'));
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -130,7 +130,7 @@ class ProfileController extends Controller
         $model = new SignupForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
-            Yii::$app->session->setFlash('success', Yii::t('app', 'User created successfully'));
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Пользователь успешно создан'));
             return $this->redirect(['view.twig', 'id' => $model->id]);
         }
 
@@ -153,7 +153,7 @@ class ProfileController extends Controller
         $user = new UpdateUserForm($model->user_id);
 
         if ($this->update($id, $model, $user)) {
-            Yii::$app->session->setFlash('success', Yii::t('app', 'User updated successfully'));
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Пользователь успешно изменён'));
             return $this->redirect(['update', 'id' => $model->id]);
         };
 
@@ -183,7 +183,7 @@ class ProfileController extends Controller
         $user = new UpdateUserForm($id);
 
         if (Yii::$app->request->post() && $this->update($id, $model, $user)) {
-            Yii::$app->session->setFlash('success', 'User updated successfully');
+            Yii::$app->session->setFlash('success', 'Пользователь успешно изменён');
             return $this->redirect(['update-user']);
         };
 
@@ -210,15 +210,11 @@ class ProfileController extends Controller
     private function update($id, $model, $user)
     {
         if ($model->load(Yii::$app->request->post())) {
-
             $photo = UploadedFile::getInstance($model, 'img');
-
-            if ($photo) {
-                $model->upload($photo);
+            if ($photo && !$model->upload($photo)) {
+                Yii::$app->session->setFlash('success', 'Фотография не загружена');
             }
-            if ( $model->save() ) {
-                return true;
-            }
+            return $model->save();
         }
 
         if ($user->load(Yii::$app->request->post()) && $user->update($id)) {
@@ -240,19 +236,21 @@ class ProfileController extends Controller
         if (($user = User::findOne($profile->user_id)) !== null) {
             file_exists( $profile->photo) && unlink( $profile->photo);
             $profile->delete();
-            $user->delete();
+            if ($user->delete()) {
+                Yii::$app->session->setFlash('success', 'Пользователь успешно удалён');
+            }
         }
         return $this->redirect(['users']);
     }
 
     /**
-     * 
+     * @param integer $id
      */
     public function actionDeletePhoto($id)
     {
         $model = $this->findModel($id);
         if ($model->deletePhoto()) {
-            Yii::$app->session->setFlash('success', 'User updated successfully');
+            Yii::$app->session->setFlash('success', 'Фотография успешно удалена');
         }
 
         if (Yii::$app->user->id == $id) {

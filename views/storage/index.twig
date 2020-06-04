@@ -11,37 +11,44 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <div class="bitumen">
-                        <div class="bitumen__title">Общее количество битума на складе</div>
-                        <div class="bitumen__top">
-                            <div class="bitumen__wrapper bitumen__wrapper--all">
-                                <div class="bitumen__count-all" style="width: {{app.formatter.asPercent(bitumen.total.percent)}}">
-                                    <span class="bitumen__text">
-                                        {{app.formatter.asPercent(bitumen.total.percent)}} ({{app.formatter.asInteger(bitumen.total.count)}}т.)
-                                    </span>
-                                </div>
-                            </div>
-                            <small>Объём 300т.</small>
-                        </div>
 
-                        <div class="row bitumen__alone">
-
-                            {% for container in bitumen.containers %}
-                                <div class="col-md-2">
-                                    <div class="bitumen__wrapper bitumen__wrapper--alone" style="height: {{container.volume}}%">
-                                        <div class="bitumen__count-alone" style="height: {{(container.count * 100 / container.volume) | round}}%">
-
-                                            <span class="bitumen__text">
-                                                <nowrap>{{ (container.count * 100 / container.volume) |round }}% ({{container.count}}т.)</nowrap>
-                                            </span>
-                                        </div>
+                    {% if bitumen %}
+                        <div class="bitumen">
+                            <div class="bitumen__title">Общее количество битума на складе</div>
+                            <div class="bitumen__top">
+                                <div class="bitumen__wrapper bitumen__wrapper--all">
+                                    <div class="bitumen__count-all" style="width: {{app.formatter.asPercent(bitumen.total.percent)}}">
+                                        <span class="bitumen__text">
+                                            {{app.formatter.asPercent(bitumen.total.percent)| raw}} ({{app.formatter.asInteger(bitumen.total.count) | raw}}т.)
+                                        </span>
                                     </div>
-                                    <small>Объём {{container.volume }}т.</small>
                                 </div>
-                            {% endfor %}
-                           
+                                <small>Объём 300т.</small>
+                            </div>
+
+                            <div class="row bitumen__alone">
+
+                                {% for container in bitumen.containers %}
+                                    <div class="col-md-2">
+                                        <div class="bitumen__wrapper bitumen__wrapper--alone" style="height: {{container.volume}}%">
+                                            <div class="bitumen__count-alone" style="height: {{(container.count * 100 / container.volume) | round}}%">
+
+                                                <span class="bitumen__text">
+                                                    <nowrap>{{ (container.count * 100 / container.volume) |round }}% ({{container.count}}т.)</nowrap>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <small>Объём {{container.volume }}т.</small>
+                                    </div>
+                                {% endfor %}
+                            
+                            </div>
                         </div>
-                    </div>
+                    {% else %}
+                        <div class="alert alert-primary" role="alert">
+                            Необходимо настроить битум
+                        </div>
+                    {% endif %}
                 </div>
 
                 <div class="col-md-6">

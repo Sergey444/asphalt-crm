@@ -39,18 +39,20 @@
     & .navbar-toggler-icon {
 
         font-family: "Font Awesome 5 Free";
-        font-weight: 400;
+        font-weight: 900;
     
         height: auto;
         color: $blue-color;
-    
+        transition: .3s;
+        transform: rotate(-90deg);
+        
         &::before {
-            content: "\f07c";
+            content: "\f100";
         }
     }
     
-    &[aria-expanded="false"] .navbar-toggler-icon::before {
-        content: "\f07b"
+    &[aria-expanded="false"] .navbar-toggler-icon {
+        transform: rotate(0);
     }
     
 }

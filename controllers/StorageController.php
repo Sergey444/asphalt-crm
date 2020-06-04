@@ -59,7 +59,7 @@ class StorageController extends \yii\web\Controller
                     ['volume' => 45, 'count' => $bitumen['count'] >= 210 ? 45 : ( $bitumen['count'] < 165 ? 0 : $bitumen['count'] - 165)],
                     ['volume' => 45, 'count' => $bitumen['count'] >= 255 ? 45 : ( $bitumen['count'] < 210 ? 0 : $bitumen['count'] - 210)],
                     ['volume' => 45, 'count' => $bitumen['count'] >= 300 ? 45 : ( $bitumen['count'] < 255 ? 0 : $bitumen['count'] - 255)],
-                    ['volume' => 20, 'count' => $bitumen['count'] >= 20 ? 20 : $bitumen['count']],
+                    ['volume' => 20, 'count' => $bitumen['count'] >= 20 ? 20 : ( $bitumen['count'] < 0 ? 0 : $bitumen['count'])] ,
                 ]
             ];
         }

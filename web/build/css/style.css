@@ -200,6 +200,10 @@ html .add-photo-input {
     background-color: #fff !important;
 }
 
+.bd-placeholder-img {
+    text-anchor: middle;
+}
+
 .site-signup {
     max-width: 700px;
     width: 100%;
@@ -284,17 +288,19 @@ html .add-photo-input {
 
 .navbar-toggler .navbar-toggler-icon {
     font-family: "Font Awesome 5 Free";
-    font-weight: 400;
+    font-weight: 900;
     height: auto;
     color: #007bff;
+    transition: 0.3s;
+    transform: rotate(-90deg);
 }
 
 .navbar-toggler .navbar-toggler-icon::before {
-    content: "";
+    content: "";
 }
 
-.navbar-toggler[aria-expanded=false] .navbar-toggler-icon::before {
-    content: "";
+.navbar-toggler[aria-expanded=false] .navbar-toggler-icon {
+    transform: rotate(0);
 }
 
 nav.sidebar {

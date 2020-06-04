@@ -29,7 +29,7 @@
                     {{ form.field(model, 'date_of_birthday').widget('yii\\widgets\\MaskedInput', {'mask': '99.99.9999'}).textInput({'placeholder': 'Введите дату рождения', 'class': 'form-control form-control-sm'}) | raw }}
                 </div>
                 <div class="col-md-4">
-                    {{ form.field(model, 'phone').widget('yii\\widgets\\MaskedInput', {'mask': '+9 (999) 999-99-99'}).textInput({'placeholder': 'Введите телефон', 'class': 'form-control form-control-sm'}) | raw }}
+                    {{ form.field(model, 'phone').widget('yii\\widgets\\MaskedInput', {'mask': '+7 (999) 999-99-99'}).textInput({'placeholder': 'Введите телефон', 'class': 'form-control form-control-sm'}) | raw }}
                 </div>
                 <div class="col-md-4">
                     {{ form.field(model, 'address').textInput({'placeholder': 'Введите адрес', 'class': 'form-control form-control-sm'}) | raw }}
@@ -49,7 +49,16 @@
 
         <div class="bg-white av-block ml-4 order-1 order-md-2">
             <div class="av-preview">
-                <img src="{{ file_exists ? '/' ~ model.photo : 'https://via.placeholder.com/200' }}" id="img-preview" alt="">
+
+                <div id="img-preview">
+                    {% if file_exists %}
+                        <img src="{{'/' ~ model.photo }}" class="img-thumbnail" alt="">
+                    {% else %}
+                        {% include '_svg.square.html' %}
+                    {% endif %}
+                </div>
+                {# <img src="{{ file_exists ? '/' ~ model.photo : 'https://via.placeholder.com/200' }}" id="img-preview" alt=""> #}
+
                 <div class="edit-photo-block">
                     <div class="rs-pencil">
                     <span class="glyphicon glyphicon-pencil" onclick="$('#add-photo-input').click()"></span>

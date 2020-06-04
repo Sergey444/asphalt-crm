@@ -13,9 +13,14 @@
     <div class="d-flex mb-4 flex-wrap flex-md-nowrap">
         <div class="bg-white av-block mr-4 mb-4" >
             <div class="personal-view__av-preview">
-                <img src="{{ file_exists ? '/' ~ model.photo : 'https://via.placeholder.com/200' }}" alt="">
-                
-                <div class="pull-right">
+                {% if file_exists %}
+                    <img src="{{'/' ~ model.photo }}" class="img-thumbnail" alt="">
+                {% else %}
+                    {% include '_svg.square.html' %}
+                {% endif %}
+                {# <img src="{{ file_exists ? '/' ~ model.photo : template }}" alt=""> #}
+
+                <div class="text-right">
                     {% if app.user.id == model.user_id %}
                         <a href="{{ path('/profile/update-user') }}" class="u-update-btn">Редактировать профиль</a>
                     {% else %}

@@ -113,12 +113,10 @@ class Order extends \yii\db\ActiveRecord
                         $product->count = $product->count - $arrRecipes[$product->id];
                         $product->update(false);
                     }
-                    return true;
                 }
-                return true;
             }
             return true;
-        } 
+        }
         return false;
     }
 
@@ -167,6 +165,27 @@ class Order extends \yii\db\ActiveRecord
     {
         $model = Product::find()->limit(150)->all();
         return ArrayHelper::map($model, 'id', 'name');
+    }
+
+    /**
+     * Finds orders where status isn't equal 1 or null
+     * @return array
+     */
+    static function findDebtors()
+    {
+        $orders = Order::find()
+            ->asArray()
+            ->with('partner')
+            ->where(['!=', 'status', '1'])
+            ->orWhere(['status' => null])
+            ->all();
+
+        $result = [];
+        foreach ($orders as $order) {
+            $result[$order['partner']['id']]['name'] = $order['partner']['name'];
+            $result[$order['partner']['id']]['sum'] += $order['sum'];
+        }
+        return $result;
     }
 
     /**

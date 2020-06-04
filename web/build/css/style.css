@@ -317,60 +317,6 @@ nav.sidebar {
     overflow-y: auto;
 }
 
-.site-index .bg-white {
-    padding: 1rem;
-}
-
-.site-index__content {
-    padding: 20px;
-}
-
-.site-index__text {
-    font-family: "Caveat", cursive;
-    font-size: 10vw;
-    line-height: 120%;
-    padding-bottom: 30px;
-}
-
-@media (min-width: 768px) {
-    .site-index__text {
-        font-size: 2.6vw;
-    }
-}
-
-.site-index__author {
-    color: #9d9d9d;
-    font-size: 7vw;
-}
-
-@media (min-width: 768px) {
-    .site-index__author {
-        font-size: 3vw;
-    }
-}
-
-.site-index__video {
-    width: 100%;
-}
-
-.site-index__controll {
-    position: absolute;
-    background-color: #fff;
-    padding: 0 20px;
-    right: 40px;
-}
-
-.site-index .card {
-    font-family: "Caveat", cursive;
-    font-size: 7vw;
-}
-
-@media (min-width: 768px) {
-    .site-index .card {
-        font-size: 2vw;
-    }
-}
-
 /*Переключатель оплаты*/
 
 .switch {

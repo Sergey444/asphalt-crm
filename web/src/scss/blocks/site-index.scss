@@ -1,50 +1,50 @@
 .site-index {
     
-    & .bg-white {
-        padding: 1rem;
-    }
+    // & .bg-white {
+    //     padding: 1rem;
+    // }
     
-    &__content {
-        padding: 20px;
-    }
+    // &__content {
+    //     padding: 20px;
+    // }
 
-    &__text {
+    // &__text {
         
-        font-family: 'Caveat', cursive;
-        font-size: 10vw;
-        line-height: 120%;
-        padding-bottom: 30px;
+    //     // font-family: 'Caveat', cursive;
+    //     // font-size: 10vw;
+    //     // line-height: 120%;
+    //     // padding-bottom: 30px;
 
-        @include tablet {
-            font-size: 2.6vw;
-        }
-    }
+    //     @include tablet {
+    //         // font-size: 2.6vw;
+    //     }
+    // }
 
-    &__author {
-        color: $link-color;
-        font-size: 7vw;
-        @include tablet {
-            font-size: 3vw;
-        }
-    }
+    // &__author {
+    //     color: $link-color;
+    //     font-size: 7vw;
+    //     @include tablet {
+    //         font-size: 3vw;
+    //     }
+    // }
 
-    &__video {
-        width: 100%;
-    }
+    // &__video {
+    //     width: 100%;
+    // }
     
-    &__controll {
-        position: absolute;
-        background-color: #fff;
-        padding: 0 20px;
-        right: 40px;
-    }
+    // &__controll {
+    //     position: absolute;
+    //     background-color: #fff;
+    //     padding: 0 20px;
+    //     right: 40px;
+    // }
 
-    & .card {
-        font-family: 'Caveat', cursive;
-        font-size: 7vw;
-        @include tablet {
-            font-size: 2vw;
-        }
+    // & .card {
+    //     font-family: 'Caveat', cursive;
+    //     font-size: 7vw;
+    //     @include tablet {
+    //         font-size: 2vw;
+    //     }
 
-    }
+    // }
 }

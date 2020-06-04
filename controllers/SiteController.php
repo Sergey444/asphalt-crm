@@ -11,6 +11,7 @@ use app\models\LoginForm;
 
 use app\models\User;
 use app\models\SignupForm;
+use app\models\Order;
 
 use app\models\VerifyEmailForm;
 use yii\web\BadRequestHttpException;
@@ -88,10 +89,13 @@ class SiteController extends Controller
         //     $text = $ob->quote->quoteText;
         //     $author = $ob->quote->quoteAuthor;
         // }
+
+        $debtors = Order::findDebtors();
       
         return $this->render('index.twig', [
-            'text' => $text,
-            'author' => $author,
+            'debtors' => $debtors
+            // 'text' => $text,
+            // 'author' => $author,
         ]);
     }
 

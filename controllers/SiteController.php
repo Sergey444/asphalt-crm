@@ -16,6 +16,8 @@ use app\models\VerifyEmailForm;
 use yii\web\BadRequestHttpException;
 use yii\base\InvalidArgumentException;
 
+use yii\httpclient\Client;
+
 use SimpleXMLElement;
 
 class SiteController extends Controller
@@ -74,25 +76,25 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        if( $curl = curl_init() ) {
-            curl_setopt($curl, CURLOPT_URL, 'http://api.forismatic.com/api/1.0/');
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER,true);
-            curl_setopt($curl, CURLOPT_POST, true);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, "method=getQuote&key=457653&format=xml&lang=ru");
-            $out = curl_exec($curl);
-            curl_close($curl);
-        }
-
-        
-        $ob = new SimpleXMLElement($out);
-        $text = $ob->quote->quoteText;
-        $author = $ob->quote->quoteAuthor;
+        // if( $curl = curl_init() ) {
+        //     curl_setopt($curl, CURLOPT_URL, 'http://api.forismatic.com/api/1.0/');
+        //     curl_setopt($curl, CURLOPT_RETURNTRANSFER,true);
+        //     curl_setopt($curl, CURLOPT_POST, true);
+        //     curl_setopt($curl, CURLOPT_POSTFIELDS, "method=getQuote&key=457653&format=xml&lang=ru");
+        //     $out = curl_exec($curl);
+        //     curl_close($curl);
+            
+        //     $ob = new SimpleXMLElement($out);
+        //     $text = $ob->quote->quoteText;
+        //     $author = $ob->quote->quoteAuthor;
+        // }
       
         return $this->render('index.twig', [
             'text' => $text,
             'author' => $author,
         ]);
     }
+
 
     /**
      * Login action.

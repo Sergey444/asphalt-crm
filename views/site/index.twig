@@ -34,7 +34,8 @@
                     </div>
                 
                     <div class="site-index__controll">
-                        <a href="/site/index" class="btn btn-outline-primary" id="nextText">Показать ещё</a>
+                        {# <a href="/site/index" class="btn btn-outline-primary" id="nextText">Показать ещё</a> #}
+                        {{ html.a('Показать ещё', ['index'], {'id': 'nextText', 'class': 'btn btn-outline-primary'}) | raw }}
                     </div>
                 </div>
 

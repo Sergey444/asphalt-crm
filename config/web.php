@@ -73,6 +73,7 @@ $config = [
                 'report' => 'report/index',
                 'storage' => 'storage/index',
                 'setting' => 'setting/index',
+                'site' => 'site/index',
             ],
         ],
         'formatter' => [

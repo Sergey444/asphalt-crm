@@ -19,6 +19,10 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
 use yii\helpers\ArrayHelper;
+
+use yii\web\Response;
+use yii\widgets\ActiveForm;
+
 /**
  * ProfileController implements the CRUD actions for Profile model.
  */
@@ -87,6 +91,11 @@ class ProfileController extends Controller
     public function actionUsers() 
     {
         $model = new SignupForm();
+
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
 
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
             Yii::$app->session->setFlash('success', Yii::t('app', 'Пользователь успешно создан'));

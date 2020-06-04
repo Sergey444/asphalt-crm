@@ -19,13 +19,17 @@
                     </div>
                     <div class="card-body">
                         {% if debtors %}
+                            {% set sum = 0 %}
                             <ul class="list-group">
-                                {% for debtor in debtors %}
+                                {% for id, debtor in debtors %}
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        {{ debtor.name }}
+                                        {{ html.a(debtor.name, path('partner/view', {'id': id}))|raw }}
                                         <span class="badge badge-danger badge-pill">{{app.formatter.asCurrency(debtor.sum)|raw}}</span>
                                     </li>
+                                    
+                                    {% set sum = sum + debtor.sum %}
                                 {% endfor %}
+                                <div class="text-right">Общий долг: <span class="text-danger">{{ app.formatter.asCurrency(sum)|raw }}</span></div>
                         {% else %}
                             <div class="card-title text-success">Долгов нет</div>
                         {% endif %}

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('[data-name="status"]').on('change', function(evt) {
+    $('body').on('change', '[data-name="status"]', function(evt) {
         
         $(this).prop("disabled", true);
         $.ajax({

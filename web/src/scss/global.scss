@@ -176,3 +176,7 @@ html .add-photo-input {
 .bd-placeholder-img {
     text-anchor: middle;
 }
+
+html .modal-backdrop.show {
+    opacity: 0.1;
+}

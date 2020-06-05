@@ -204,6 +204,10 @@ html .add-photo-input {
     text-anchor: middle;
 }
 
+html .modal-backdrop.show {
+    opacity: 0.1;
+}
+
 .site-signup {
     max-width: 700px;
     width: 100%;

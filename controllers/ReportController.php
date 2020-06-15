@@ -50,7 +50,7 @@ class ReportController extends \yii\web\Controller
         $date_end = Yii::$app->request->get('date_end') ? strtotime( Yii::$app->request->get('date_end') . '+23 hours') : strtotime('now');
         $query = $partner_id . "`date` > ".$date_start." AND `date` < ".$date_end;
 
-        $partners = Partner::find()->limit(50)->all();
+        $partners = Partner::find()->limit(150)->all();
 
         $orders = Order::find()->where($query)->joinWith(['partner', 'product'])->all();
         $suppliers = Supplier::find()->where($query)->joinWith(['partner', 'product'])->all();

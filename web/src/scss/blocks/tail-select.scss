@@ -1,0 +1,28 @@
+.tail-select .select-label .label-inner {
+    padding: 0.25rem .75rem;
+}
+.tail-select .select-label {
+    border-color: #ced4da;
+}
+.tail-select.custom-select-sm {
+    width: 100%;
+    padding-top: 0;
+}
+.tail-select .select-label:hover,
+.tail-select.active .select-label {
+    background-color: #fff;
+    border-color: #ccc;
+}
+.tail-select.active .select-label {
+    border-color: #007bff;
+}
+.tail-select input[type=text]:focus {
+    color: inherit;
+}
+.tail-select .select-dropdown ul li.dropdown-option.selected {
+    color: #007bff;
+}
+.tail-select mark {
+    color: #004085;
+    background-color: #cce5ff;
+}

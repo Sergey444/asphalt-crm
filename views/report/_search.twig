@@ -1,3 +1,6 @@
+{{ this.registerJsFile('@web/lib/tail-select/js/tail.select-full.min.js', {'depends': 'yii\\web\\JqueryAsset'}) }}
+{{ this.registerJsFile('@web/js/tail-select.js', {'depends': 'yii\\web\\JqueryAsset'}) }}
+{{ this.registerCssFile('@web/lib/tail-select/css/bootstrap4/tail.select-default.min.css') }}
 
     {{ html.beginForm(['index'], 'get', {
         'id': 'filter-form',
@@ -7,7 +10,7 @@
 
         <div class="row">
             <div class="col-md-6 form-group">
-                {{ html.dropDownList('partner', app.request.get('partner'), array_helper.map(partners, "id", "name"), {'prompt': 'Общий отчёт', 'class': 'form-control form-control-sm'}) | raw }}
+                {{ html.dropDownList('partner', app.request.get('partner'), array_helper.map(partners, "id", "name"), {'id': 'partner-select', 'prompt': 'Общий отчёт', 'class': 'custom-select custom-select-sm'}) | raw }}
             </div>
             <div class="col-md-2 form-group">
                 {{ date_picker.widget({
@@ -43,5 +46,4 @@
                 </div>
             </div>
         </div>
-
     {{ html.endForm() | raw }}

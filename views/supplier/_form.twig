@@ -37,13 +37,13 @@
         <div class="col-md-4">
              {{ form.field(model, 'partner_id').dropDownList(model.partners, {
                  'prompt': 'Выберите партнёра',
-                 'class': 'form-control form-control-sm'
+                 'class': 'custom-select custom-select-sm'
              }) | raw }}
         </div>
         <div class="col-md-4">
             {{ form.field(model, 'product_id').dropDownList(model.products, {
                  'prompt': 'Выберите товар',
-                 'class': 'form-control form-control-sm'
+                 'class': 'custom-select custom-select-sm'
              }) | raw }}
         </div>
     </div>
@@ -71,7 +71,7 @@
                 'Взаимозачёт': 'Взаимозачёт'
                 }, {
                  'prompt': 'Выберите тип оплаты',
-                 'class': 'form-control form-control-sm'
+                 'class': 'custom-select custom-select-sm'
             }) | raw }}
         </div>
         <div class="col-md-4">

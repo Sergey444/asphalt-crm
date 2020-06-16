@@ -6,6 +6,9 @@
 
 {{ use('yii/bootstrap4/ActiveForm') }}
 {{ this.registerJsFile('@web/js/sum-calculate.js', {'depends': 'yii\\web\\JqueryAsset'}) }}
+{{ this.registerJsFile('@web/lib/tail-select/js/tail.select-full.min.js', {'depends': 'yii\\web\\JqueryAsset'}) }}
+{{ this.registerJsFile('@web/js/tail-select.js', {'depends': 'yii\\web\\JqueryAsset'}) }}
+{{ this.registerCssFile('@web/lib/tail-select/css/bootstrap4/tail.select-default.min.css') }}
 
 <div class="supplier-form">
 
@@ -37,6 +40,7 @@
         <div class="col-md-4">
              {{ form.field(model, 'partner_id').dropDownList(model.partners, {
                  'prompt': 'Выберите партнёра',
+                 'id': 'partner-select',
                  'class': 'custom-select custom-select-sm'
              }) | raw }}
         </div>

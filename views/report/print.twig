@@ -51,7 +51,7 @@
                 <tr>
                     <td>{{ order.date | date('d.m.Y') }}</td>
                     <td>{{ order.product.name }}</td>
-                    <td>{{ app.formatter.format(order.count, 'integer') | raw }}</td>
+                    <td>{{ app.formatter.format(order.count, 'decimal') | raw }}</td>
                     <td>{{ app.formatter.format(order.sum, 'integer') | raw }}</td>
                 </tr> 
             {% endfor %}
@@ -74,7 +74,7 @@
 
                 <tr>
                     <td>{{ key }}</td>
-                    <td>{{ app.formatter.format(product.countSale, 'integer') | raw }}</td>
+                    <td>{{ app.formatter.format(product.countSale, 'decimal') | raw }}</td>
                     <td>{{ app.formatter.format(product.priceSale, 'integer') | raw }}</td>
                 </tr>
 
